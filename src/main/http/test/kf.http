@@ -1,0 +1,29 @@
+### 添加客服
+POST  https://api.weixin.qq.com/customservice/kfaccount/add?access_token=54_HijR63lL6ws-Ia26kl9DWUjIf8yhGLCOndlsLr691LIw9LMn7_Tf92q9g6Ij5SLj60hlsbutt00sAqpP1h3o7pyqM7wk1kLYhg4X0GLfPRsf5Fmkw_2y2gh0bWZfxC3kf-Sb-o6ItE_nxGYAVRCbAAAOKV
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+
+
+{
+  "kf_account" : "test1@test",
+  "nickname" : "客服1",
+  "password" : "pswmd5"
+}
+
+
+### 发送消息
+POST   https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=54_A2WOy11BjRQOisMeI_WKv5_ulKxYK4NTDnIyaz5lWaU9oWA7MOCBaGPlVo9v5l-qPvsPOMZkL4I5nIbnq8LI0uJmJlgbHDbaclTw853_rVTToRedXgwcWHBLEA1NfX1f7jjQFJllqJPv8JM4VNNgACAQII
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+
+
+{
+  "touser":"oZ2B35gotGC9SkWxPZVQjGh748DY",
+  "msgtype":"text",
+  "text":
+  {
+    "content":"哥早上好"
+  }
+}

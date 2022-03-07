@@ -1,0 +1,14 @@
+###文本伪原创
+POST {{host}}/work/ai/textReplace
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+<<<<<<< HEAD
+  "text": "相对线程安全需要保证对这个对象单独的操作是线程安全的，在调用的时候不需要做额外的保障措施。但是对于一些特定顺序的连续调用，就可能需要在调用端使用额外的同步手段来保证调用的正确性。"
+=======
+  "text": "最后一月的爱好"
+>>>>>>> 5ddef5cda5217fc62a31880b7cab1504efad8d60
+}

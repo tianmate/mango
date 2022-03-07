@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.wxapp.mapper.PlanMapper">
+  <resultMap id="BaseResultMap" type="cn.sky1998.mongo.wxapp.domain.Plan">
+    <!--@mbg.generated-->
+    <!--@Table g_plan-->
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="des" property="des" />
+    <result column="periods" property="periods" />
+    <result column="num" property="num" />
+    <result column="begin_time" property="beginTime" />
+    <result column="create_time" property="createTime" />
+    <result column="enable" property="enable" />
+    <result column="end" property="end" />
+    <result column="end_time" property="endTime" />
+    <result column="temp_id" property="tempId" />
+    <result column="para" property="para" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, des, periods, num, begin_time, create_time, `enable`, `end`, end_time,temp_id,para
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from g_plan
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from g_plan
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.wxapp.domain.Plan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into g_plan (`name`, des, periods, num, begin_time, create_time, `enable`,
+    `end`, end_time,temp_id,para)
+    values (#{name}, #{des}, #{periods}, #{num}, #{beginTime}, #{createTime}, #{enable},
+    #{end}, #{endTime},#{tempId},#{para})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.wxapp.domain.Plan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into g_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="periods != null">
+        periods,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="enable != null">
+        `enable`,
+      </if>
+      <if test="end != null">
+        `end`,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="tempId != null">
+        temp_id,
+      </if>
+      <if test="para != null">
+        para,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="des != null">
+        #{des},
+      </if>
+      <if test="periods != null">
+        #{periods},
+      </if>
+      <if test="num != null">
+        #{num},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="enable != null">
+        #{enable},
+      </if>
+      <if test="end != null">
+        #{end},
+      </if>
+      <if test="endTime != null">
+        #{endTime},
+      </if>
+      <if test="para != null">
+        #{para},
+      </if>
+      <if test="tempId != null">
+        #{tempId},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.wxapp.domain.Plan">
+    <!--@mbg.generated-->
+    update g_plan
+    <set>
+      <if test="name != null">
+        `name` = #{name},
+      </if>
+      <if test="des != null">
+        des = #{des},
+      </if>
+      <if test="periods != null">
+        periods = #{periods},
+      </if>
+      <if test="num != null">
+        num = #{num},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+      <if test="enable != null">
+        `enable` = #{enable},
+      </if>
+      <if test="end != null">
+        `end` = #{end},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime},
+      </if>
+      <if test="tempId != null">
+        temp_id = #{tempId},
+      </if>
+      <if test="para != null">
+        para = #{para},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mongo.wxapp.domain.Plan">
+    <!--@mbg.generated-->
+    update g_plan
+    set `name` = #{name},
+    des = #{des},
+    periods = #{periods},
+    num = #{num},
+    begin_time = #{beginTime},
+    create_time = #{createTime},
+    `enable` = #{enable},
+    `end` = #{end},
+    end_time = #{endTime},
+    temp_id = #{tempId},
+    para = #{para}
+    where id = #{id}
+  </update>
+
+
+  <select id="getList" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from g_plan
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="name != null">
+        and name = #{name}
+      </if>
+      <if test="enable != null">
+        and enable = #{enable}
+      </if>
+    </where>
+
+  </select>
+
+  <select id="getPlan" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from g_plan
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="name != null">
+        and name = #{name}
+      </if>
+      <if test="enable != null">
+        and enable = #{enable}
+      </if>
+    </where>
+    </select>
+</mapper>

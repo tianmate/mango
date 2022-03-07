@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.wxapp.mapper.NightJoinMapper">
+  <resultMap id="BaseResultMap" type="cn.sky1998.mongo.wxapp.domain.NightJoin">
+    <!--@mbg.generated-->
+    <!--@Table g_night_join-->
+    <id column="id" property="id" />
+    <result column="openid" property="openid" />
+    <result column="plan_id" property="planId" />
+    <result column="send_num" property="sendNum" />
+    <result column="send_enable" property="sendEnable" />
+    <result column="create_time" property="createTime" />
+  </resultMap>
+
+  <resultMap id="BaseResultMapVo" type="cn.sky1998.mongo.wxapp.domain.NightJoinPlanUserVo">
+    <!--@mbg.generated-->
+    <!--@Table g_night_join-->
+    <collection property="nightJoin" ofType="cn.sky1998.mongo.wxapp.domain.NightJoin">
+    <id column="id" property="id" />
+    <result column="openid" property="openid" />
+    <result column="plan_id" property="planId" />
+    <result column="send_num" property="sendNum" />
+    <result column="send_enable" property="sendEnable" />
+    <result column="create_time" property="createTime" />
+    </collection>
+
+    <collection property="plan" ofType="cn.sky1998.mongo.wxapp.domain.Plan">
+      <id column="id" property="id" />
+      <result column="name" property="name" />
+      <result column="des" property="des" />
+      <result column="periods" property="periods" />
+    </collection>
+
+    <collection property="publicUser" ofType="cn.sky1998.mongo.wxapp.domain.PublicUser">
+      <id column="id" property="id" />
+      <result column="nick_name" property="nickName" />
+      <result column="tel" property="tel" />
+    </collection>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    nj.id, nj.openid, nj.plan_id, nj.send_num, nj.send_enable, nj.create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from g_night_join
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from g_night_join
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.wxapp.domain.NightJoin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into g_night_join (openid, plan_id, send_num, send_enable, create_time)
+    values (#{openid}, #{planId}, #{sendNum}, #{sendEnable}, #{createTime})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.wxapp.domain.NightJoin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into g_night_join
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="sendNum != null">
+        send_num,
+      </if>
+      <if test="sendEnable != null">
+        send_enable,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="openid != null">
+        #{openid},
+      </if>
+      <if test="planId != null">
+        #{planId},
+      </if>
+      <if test="sendNum != null">
+        #{sendNum},
+      </if>
+      <if test="sendEnable != null">
+        #{sendEnable},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.wxapp.domain.NightJoin">
+    <!--@mbg.generated-->
+    update g_night_join
+    <set>
+      <if test="openid != null">
+        openid = #{openid},
+      </if>
+      <if test="planId != null">
+        plan_id = #{planId},
+      </if>
+      <if test="sendNum != null">
+        send_num = #{sendNum},
+      </if>
+      <if test="sendEnable != null">
+        send_enable = #{sendEnable},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mongo.wxapp.domain.NightJoin">
+    <!--@mbg.generated-->
+    update g_night_join
+    set openid = #{openid},
+      plan_id = #{planId},
+      send_num = #{sendNum},
+      send_enable = #{sendEnable},
+      create_time = #{createTime}
+    where id = #{id}
+  </update>
+
+  <select id="getList" resultMap="BaseResultMapVo">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />,
+    p.name,
+    p.des,
+    p.periods,
+
+    pu.nick_name,
+    pu.tel
+    from g_night_join nj
+    left join g_plan p on p.id=nj.plan_id
+    left join g_public_user pu on pu.openid=nj.openid
+    <where>
+      <if test="id != null">
+        and nj.id = #{id}
+      </if>
+      <if test="openid != null">
+        and nj.openid = #{openid}
+      </if>
+      <if test="planId != null">
+        and plan_id = #{planId}
+      </if>
+    </where>
+
+  </select>
+
+  <select id="getListByPlanId" resultMap="BaseResultMapVo">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />,
+
+    pu.nick_name,
+    pu.tel
+    from g_night_join nj
+    left join g_public_user pu on pu.openid=nj.openid
+    <where>
+      <if test="id != null">
+        and nj.id = #{id}
+      </if>
+      <if test="planId != null">
+        and nj.plan_id = #{planId}
+      </if>
+      <if test="sendNum != null">
+        and nj.send_num  <![CDATA[ < ]]> #{sendNum}
+      </if>
+      <if test="sendEnable != null">
+        and nj.send_enable  =#{sendEnable}
+      </if>
+    </where>
+
+  </select>
+</mapper>

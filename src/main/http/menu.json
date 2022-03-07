@@ -1,0 +1,35 @@
+{
+  "button": [
+    {
+      "type": "click",
+      "name": "早安计划",
+      "key": "zaoan"
+    },
+    {
+      "name": "活动邀约",
+      "sub_button": [
+        {
+          "type": "view",
+          "name": "24小时恋爱",
+          "url": "http://www.soso.com/"
+        },
+        {
+          "type": "view",
+          "name": "最美打工人",
+          "url": "http://www.soso.com/"
+        },
+        {
+          "type": "click",
+          "name": "树洞",
+          "key": "V1001_GOOD"
+        }
+      ]
+    },
+    {
+      "type": "click",
+      "name": "联系我们",
+      "key": "connect"
+    }
+  ]
+
+}

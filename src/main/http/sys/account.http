@@ -1,0 +1,104 @@
+
+###注册
+POST {{host}}/system/account/register
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "123456"
+}
+
+### 用户列表
+POST {{host}}/system/account/getList
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 2
+}
+
+### 更新用户
+POST {{host}}/system/account/update
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 2,
+  "username": "admin",
+  "password": "123456",
+  "tel": "15838330153",
+  "nickName": "sky",
+  "remark": "系统管理员"
+}
+
+### 删除用户
+POST {{host}}/system/account/remove
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 5
+}
+
+### 用户分配角色
+POST {{host}}/system/account/assignRole
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "account": {
+    "id": 4
+  },
+  "roles": [
+    {
+        "id": 2
+
+    },
+    {
+        "id": 3
+    }
+  ]
+}
+
+### 获取用户角色
+POST {{host}}/system/account/getUserRole
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 2
+}
+
+### 删除用户角色
+POST {{host}}/system/account/removeUserRole
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "accountId": 1
+}
+
+### 获取用户菜单
+POST {{host}}/system/account/getUserMenu
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 2
+}

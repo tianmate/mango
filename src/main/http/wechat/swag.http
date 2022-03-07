@@ -1,0 +1,36 @@
+
+### 新增交换
+POST {{host}}/wechat/swag/add
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+
+}
+
+### 获取交换列表
+POST {{host}}/wechat/swag/getList
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+
+}
+
+### 新增交换
+POST {{host}}/wechat/swag/add
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+
+}
+
+
+

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.system.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="cn.sky1998.mongo.system.domain.Menu">
+    <!--@mbg.generated-->
+    <!--@Table sys_menu-->
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="description" property="description" />
+    <result column="parent_id" property="parentId" />
+    <result column="path" property="path" />
+    <result column="hidden" property="hidden" />
+    <result column="icon" property="icon" />
+    <result column="order" property="order" />
+    <result column="enable" property="enable" />
+    <result column="del" property="del" />
+    <result column="remark" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    sm.id, sm.`name`, sm.description, sm.parent_id, sm.`path`, sm.hidden, sm.icon, sm.`order`, sm.`enable`, sm.del, sm.remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sys_menu
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Menu" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_menu (`name`, description, parent_id, `path`, hidden, icon, `order`, `enable`, del, remark)
+    values (#{name}, #{description}, #{parentId}, #{path})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Menu" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="path != null">
+        `path`,
+      </if>
+      <if test="hidden != null">
+        hidden,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="order != null">
+        `order`,
+      </if>
+      <if test="enable != null">
+        `enable`,
+      </if>
+      <if test="del != null">
+        del,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="description != null">
+        #{description},
+      </if>
+      <if test="parentId != null">
+        #{parentId},
+      </if>
+      <if test="path != null">
+        #{path},
+      </if>
+      <if test="hidden != null">
+        #{hidden},
+      </if>
+      <if test="icon != null">
+        #{icon},
+      </if>
+      <if test="order != null">
+        #{order},
+      </if>
+      <if test="enable != null">
+        #{enable},
+      </if>
+      <if test="del != null">
+        #{del},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.system.domain.Menu">
+    <!--@mbg.generated-->
+    update sys_menu
+    <set>
+      <if test="name != null">
+        `name` = #{name},
+      </if>
+      <if test="description != null">
+        description = #{description},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId},
+      </if>
+      <if test="path != null">
+        `path` = #{path},
+      </if>
+      <if test="hidden != null">
+        hidden = #{hidden},
+      </if>
+      <if test="icon != null">
+        icon = #{icon},
+      </if>
+      <if test="order != null">
+        `order` = #{order},
+      </if>
+      <if test="enable != null">
+        `enable` = #{enable},
+      </if>
+      <if test="del != null">
+        del = #{del},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mongo.system.domain.Menu">
+    <!--@mbg.generated-->
+    update sys_menu
+    set `name` = #{name},
+      description = #{description},
+      parent_id = #{parentId},
+      `path` = #{path},
+      hidden = #{hidden},
+      icon = #{icon},
+      `order` = #{order},
+      `enable` = #{enable},
+      del = #{del},
+      remark = #{remark},
+    where id = #{id}
+  </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_menu sm
+    <where>
+      <if test="id != null">
+        and sm.id=#{id}
+      </if>
+   </where>
+    order by sm.order asc
+    </select>
+
+  <select id="selectListByAccountId" resultMap="BaseResultMap">
+
+    select
+    <include refid="Base_Column_List" />
+    from sys_menu sm
+    left join sys_role_menu srm on sm.id=srm.menu_id
+    left join sys_role sr on sr.id=srm.role_id
+    left join sys_account_role  sar on  sar.role_id=sr.id
+    where sar.account_id=#{id}
+
+  </select>
+
+  <select id="getMenuByUser" resultType="cn.sky1998.mongo.system.domain.Menu">
+    <!--@mbg.generated-->
+    select
+    DISTINCT (sm.id),
+    sm.name,
+    sm.`remark`,
+    sm.path,
+    sm.icon,
+    sm.order,
+    sm.enable
+    from sys_account sa
+    left join sys_account_role sar on sar.account_id=sa.id
+    left join sys_role sr on sr.id=sar.role_id
+    left join sys_role_menu srm on sr.id=srm.role_id
+    left join sys_menu sm on sm.id=srm.menu_id
+    where sa.id = #{id} and sm.name is not null
+    and sm.del=0 and srm.del=0 and sr.del=0
+    order by sm.order asc
+  </select>
+</mapper>

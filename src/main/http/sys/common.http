@@ -1,0 +1,8 @@
+###文件上传
+POST {{host}}/common/file/upload
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: multipart/form-data
+Authorization: {{token}}
+
+<D:\caiji\说明.txt

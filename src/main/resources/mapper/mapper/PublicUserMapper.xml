@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.wxapp.mapper.PublicUserMapper">
+  <resultMap id="BaseResultMap" type="cn.sky1998.mongo.wxapp.domain.PublicUser">
+    <!--@mbg.generated-->
+    <!--@Table g_public_user-->
+    <id column="id" property="id" />
+    <result column="nick_name" property="nickName" />
+    <result column="openid" property="openid" />
+    <result column="wx_id" property="wxId" />
+    <result column="sex" property="sex" />
+    <result column="tel" property="tel" />
+    <result column="subscribe" property="subscribe" />
+    <result column="subscribe_time" property="subscribeTime" />
+    <result column="subscribe_scene" property="subscribeScene" />
+    <result column="create_time" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, nick_name, openid, wx_id, sex, tel, subscribe, subscribe_time, subscribe_scene, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from g_public_user
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from g_public_user
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.wxapp.domain.PublicUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into g_public_user (nick_name, openid, wx_id, sex, tel, subscribe, subscribe_time, 
+      subscribe_scene, create_time)
+    values (#{nickName}, #{openid}, #{wxId}, #{sex}, #{tel}, #{subscribe}, #{subscribeTime}, 
+      #{subscribeScene}, #{createTime})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.wxapp.domain.PublicUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into g_public_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="wxId != null">
+        wx_id,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="subscribe != null">
+        subscribe,
+      </if>
+      <if test="subscribeTime != null">
+        subscribe_time,
+      </if>
+      <if test="subscribeScene != null">
+        subscribe_scene,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nickName != null">
+        #{nickName},
+      </if>
+      <if test="openid != null">
+        #{openid},
+      </if>
+      <if test="wxId != null">
+        #{wxId},
+      </if>
+      <if test="sex != null">
+        #{sex},
+      </if>
+      <if test="tel != null">
+        #{tel},
+      </if>
+      <if test="subscribe != null">
+        #{subscribe},
+      </if>
+      <if test="subscribeTime != null">
+        #{subscribeTime},
+      </if>
+      <if test="subscribeScene != null">
+        #{subscribeScene},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.wxapp.domain.PublicUser">
+    <!--@mbg.generated-->
+    update g_public_user
+    <set>
+      <if test="nickName != null">
+        nick_name = #{nickName},
+      </if>
+      <if test="openid != null">
+        openid = #{openid},
+      </if>
+      <if test="wxId != null">
+        wx_id = #{wxId},
+      </if>
+      <if test="sex != null">
+        sex = #{sex},
+      </if>
+      <if test="tel != null">
+        tel = #{tel},
+      </if>
+      <if test="subscribe != null">
+        subscribe = #{subscribe},
+      </if>
+      <if test="subscribeTime != null">
+        subscribe_time = #{subscribeTime},
+      </if>
+      <if test="subscribeScene != null">
+        subscribe_scene = #{subscribeScene},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mongo.wxapp.domain.PublicUser">
+    <!--@mbg.generated-->
+    update g_public_user
+    set nick_name = #{nickName},
+      openid = #{openid},
+      wx_id = #{wxId},
+      sex = #{sex},
+      tel = #{tel},
+      subscribe = #{subscribe},
+      subscribe_time = #{subscribeTime},
+      subscribe_scene = #{subscribeScene},
+      create_time = #{createTime}
+    where id = #{id}
+  </update>
+
+  <select id="getList" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from g_public_user
+    <where>
+
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="openid != null">
+      and openid = #{openid}
+    </if>
+    <if test="nickName != null">
+      and nick_name like concat('%',#{nickName},'%')
+    </if>
+    <if test="tel != null">
+      and tel like concat('%',#{tel},'%')
+    </if>
+    </where>
+  </select>
+
+  <select id="getPublicUserByopenid" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from g_public_user
+    <where>
+    <if test="openid != null">
+      and openid = #{openid}
+    </if>
+    </where>
+    </select>
+</mapper>

@@ -1,0 +1,75 @@
+### 新增角色
+POST {{host}}/system/role/add
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "name": "test",
+  "description": "测试"
+}
+
+### 更新角色
+POST {{host}}/system/role/update
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "description": "测试1",
+  "id": 5,
+  "name": "test1",
+  "order": "6",
+  "remark": "备注"
+}
+### 获取角色列表
+POST {{host}}/system/role/getList
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+
+}
+### 角色分配菜单
+POST {{host}}/system/role/assignMenu
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "role": {
+    "id": 4
+  },
+  "menu": {
+    "id":5
+  }
+}
+
+### 获取角色菜单
+POST {{host}}/system/role/getRoleMenu
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 1
+}
+
+### 删除角色菜单
+POST {{host}}/system/role/removeRoleMenu
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "voId": 5
+}
+
+###

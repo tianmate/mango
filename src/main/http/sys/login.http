@@ -1,0 +1,10 @@
+###登录(自定义)
+POST {{host}}/system/login/common
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "54321"
+}

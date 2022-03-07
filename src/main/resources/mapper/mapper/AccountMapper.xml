@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.system.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="cn.sky1998.mongo.system.domain.Account">
+    <!--@mbg.generated-->
+    <!--@Table sys_account-->
+    <id column="id" property="id" />
+    <result column="username" property="username" />
+    <result column="password" property="password" />
+    <result column="tel" property="tel" />
+    <result column="user_type" property="userType" />
+    <result column="nick_name" property="nickName" />
+    <result column="enable" property="enable" />
+    <result column="del" property="del" />
+    <result column="remark" property="remark" />
+  </resultMap>
+
+  <resultMap id="BaseResultMapRole" type="cn.sky1998.mongo.system.domain.AccountRoleVo">
+    <!--@mbg.generated-->
+    <!--@Table sys_account-->
+    <id column="id" property="voId"></id>
+    <result column="del" property="del"></result>
+    <collection property="account" ofType="cn.sky1998.mongo.system.domain.Account" >
+    <id column="id" property="id" />
+    <result column="username" property="username" />
+    <result column="password" property="password" />
+    <result column="tel" property="tel" />
+    <result column="user_type" property="userType" />
+    <result column="nick_name" property="nickName" />
+    <result column="enable" property="enable" />
+    <result column="del" property="del" />
+    <result column="remark" property="remark" />
+    </collection>
+
+    <collection property="role" ofType="cn.sky1998.mongo.system.domain.Role">
+      <!--@mbg.generated-->
+      <!--@Table sys_role-->
+      <id column="id" property="id" />
+      <result column="name" property="name" />
+      <result column="description" property="description" />
+      <result column="order" property="order" />
+      <result column="enable" property="enable" />
+      <result column="del" property="del" />
+      <result column="remark" property="remark" />
+    </collection>
+
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, `password`, tel, user_type, nick_name, `enable`, del, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_account
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sys_account
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Account" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_account (username, `password`, tel, user_type, nick_name, `enable`, del, 
+      remark)
+    values (#{username}, #{password}, #{tel}, #{userType}, #{nickName}, #{enable}, #{del}, 
+      #{remark})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Account" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="enable != null">
+        `enable`,
+      </if>
+      <if test="del != null">
+        del,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username},
+      </if>
+      <if test="password != null">
+        #{password},
+      </if>
+      <if test="tel != null">
+        #{tel},
+      </if>
+      <if test="userType != null">
+        #{userType},
+      </if>
+      <if test="nickName != null">
+        #{nickName},
+      </if>
+      <if test="enable != null">
+        #{enable},
+      </if>
+      <if test="del != null">
+        #{del},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.system.domain.Account">
+    <!--@mbg.generated-->
+    update sys_account
+    <set>
+      <if test="username != null">
+        username = #{username},
+      </if>
+      <if test="password != null">
+        `password` = #{password},
+      </if>
+      <if test="tel != null">
+        tel = #{tel},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName},
+      </if>
+      <if test="enable != null">
+        `enable` = #{enable},
+      </if>
+      <if test="del != null">
+        del = #{del},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mongo.system.domain.Account">
+    <!--@mbg.generated-->
+    update sys_account
+    set username = #{username},
+      `password` = #{password},
+      tel = #{tel},
+      user_type = #{userType},
+      nick_name = #{nickName},
+      `enable` = #{enable},
+      del = #{del},
+      remark = #{remark}
+    where id = #{id}
+  </update>
+
+  <select id="selectByUsername" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from sys_account
+    where username = #{username}
+  </select>
+
+  <select id="getList" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from sys_account
+    <where>
+      <if test="id != null">
+        and  id=#{id}
+      </if>
+      <if test="username != null">
+      and  username like concat(#{username},'%')
+      </if>
+    <if test="tel != null">
+      and  tel like concat(#{tel},'%')
+    </if>
+    <if test="userType != null">
+      and  user_type = #{userType}
+    </if>
+    <if test="nickName != null ">
+      and  nick_name like concat('%',#{nickName},'%')
+    </if>
+    <if test="enable != enable">
+      and  enable = #{enable}
+    </if>
+    </where>
+  </select>
+
+  <select id="getUserRole" resultMap="BaseResultMapRole" parameterType="cn.sky1998.mongo.system.domain.Account">
+
+    <!--@mbg.generated-->
+    select
+    sar.id,
+    sar.del,
+
+    sa.username,
+    sa.`password`,
+    sa.tel,
+    sa.user_type,
+    sa.nick_name,
+    sa.`enable`,
+    sa.del,
+    sa.remark,
+
+    sr.id,
+    sr.name,
+    sr.description
+
+    from sys_account sa
+    left join sys_account_role sar on sar.account_id=sa.id
+    left join sys_role sr on sr.id=sar.role_id
+    where sa.id = #{id}
+    </select>
+
+  <insert id="assignRole" >
+    insert into sys_account_role
+    (account_id,role_id)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{id},#{item.id})
+    </foreach>
+  </insert>
+
+  <update id="removeUserRole">
+    update sys_account_role
+    set del = #{del}
+    where id=#{voId}
+  </update>
+
+  <select id="getUserMenu" resultType="cn.sky1998.mongo.system.domain.Menu">
+    <!--@mbg.generated-->
+    select
+    DISTINCT (sm.id),
+    sm.name,
+    sm.`remark`,
+    sm.path,
+    sm.icon,
+    sm.order,
+    sm.enable
+    from sys_account sa
+    left join sys_account_role sar on sar.account_id=sa.id
+    left join sys_role sr on sr.id=sar.role_id
+    left join sys_role_menu srm on sr.id=srm.role_id
+    left join sys_menu sm on sm.id=srm.menu_id
+    where sa.id = #{id} and sm.name is not null
+    order by sm.id asc
+  </select>
+</mapper>

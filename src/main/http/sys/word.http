@@ -1,0 +1,69 @@
+###简体转繁体
+POST {{host}}/work/words/convertToTraditionalChinese
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+"text": "最后一月"
+}
+
+###繁体转简体
+POST {{host}}/work/words/convertToSimpleChinese
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+<<<<<<< HEAD
+  "text": "最後"
+=======
+  "text": "雲"
+>>>>>>> 5ddef5cda5217fc62a31880b7cab1504efad8d60
+}
+
+###分词
+POST {{host}}/work/words/segment
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+<<<<<<< HEAD
+#Authorization: {{token}}
+=======
+Authorization: {{token}}
+>>>>>>> 5ddef5cda5217fc62a31880b7cab1504efad8d60
+
+{
+  "text": "2021剩余最后一月"
+}
+
+###同义词
+POST {{host}}/work/words/synonymous
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+<<<<<<< HEAD
+
+
+{
+  "text": "保证"
+=======
+Authorization: {{token}}
+
+{
+  "text": "爱好"
+>>>>>>> 5ddef5cda5217fc62a31880b7cab1504efad8d60
+}
+
+###转拼音
+POST {{host}}/work/words/convertToPinyin
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "text": "棒级了"
+}
