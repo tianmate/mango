@@ -15,9 +15,8 @@
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+ui是前端框架
+mango_dev.sql是数据库文件
 
 #### 参与贡献
 
