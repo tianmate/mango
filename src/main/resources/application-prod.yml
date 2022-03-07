@@ -56,7 +56,7 @@ spring:
         url-pattern: /druid/*
       aop-patterns: cn.sky1998.mongo.MongoApplication
       filters: stat,wall
-  #redis配置
+  # redis配置
   redis:
     host: localhost
     port: 6379
