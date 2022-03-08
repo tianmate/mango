@@ -1,5 +1,7 @@
 package cn.sky1998.mongo.system.domain;
 
+import cn.sky1998.mongo.system.domain.dto.MenuTree;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -64,7 +66,7 @@ public class Menu implements Serializable {
     */
     private String remark;
 
-    private List<Menu> child;
+    private List<MenuTree> child;
 
     public Long getId() {
         return id;
@@ -154,11 +156,11 @@ public class Menu implements Serializable {
         this.remark = remark;
     }
 
-    public List<Menu> getChild() {
+    public List<MenuTree> getChild() {
         return child;
     }
 
-    public void setChild(List<Menu> child) {
+    public void setChild(List<MenuTree> child) {
         this.child = child;
     }
 }

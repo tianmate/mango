@@ -52,4 +52,14 @@ Authorization: {{token}}
 
 }
 
-###
+
+###获取菜单列表根据角色
+POST {{host}}/system/menu/tree
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+
+}

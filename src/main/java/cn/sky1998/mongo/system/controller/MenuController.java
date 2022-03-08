@@ -48,4 +48,9 @@ public class MenuController extends BaseController {
     public AjaxResult getMenuByUser(@RequestBody Account account){
         return  AjaxResult.success(menuResourceService.getMenuByUser(account));
     }
+
+    @PostMapping("/tree")
+    public AjaxResult tree(){
+        return  AjaxResult.success(menuResourceService.tree());
+    }
 }

@@ -2,7 +2,9 @@ package cn.sky1998.mongo.system.mapper;
 
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.Menu;
+import cn.sky1998.mongo.system.domain.dto.MenuTree;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -60,4 +62,10 @@ public interface MenuMapper {
     List<Menu> selectListByAccountId(Account account);
 
     public List<Menu> getMenuByUser(Account account);
+
+    List<MenuTree> RootTree(Account account);
+
+    List<MenuTree> ChildTree( @Param("parentId") Long parentId,@Param("accountId") Long accountId);
+
+    boolean selectChildIsExist(@Param("parentId") Long parentId);
 }
