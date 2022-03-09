@@ -1,6 +1,11 @@
 package cn.sky1998.mongo.system.service.impl;
 
+import cn.sky1998.mongo.common.constant.Constants;
+import cn.sky1998.mongo.common.exception.CustomException;
+import cn.sky1998.mongo.common.utils.StringUtils;
+import cn.sky1998.mongo.framework.springutils.RedisUtils;
 import cn.sky1998.mongo.system.domain.Account;
+import cn.sky1998.mongo.system.domain.form.LoginBody;
 import cn.sky1998.mongo.system.security.service.SecurityLoginService;
 import cn.sky1998.mongo.system.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +24,19 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private SecurityLoginService service;
     @Override
-    public Map<Object, Object> commonLogin(Account sysAccount) {
+    public Map<Object, Object> commonLogin(LoginBody loginBody) {
 
-        return service.login(sysAccount.getUsername(),sysAccount.getPassword());
+        //校验验证码
+        if (StringUtils.isEmpty(loginBody.getCode())&&StringUtils.isEmpty(loginBody.getUuid())){
+            throw new CustomException("验证码不能为空");
+        }
+        String verifyKey = Constants.CAPTCHA_CODE_KEY + loginBody.getUuid();
+        String value = (String) RedisUtils.getValue(verifyKey);
+        if (!value.equals(loginBody.getCode())){
+            throw new CustomException("验证码不正确");
+        }
+
+        return service.login(loginBody.getUsername(),loginBody.getPassword());
     }
 
     @Override

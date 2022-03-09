@@ -8,3 +8,13 @@ Content-Type: application/json
   "username": "admin",
   "password": "123456"
 }
+
+###获取验证码
+GET {{host}}/system/login/createImageCode
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+
+{
+
+}
