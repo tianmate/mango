@@ -226,7 +226,7 @@
     left join sys_role sr on sr.id=srm.role_id
     left join sys_account_role  sar on  sar.role_id=sr.id
     where sar.account_id=#{id}
-    and sm.parent_id=0 and sm.del=0 and srm.del=0 and sr.del=0
+    and sm.parent_id=0
     </select>
 
   <select id="ChildTree" resultMap="BaseResultTree">

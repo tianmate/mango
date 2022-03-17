@@ -108,7 +108,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/system/login/**").permitAll()
                 //公共接口
                 .antMatchers("/wechat/**").permitAll()
-                .antMatchers("/*/*/public").permitAll()
+                .antMatchers("/**/public").permitAll()
                 .antMatchers("/common/file/*").permitAll()
                 .antMatchers("/druid/*").permitAll()
                 .antMatchers("/actuator").permitAll()

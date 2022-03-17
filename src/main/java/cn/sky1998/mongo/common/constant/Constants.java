@@ -9,6 +9,11 @@ package cn.sky1998.mongo.common.constant;
 public class Constants {
 
     /**
+     * UTF-8 字符集
+     */
+    public static final String UTF8 = "UTF-8";
+
+    /**
      * GBK 字符集
      */
     public static final String GBK = "GBK";
@@ -66,4 +71,9 @@ public class Constants {
      * 验证码有效期（分钟）
      */
     public static final Integer CAPTCHA_EXPIRATION = 2;
+
+    /**
+     * 字典管理 cache key
+     */
+    public static final String SYS_DICT_KEY = "sys_dict:";
 }

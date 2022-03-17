@@ -34,4 +34,18 @@ public class SpringUtils implements BeanFactoryPostProcessor {
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         SpringUtils.beanFactory.setParentBeanFactory(beanFactory);
     }
+
+    /**
+     * 获取类型为requiredType的对象
+     *
+     * @param clz
+     * @return
+     * @throws org.springframework.beans.BeansException
+     *
+     */
+    public static <T> T getBean(Class<T> clz) throws BeansException
+    {
+        T result = (T) beanFactory.getBean(clz);
+        return result;
+    }
 }

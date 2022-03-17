@@ -1,9 +1,11 @@
 package cn.sky1998.mongo.framework.web.page;
 
+import cn.sky1998.mongo.framework.webutils.ServletUtils;
+
 /**
  * 表格数据处理
  *
- * @author ruoyi
+ * @author tcy
  */
 public class TableSupport {
   /**
@@ -29,16 +31,16 @@ public class TableSupport {
   /**
    * 封装分页对象
    */
-//  public static PageDomain getPageDomain() {
-//    PageDomain pageDomain = new PageDomain();
-//    pageDomain.setPageNum(ServletUtils.getParameterToInt(PAGE_NUM));
-//    pageDomain.setPageSize(ServletUtils.getParameterToInt(PAGE_SIZE));
-//    pageDomain.setOrderByColumn(ServletUtils.getParameter(ORDER_BY_COLUMN));
-//    pageDomain.setIsAsc(ServletUtils.getParameter(IS_ASC));
-//    return pageDomain;
-//  }
+  public static PageDomain getPageDomain() {
+    PageDomain pageDomain = new PageDomain();
+    pageDomain.setPageNum(ServletUtils.getParameterToInt(PAGE_NUM));
+    pageDomain.setPageSize(ServletUtils.getParameterToInt(PAGE_SIZE));
+    pageDomain.setOrderByColumn(ServletUtils.getParameter(ORDER_BY_COLUMN));
+    pageDomain.setIsAsc(ServletUtils.getParameter(IS_ASC));
+    return pageDomain;
+  }
 
-//  public static PageDomain buildPageRequest() {
-//    return getPageDomain();
-//  }
+  public static PageDomain buildPageRequest() {
+    return getPageDomain();
+  }
 }

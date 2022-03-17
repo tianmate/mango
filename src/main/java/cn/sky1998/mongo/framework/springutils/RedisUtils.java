@@ -4,6 +4,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -91,4 +92,35 @@ public class RedisUtils {
         return true;
     }
 
+    /**
+     * 删除单个对象
+     *
+     * @param key
+     */
+    public static boolean deleteObject(final String key)
+    {
+        return redisTemplate.delete(key);
+    }
+
+    /**
+     * 获得缓存的基本对象列表
+     *
+     * @param pattern 字符串前缀
+     * @return 对象列表
+     */
+    public static Collection<String> keys(final String pattern)
+    {
+        return redisTemplate.keys(pattern);
+    }
+
+    /**
+     * 删除集合对象
+     *
+     * @param collection 多个对象
+     * @return
+     */
+    public static long deleteObject(final Collection collection)
+    {
+        return redisTemplate.delete(collection);
+    }
 }

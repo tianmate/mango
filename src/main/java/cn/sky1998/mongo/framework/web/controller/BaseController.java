@@ -1,5 +1,6 @@
 package cn.sky1998.mongo.framework.web.controller;
 
+import cn.sky1998.mongo.common.utils.PageUtils;
 import cn.sky1998.mongo.framework.web.page.TableDataInfo;
 import com.github.pagehelper.PageInfo;
 import cn.sky1998.mongo.common.enums.HttpStatus;
@@ -34,5 +35,13 @@ public class BaseController {
         rspData.setTotal(pageInfo.getTotal());
         rspData.setCount(pageInfo.getSize());
         return rspData;
+    }
+
+    /**
+     * 设置请求分页数据
+     */
+    protected void startPage()
+    {
+        PageUtils.startPage();
     }
 }

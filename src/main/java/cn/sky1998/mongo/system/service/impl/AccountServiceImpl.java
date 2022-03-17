@@ -7,7 +7,9 @@ import cn.sky1998.mongo.system.domain.form.AccountRoleForm;
 import cn.sky1998.mongo.system.mapper.AccountMapper;
 import cn.sky1998.mongo.system.mapper.RoleMapper;
 import cn.sky1998.mongo.system.service.AccountService;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
  * @Date 09-12-2021
  */
 @Service
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl implements AccountService  {
 
    @Autowired
    private AccountMapper mapper;
@@ -95,4 +97,6 @@ public class AccountServiceImpl implements AccountService {
     public List<Menu> getUserMenu(Account account) {
         return mapper.getUserMenu(account);
     }
+
+
 }

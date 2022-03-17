@@ -1,0 +1,10 @@
+### 代码生成
+POST {{host}}/wechat/keyWord/add
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+
+}

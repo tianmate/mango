@@ -1,5 +1,6 @@
 package cn.sky1998.mongo.framework.webutils;
 
+import cn.sky1998.mongo.gen.core.text.Convert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -64,4 +65,19 @@ public class ServletUtils {
         return (ServletRequestAttributes) attributes;
     }
 
+    /**
+     * 获取String参数
+     */
+    public static String getParameter(String name)
+    {
+        return getRequest().getParameter(name);
+    }
+
+    /**
+     * 获取Integer参数
+     */
+    public static Integer getParameterToInt(String name)
+    {
+        return Convert.toInt(getRequest().getParameter(name));
+    }
 }
