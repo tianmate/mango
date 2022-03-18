@@ -2,6 +2,7 @@ package cn.sky1998.mongo.gen.mapper;
 
 
 import cn.sky1998.mongo.gen.domain.GenTableColumn;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * 
  * @author ruoyi
  */
-
+@Mapper
 public interface GenTableColumnMapper
 {
     /**
@@ -60,4 +61,12 @@ public interface GenTableColumnMapper
      * @return 结果
      */
     public int deleteGenTableColumnByIds(Long[] ids);
+
+    /**
+     * 批量新增业务字段
+     *
+     * @param genTableColumns 业务字段信息
+     * @return 结果
+     */
+    public int insertListGenTableColumn(List<GenTableColumn> genTableColumns);
 }

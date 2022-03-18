@@ -1,6 +1,7 @@
 package cn.sky1998.mongo.system.mapper;
 
 import cn.sky1998.mongo.system.domain.SysDictData;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * 
  * @author ruoyi
  */
+@Mapper
 public interface SysDictDataMapper
 {
     /**

@@ -198,4 +198,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
+	<!--创建表-->
+		<update id="createTable">
+			create table `${genTable.tableName}`(
+			<foreach collection="genTable.columns" item="field" separator=", ">
+				`${field.columnName}` ${field.columnType}
+				<choose>
+					<when test="field.columnType != null">
+						${' '}comment '${field.columnComment}'
+					</when>
+				</choose>
+			</foreach>
+			) comment #{genTable.tableComment};
+		</update>
+
 </mapper>

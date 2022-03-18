@@ -38,9 +38,13 @@ public class GenController extends BaseController {
     @Autowired
     private IGenTableColumnService genTableColumnService;
 
-    @GetMapping("/genTable/public")
-    public void genTable(){
-       genManager.generate();
+    /**
+     * 根据表id生成表和代码
+     * @param tableId
+     */
+    @GetMapping("/createDbAndCode/{tableId}")
+    public void createDbAndCode(@PathVariable Long tableId){
+       genManager.generate(tableId);
     }
 
 
