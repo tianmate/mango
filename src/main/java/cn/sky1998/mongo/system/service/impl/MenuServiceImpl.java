@@ -43,9 +43,11 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<Menu> getList(Menu query) {
+    public List<MenuTree> getList(Menu query) {
 //        PageHelper.startPage(1, 1);
-        return menuMapper.selectList(query);
+        List<MenuTree> menuTrees = menuMapper.RootTree(new Account());
+        tree(menuTrees,null);
+        return menuTrees;
     }
 
     @Override
@@ -66,12 +68,18 @@ public class MenuServiceImpl implements MenuService {
         return menuTrees;
     }
 
+    @Override
+    public Menu getDatail(Menu menu) {
+
+        return menuMapper.selectByPrimaryKey(menu.getId());
+    }
+
     private void tree(List<MenuTree> components,Long userId) {
         for (MenuTree model : components) {
             if (!menuMapper.selectChildIsExist(model.getId()))
                 continue;
             List<MenuTree> menuTrees = menuMapper.ChildTree(model.getId(), userId);
-            model.setChild(menuTrees);
+            model.setChildren(menuTrees);
             tree(menuTrees, userId);
         }
     }

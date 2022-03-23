@@ -9,6 +9,6 @@ public class UserPasswordNotMatchException extends UserException {
   private static final long serialVersionUID = 1L;
 
   public UserPasswordNotMatchException() {
-    super("密码不正确", null);
+    super("user.not.exists", null);
   }
 }

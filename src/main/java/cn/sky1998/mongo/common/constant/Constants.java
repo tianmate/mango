@@ -76,4 +76,25 @@ public class Constants {
      * 字典管理 cache key
      */
     public static final String SYS_DICT_KEY = "sys_dict:";
+
+    /**
+     * 注销
+     */
+    public static final String LOGOUT = "Logout";
+
+    /**
+     * 注册
+     */
+    public static final String REGISTER = "Register";
+
+    /**
+     * 登录成功
+     */
+    public static final String LOGIN_SUCCESS = "Success";
+
+    /**
+     * 登录失败
+     */
+    public static final String LOGIN_FAIL = "Error";
+
 }

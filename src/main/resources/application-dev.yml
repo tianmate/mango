@@ -4,6 +4,8 @@ mango:
   version: 1.0.0
   lexiconLoad: false  # false不加载词库
   cron: 0 46 11 * * ? #定时时间
+  # 获取ip地址开关
+  addressEnabled: false
   #微信参数配置
   wxapp:
     #公众号

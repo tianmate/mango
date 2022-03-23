@@ -32,4 +32,6 @@ public interface AccountService {
     public int removeUserRole(AccountRoleVo accountRoleVo);
 
     public List<Menu> getUserMenu(Account account);
+
+    public Account profile();
 }

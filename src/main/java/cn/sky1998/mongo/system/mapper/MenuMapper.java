@@ -68,4 +68,5 @@ public interface MenuMapper {
     List<MenuTree> ChildTree( @Param("parentId") Long parentId,@Param("accountId") Long accountId);
 
     boolean selectChildIsExist(@Param("parentId") Long parentId);
+
 }

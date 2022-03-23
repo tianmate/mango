@@ -62,4 +62,9 @@ public class AccountController {
     public AjaxResult getUserMenu(@RequestBody Account account){
         return  AjaxResult.success(accountService.getUserMenu(account));
     }
+
+    @GetMapping("/profile")
+    public AjaxResult profile(){
+        return  AjaxResult.success(accountService.profile());
+    }
 }

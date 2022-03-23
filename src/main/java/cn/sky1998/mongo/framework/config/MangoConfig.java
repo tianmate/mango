@@ -28,6 +28,11 @@ public class MangoConfig {
      */
     private String profile;
 
+    /**
+     * 上传路径
+     */
+    private static Boolean addressEnabled;
+
     @Value("${mango.wxapp.gzh.appid}")
     private String wxappGzhAppid;
 
@@ -138,5 +143,13 @@ public class MangoConfig {
 
     public void setWxappUniappSecret(String wxappUniappSecret) {
         this.wxappUniappSecret = wxappUniappSecret;
+    }
+
+    public static Boolean getAddressEnabled() {
+        return addressEnabled;
+    }
+
+    public static void setAddressEnabled(Boolean addressEnabled) {
+        MangoConfig.addressEnabled = addressEnabled;
     }
 }

@@ -11,10 +11,7 @@ import cn.sky1998.mongo.system.service.LoginService;
 import com.google.code.kaptcha.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FastByteArrayOutputStream;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -48,7 +45,7 @@ public class LoginController {
         return  AjaxResult.success(loginService.gzhLogin(sysAccount));
     }
 
-    @RequestMapping("/createImageCode")
+    @GetMapping("/createImageCode")
     public AjaxResult createImageCode(){
         AjaxResult ajax = AjaxResult.success();
         String capStr = null, code = null;

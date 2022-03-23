@@ -39,7 +39,7 @@
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from sys_menu
+    from sys_menu sm
     where id = #{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -225,19 +225,27 @@
     left join sys_role_menu srm on sm.id=srm.menu_id
     left join sys_role sr on sr.id=srm.role_id
     left join sys_account_role  sar on  sar.role_id=sr.id
-    where sar.account_id=#{id}
-    and sm.parent_id=0
+    where  sm.parent_id=0
+    <if test="id != null">
+      and sar.account_id=#{id}
+    </if>
+
     </select>
 
   <select id="ChildTree" resultMap="BaseResultTree">
     select
+    DISTINCT (sm.id),
     <include refid="Base_Column_List" />
+
     from sys_menu sm
     left join sys_role_menu srm on sm.id=srm.menu_id
     left join sys_role sr on sr.id=srm.role_id
     left join sys_account_role  sar on  sar.role_id=sr.id
-    where sar.account_id=#{accountId}
-    and sm.parent_id=#{parentId}
+    where sm.parent_id=#{parentId}
+    <if test="accountId != null">
+      and sar.account_id=#{accountId}
+    </if>
+
   </select>
 
   <select id="selectChildIsExist" parameterType="java.lang.Long" resultType="java.lang.Boolean">
@@ -246,4 +254,5 @@
     where sm.parent_id = #{parentId}
     limit 1
   </select>
+
 </mapper>

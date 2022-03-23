@@ -66,7 +66,7 @@ public class Menu implements Serializable {
     */
     private String remark;
 
-    private List<MenuTree> child;
+    private List<MenuTree> children;
 
     public Long getId() {
         return id;
@@ -156,11 +156,11 @@ public class Menu implements Serializable {
         this.remark = remark;
     }
 
-    public List<MenuTree> getChild() {
-        return child;
+    public List<MenuTree> getChildren() {
+        return children;
     }
 
-    public void setChild(List<MenuTree> child) {
-        this.child = child;
+    public void setChildren(List<MenuTree> children) {
+        this.children = children;
     }
 }

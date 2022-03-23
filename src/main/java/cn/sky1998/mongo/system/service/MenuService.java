@@ -15,9 +15,11 @@ public interface MenuService {
 
     int update(Menu menu);
 
-    List<Menu> getList(Menu query);
+    List<MenuTree> getList(Menu query);
 
     List<Menu> getMenuByUser(Account account);
 
     List<MenuTree> tree();
+
+    Menu getDatail(Menu menu);
 }

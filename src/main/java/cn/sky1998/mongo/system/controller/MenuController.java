@@ -44,6 +44,12 @@ public class MenuController extends BaseController {
         return getDataTable(menuResourceService.getList(query));
     }
 
+    @PostMapping("/getDetail")
+    public AjaxResult getDetail(@RequestBody Menu query){
+
+        return AjaxResult.success(menuResourceService.getDatail(query));
+    }
+
     @PostMapping("/getMenuByUser")
     public AjaxResult getMenuByUser(@RequestBody Account account){
         return  AjaxResult.success(menuResourceService.getMenuByUser(account));

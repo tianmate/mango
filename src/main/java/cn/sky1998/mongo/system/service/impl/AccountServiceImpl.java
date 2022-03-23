@@ -6,6 +6,7 @@ import cn.sky1998.mongo.system.domain.form.AccountForm;
 import cn.sky1998.mongo.system.domain.form.AccountRoleForm;
 import cn.sky1998.mongo.system.mapper.AccountMapper;
 import cn.sky1998.mongo.system.mapper.RoleMapper;
+import cn.sky1998.mongo.system.security.utils.SecurityUtils;
 import cn.sky1998.mongo.system.service.AccountService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,5 +99,11 @@ public class AccountServiceImpl implements AccountService  {
         return mapper.getUserMenu(account);
     }
 
+    @Override
+    public Account profile() {
+        Long userId = SecurityUtils.getUserId();
+        //查询用户角色
+        return mapper.selectByPrimaryKey(userId);
+    }
 
 }

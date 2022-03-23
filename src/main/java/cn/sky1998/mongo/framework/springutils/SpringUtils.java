@@ -48,4 +48,18 @@ public class SpringUtils implements BeanFactoryPostProcessor {
         T result = (T) beanFactory.getBean(clz);
         return result;
     }
+
+    /**
+     * 获取对象
+     *
+     * @param name
+     * @return Object 一个以所给名字注册的bean的实例
+     * @throws org.springframework.beans.BeansException
+     *
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(String name) throws BeansException
+    {
+        return (T) beanFactory.getBean(name);
+    }
 }
