@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.framework.springutils;
+package cn.sky1998.mongo.framework.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;

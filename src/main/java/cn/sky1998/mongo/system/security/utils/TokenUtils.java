@@ -1,18 +1,13 @@
 package cn.sky1998.mongo.system.security.utils;
 
-import cn.sky1998.mongo.common.exception.CustomException;
 import cn.sky1998.mongo.common.utils.StringUtils;
-import cn.sky1998.mongo.framework.springutils.RedisUtils;
-import cn.sky1998.mongo.framework.springutils.SpringUtils;
+import cn.sky1998.mongo.framework.util.RedisUtils;
 import cn.sky1998.mongo.system.security.entity.AccountUserDetails;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Date;
 
 /**

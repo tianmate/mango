@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.gen.core.text;
+package cn.sky1998.mongo.common.utils.text;
 
 
 import cn.sky1998.mongo.common.utils.StringUtils;

@@ -1,7 +1,6 @@
-package cn.sky1998.mongo.common.exception;
+package cn.sky1998.mongo.framework.web.exception;
 
 import cn.sky1998.mongo.common.enums.HttpStatus;
-import cn.sky1998.mongo.common.utils.StringUtils;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

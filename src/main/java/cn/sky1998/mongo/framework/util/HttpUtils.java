@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.framework.webutils;
+package cn.sky1998.mongo.framework.util;
 
 import javax.servlet.ServletRequest;
 import java.io.BufferedReader;

@@ -1,6 +1,5 @@
-package cn.sky1998.mongo.system.quartz;
+package cn.sky1998.mongo.framework.quartz;
 
-import cn.sky1998.mongo.wxapp.domain.Plan;
 import cn.sky1998.mongo.wxapp.mapper.PlanMapper;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;

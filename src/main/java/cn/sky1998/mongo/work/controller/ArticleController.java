@@ -1,6 +1,6 @@
 package cn.sky1998.mongo.work.controller;
 
-import cn.sky1998.mongo.framework.web.controller.BaseController;
+import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

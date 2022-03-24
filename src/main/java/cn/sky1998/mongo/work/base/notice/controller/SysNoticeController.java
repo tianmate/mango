@@ -1,7 +1,7 @@
 package cn.sky1998.mongo.work.base.notice.controller;
 
 import java.util.List;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import cn.sky1998.mongo.framework.web.controller.BaseController;
+import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import cn.sky1998.mongo.work.base.notice.domain.SysNotice;
 import cn.sky1998.mongo.work.base.notice.service.ISysNoticeService;
-import cn.sky1998.mongo.framework.web.page.TableDataInfo;
+import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
 
 /**
  * 通知公告Controller

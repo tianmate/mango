@@ -1,7 +1,7 @@
 package cn.sky1998.mongo.gen.manager;
 
 import cn.sky1998.mongo.common.exception.CustomException;
-import cn.sky1998.mongo.gen.core.text.Convert;
+import cn.sky1998.mongo.common.utils.text.Convert;
 import cn.sky1998.mongo.gen.domain.GenTable;
 import cn.sky1998.mongo.gen.mapper.GenTableMapper;
 import cn.sky1998.mongo.gen.properties.GenConfig;
@@ -26,9 +26,6 @@ public class GenManager {
 
     @Autowired
     private IGenTableService genTableService;
-
-    @Autowired
-    private GenConfig genConfig;
 
     @Autowired
     private GenTableMapper genTableMapper;

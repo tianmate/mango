@@ -1,7 +1,9 @@
-package cn.sky1998.mongo.common.utils;
+package cn.sky1998.mongo.framework.web.core.page;
 
-import cn.sky1998.mongo.framework.web.page.PageDomain;
-import cn.sky1998.mongo.framework.web.page.TableSupport;
+import cn.sky1998.mongo.common.utils.SqlUtil;
+import cn.sky1998.mongo.common.utils.StringUtils;
+import cn.sky1998.mongo.framework.web.core.page.PageDomain;
+import cn.sky1998.mongo.framework.web.core.page.TableSupport;
 import com.github.pagehelper.PageHelper;
 
 /**

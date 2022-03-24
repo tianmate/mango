@@ -1,6 +1,6 @@
 package cn.sky1998.mongo.wxapp.domain;
 
-import cn.sky1998.mongo.framework.web.entity.BaseQuery;
+import cn.sky1998.mongo.framework.web.core.entity.BaseQuery;
 
 import java.io.Serializable;
 import java.util.Objects;

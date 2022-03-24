@@ -2,7 +2,7 @@ package cn.sky1998.mongo.gen.domain;
 
 
 import cn.sky1998.mongo.gen.common.constant.GenConstants;
-import cn.sky1998.mongo.gen.core.BaseEntity;
+import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 

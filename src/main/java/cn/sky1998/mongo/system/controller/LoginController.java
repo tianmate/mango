@@ -3,7 +3,7 @@ package cn.sky1998.mongo.system.controller;
 import cn.sky1998.mongo.common.constant.Constants;
 import cn.sky1998.mongo.common.utils.sign.Base64;
 import cn.sky1998.mongo.common.utils.uuid.IdUtils;
-import cn.sky1998.mongo.framework.springutils.RedisUtils;
+import cn.sky1998.mongo.framework.util.RedisUtils;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.form.LoginBody;

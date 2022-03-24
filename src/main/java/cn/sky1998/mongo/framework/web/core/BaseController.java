@@ -1,7 +1,7 @@
-package cn.sky1998.mongo.framework.web.controller;
+package cn.sky1998.mongo.framework.web.core;
 
-import cn.sky1998.mongo.common.utils.PageUtils;
-import cn.sky1998.mongo.framework.web.page.TableDataInfo;
+import cn.sky1998.mongo.framework.web.core.page.PageUtils;
+import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
 import com.github.pagehelper.PageInfo;
 import cn.sky1998.mongo.common.enums.HttpStatus;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;

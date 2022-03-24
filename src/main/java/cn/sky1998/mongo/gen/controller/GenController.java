@@ -1,9 +1,9 @@
 package cn.sky1998.mongo.gen.controller;
 
-import cn.sky1998.mongo.framework.web.controller.BaseController;
+import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
-import cn.sky1998.mongo.framework.web.page.TableDataInfo;
-import cn.sky1998.mongo.gen.core.text.Convert;
+import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
+import cn.sky1998.mongo.common.utils.text.Convert;
 import cn.sky1998.mongo.gen.domain.GenTable;
 import cn.sky1998.mongo.gen.domain.GenTableColumn;
 import cn.sky1998.mongo.gen.manager.GenManager;
@@ -11,7 +11,6 @@ import cn.sky1998.mongo.gen.service.IGenTableColumnService;
 import cn.sky1998.mongo.gen.service.IGenTableService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

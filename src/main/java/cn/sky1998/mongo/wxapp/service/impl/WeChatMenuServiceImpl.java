@@ -1,6 +1,6 @@
 package cn.sky1998.mongo.wxapp.service.impl;
 
-import cn.sky1998.mongo.framework.springutils.SpringUtils;
+import cn.sky1998.mongo.framework.util.SpringUtils;
 import cn.sky1998.mongo.wxapp.service.WeChatMenuService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

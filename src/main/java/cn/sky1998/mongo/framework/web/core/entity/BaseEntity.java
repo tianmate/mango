@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.gen.core;
+package cn.sky1998.mongo.framework.web.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

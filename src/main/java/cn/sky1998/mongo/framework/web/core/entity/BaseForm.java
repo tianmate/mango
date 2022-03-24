@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.framework.web.entity;
+package cn.sky1998.mongo.framework.web.core.entity;
 
 /**
  * @author tcy

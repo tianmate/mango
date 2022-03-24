@@ -3,10 +3,7 @@ package ${packageName}.domain;
 #foreach ($import in $importList)
 import ${import};
 #end
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 #if($table.crud || $table.sub)
-import cn.sky1998.mongo.gen.core.BaseEntity;
 #elseif($table.tree)
 import com.tcy.common.core.domain.TreeEntity;
 #end

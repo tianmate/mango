@@ -1,6 +1,6 @@
 package cn.sky1998.mongo.framework.config;
 
-import cn.sky1998.mongo.framework.springutils.RedisUtils;
+import cn.sky1998.mongo.framework.util.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

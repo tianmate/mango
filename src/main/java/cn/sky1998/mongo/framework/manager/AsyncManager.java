@@ -1,7 +1,7 @@
 package cn.sky1998.mongo.framework.manager;
 
 import cn.sky1998.mongo.common.utils.Threads;
-import cn.sky1998.mongo.framework.springutils.SpringUtils;
+import cn.sky1998.mongo.framework.util.SpringUtils;
 
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;

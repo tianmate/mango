@@ -1,8 +1,8 @@
 package cn.sky1998.mongo.wxapp.controller;
 
-import cn.sky1998.mongo.framework.web.controller.BaseController;
+import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
-import cn.sky1998.mongo.framework.web.page.TableDataInfo;
+import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mongo.wxapp.domain.Keyword;
 import cn.sky1998.mongo.wxapp.service.KeyWordService;
 import com.github.pagehelper.PageHelper;

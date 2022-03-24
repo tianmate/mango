@@ -1,12 +1,9 @@
 package cn.sky1998.mongo.wxapp.controller;
 
-import cn.sky1998.mongo.framework.web.controller.BaseController;
+import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
-import cn.sky1998.mongo.framework.web.entity.BaseQuery;
-import cn.sky1998.mongo.framework.web.page.TableDataInfo;
-import cn.sky1998.mongo.wxapp.domain.Plan;
+import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mongo.wxapp.domain.Swag;
-import cn.sky1998.mongo.wxapp.service.PlanService;
 import cn.sky1998.mongo.wxapp.service.SwagService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,7 @@ package cn.sky1998.mongo.system.wxapp;
 import cn.sky1998.mongo.common.exception.WorkException;
 import cn.sky1998.mongo.common.utils.DateUtils;
 import cn.sky1998.mongo.common.utils.StringUtils;
-import cn.sky1998.mongo.framework.springutils.SpringUtils;
+import cn.sky1998.mongo.framework.util.SpringUtils;
 import cn.sky1998.mongo.system.wxapp.domain.BaseContent;
 import cn.sky1998.mongo.system.wxapp.domain.ContentMsg;
 import cn.sky1998.mongo.system.wxapp.domain.KfContentMsg;

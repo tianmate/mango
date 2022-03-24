@@ -1,17 +1,15 @@
 package cn.sky1998.mongo.system.security.handle;
 
-import cn.sky1998.mongo.framework.webutils.ServletUtils;
+import cn.sky1998.mongo.framework.util.ServletUtils;
 import cn.sky1998.mongo.common.enums.HttpStatus;
 import cn.sky1998.mongo.common.utils.StringUtils;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.Serializable;
 
 import static cn.sky1998.mongo.common.enums.HttpStatus.UNAUTHORIZED;

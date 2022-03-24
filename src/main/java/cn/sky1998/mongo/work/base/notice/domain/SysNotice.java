@@ -2,7 +2,7 @@ package cn.sky1998.mongo.work.base.notice.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import cn.sky1998.mongo.gen.core.BaseEntity;
+import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
 
 /**
  * 通知公告对象 sys_notice

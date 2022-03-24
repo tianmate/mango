@@ -1,8 +1,7 @@
 package cn.sky1998.mongo.common.utils;
 
 import cn.sky1998.mongo.common.constant.Constants;
-import cn.sky1998.mongo.framework.springutils.RedisUtils;
-import cn.sky1998.mongo.framework.springutils.SpringUtils;
+import cn.sky1998.mongo.framework.util.RedisUtils;
 import cn.sky1998.mongo.system.domain.SysDictData;
 
 import java.util.Collection;

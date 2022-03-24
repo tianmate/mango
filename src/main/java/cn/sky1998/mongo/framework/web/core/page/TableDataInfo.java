@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.framework.web.page;
+package cn.sky1998.mongo.framework.web.core.page;
 
 import java.io.Serializable;
 import java.util.List;

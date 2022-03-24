@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.gen.util;
+package cn.sky1998.mongo.gen.common.util;
 
 import cn.sky1998.mongo.common.utils.StringUtils;
 import cn.sky1998.mongo.gen.common.constant.GenConstants;

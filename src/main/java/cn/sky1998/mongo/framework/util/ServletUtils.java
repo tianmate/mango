@@ -1,6 +1,6 @@
-package cn.sky1998.mongo.framework.webutils;
+package cn.sky1998.mongo.framework.util;
 
-import cn.sky1998.mongo.gen.core.text.Convert;
+import cn.sky1998.mongo.common.utils.text.Convert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

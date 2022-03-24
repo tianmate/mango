@@ -1,6 +1,6 @@
 package cn.sky1998.mongo.work.service.impl;
 
-import cn.sky1998.mongo.framework.springutils.RedisUtils;
+import cn.sky1998.mongo.framework.util.RedisUtils;
 import cn.sky1998.mongo.work.domain.entity.Word;
 import cn.sky1998.mongo.work.domain.model.SingleWordDto;
 import com.hankcs.hanlp.HanLP;

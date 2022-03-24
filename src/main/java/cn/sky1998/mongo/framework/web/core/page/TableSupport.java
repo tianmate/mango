@@ -1,6 +1,6 @@
-package cn.sky1998.mongo.framework.web.page;
+package cn.sky1998.mongo.framework.web.core.page;
 
-import cn.sky1998.mongo.framework.webutils.ServletUtils;
+import cn.sky1998.mongo.framework.util.ServletUtils;
 
 /**
  * 表格数据处理

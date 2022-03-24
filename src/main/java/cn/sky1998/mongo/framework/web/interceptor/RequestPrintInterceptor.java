@@ -4,7 +4,7 @@ package cn.sky1998.mongo.framework.web.interceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cn.sky1998.mongo.common.constant.Constants;
 import cn.sky1998.mongo.common.utils.StringUtils;
-import cn.sky1998.mongo.framework.webutils.HttpUtils;
+import cn.sky1998.mongo.framework.util.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

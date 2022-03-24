@@ -1,6 +1,6 @@
 package cn.sky1998.mongo.gen.service;
 
-import cn.sky1998.mongo.gen.core.text.Convert;
+import cn.sky1998.mongo.common.utils.text.Convert;
 import cn.sky1998.mongo.gen.domain.GenTableColumn;
 import cn.sky1998.mongo.gen.mapper.GenTableColumnMapper;
 import org.springframework.beans.factory.annotation.Autowired;

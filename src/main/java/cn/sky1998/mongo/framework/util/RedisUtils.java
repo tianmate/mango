@@ -1,8 +1,6 @@
-package cn.sky1998.mongo.framework.springutils;
+package cn.sky1998.mongo.framework.util;
 
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Set;
@@ -13,7 +11,6 @@ import java.util.concurrent.TimeUnit;
  * @author tcy
  * @Date 13-12-2021
  */
-@Component
 public class RedisUtils {
 
     /**

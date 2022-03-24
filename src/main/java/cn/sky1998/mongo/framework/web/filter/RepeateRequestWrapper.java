@@ -1,6 +1,6 @@
 package cn.sky1998.mongo.framework.web.filter;
 
-import cn.sky1998.mongo.framework.webutils.HttpUtils;
+import cn.sky1998.mongo.framework.util.HttpUtils;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

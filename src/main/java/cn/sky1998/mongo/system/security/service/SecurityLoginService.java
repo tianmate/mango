@@ -1,13 +1,10 @@
 package cn.sky1998.mongo.system.security.service;
 
-import cn.sky1998.mongo.common.exception.CustomException;
 import cn.sky1998.mongo.common.exception.user.UserPasswordNotMatchException;
-import cn.sky1998.mongo.framework.springutils.RedisUtils;
+import cn.sky1998.mongo.framework.util.RedisUtils;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.mapper.AccountMapper;
 import cn.sky1998.mongo.system.security.utils.TokenUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

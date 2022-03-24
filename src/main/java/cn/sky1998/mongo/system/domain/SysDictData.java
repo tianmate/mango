@@ -1,7 +1,7 @@
 package cn.sky1998.mongo.system.domain;
 
 import cn.sky1998.mongo.gen.common.constant.UserConstants;
-import cn.sky1998.mongo.gen.core.BaseEntity;
+import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

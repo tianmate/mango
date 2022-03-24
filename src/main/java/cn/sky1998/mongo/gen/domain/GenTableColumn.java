@@ -2,7 +2,7 @@ package cn.sky1998.mongo.gen.domain;
 
 
 import cn.sky1998.mongo.common.utils.StringUtils;
-import cn.sky1998.mongo.gen.core.BaseEntity;
+import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
 
 import javax.validation.constraints.NotBlank;
 

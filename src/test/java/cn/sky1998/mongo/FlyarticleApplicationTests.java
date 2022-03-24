@@ -1,7 +1,7 @@
 package cn.sky1998.mongo;
 
-import cn.sky1998.mongo.framework.springutils.RedisUtils;
-import cn.sky1998.mongo.framework.springutils.SpringUtils;
+import cn.sky1998.mongo.framework.util.RedisUtils;
+import cn.sky1998.mongo.framework.util.SpringUtils;
 import cn.sky1998.mongo.system.mapper.AccountMapper;
 import cn.sky1998.mongo.work.service.impl.ArticleServiceImpl;
 import org.junit.jupiter.api.Test;

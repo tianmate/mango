@@ -1,7 +1,7 @@
 package cn.sky1998.mongo.system.wxapp.service.impl;
 
 import cn.sky1998.mongo.common.utils.TelUtils;
-import cn.sky1998.mongo.framework.springutils.SpringUtils;
+import cn.sky1998.mongo.framework.util.SpringUtils;
 import cn.sky1998.mongo.system.wxapp.WxappUtils;
 import cn.sky1998.mongo.system.wxapp.XmlUtils;
 import cn.sky1998.mongo.system.wxapp.domain.Article;

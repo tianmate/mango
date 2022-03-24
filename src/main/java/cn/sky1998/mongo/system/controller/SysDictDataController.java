@@ -1,18 +1,16 @@
 package cn.sky1998.mongo.system.controller;
 
 import cn.sky1998.mongo.common.utils.StringUtils;
-import cn.sky1998.mongo.framework.web.controller.BaseController;
+import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
-import cn.sky1998.mongo.framework.web.page.TableDataInfo;
+import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mongo.system.domain.SysDictData;
 import cn.sky1998.mongo.system.service.ISysDictDataService;
 import cn.sky1998.mongo.system.service.ISysDictTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
