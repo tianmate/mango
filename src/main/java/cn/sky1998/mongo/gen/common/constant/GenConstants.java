@@ -3,7 +3,7 @@ package cn.sky1998.mongo.gen.common.constant;
 /**
  * 代码生成通用常量
  * 
- * @author ruoyi
+ * @author tcy
  */
 public class GenConstants
 {

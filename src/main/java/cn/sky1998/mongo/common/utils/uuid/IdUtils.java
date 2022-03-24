@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.utils.uuid;
 /**
  * ID生成器工具类
  * 
- * @author ruoyi
+ * @author tcy
  */
 public class IdUtils
 {

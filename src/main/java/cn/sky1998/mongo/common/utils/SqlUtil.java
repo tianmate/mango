@@ -6,7 +6,7 @@ import cn.sky1998.mongo.common.exception.CustomException;
 /**
  * sql操作工具类
  * 
- * @author ruoyi
+ * @author tcy
  */
 public class SqlUtil
 {

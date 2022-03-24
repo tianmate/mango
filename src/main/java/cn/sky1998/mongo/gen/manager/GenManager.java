@@ -59,7 +59,7 @@ public class GenManager {
         //第三步：生成代码并压缩文件
       //  byte[] data = genTableService.downloadCode(tableNames);
         //代码存放到 src/main/java/cn/sky1998/mongo/work/base目录下
-     //   genCode("ruoyi.zip", data);
+     //   genCode("tcy.zip", data);
     }
 
     /**

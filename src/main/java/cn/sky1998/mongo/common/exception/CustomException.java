@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.exception;
 /**
  * 自定义异常
  *
- * @author ruoyi
+ * @author tcy
  */
 public class CustomException extends RuntimeException {
   private static final long serialVersionUID = 1L;

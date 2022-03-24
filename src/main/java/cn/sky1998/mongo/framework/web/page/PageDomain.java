@@ -6,7 +6,7 @@ import cn.sky1998.mongo.common.utils.StringUtils;
 /**
  * 分页数据
  *
- * @author ruoyi
+ * @author tcy
  */
 public class PageDomain {
   /**

@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.utils;
 /**
  * 处理并记录日志文件
  * 
- * @author ruoyi
+ * @author tcy
  */
 public class LogUtils
 {

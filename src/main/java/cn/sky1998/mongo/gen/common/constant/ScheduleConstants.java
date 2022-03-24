@@ -3,7 +3,7 @@ package cn.sky1998.mongo.gen.common.constant;
 /**
  * 任务调度通用常量
  * 
- * @author ruoyi
+ * @author tcy
  */
 public class ScheduleConstants
 {

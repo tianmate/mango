@@ -19,7 +19,7 @@ import static cn.sky1998.mongo.common.enums.HttpStatus.UNAUTHORIZED;
 /**
  * 授权失败处理类 返回未授权
  *
- * @author ruoyi
+ * @author tcy
  */
 @Component
 public class UnAuthenticationHandle implements AuthenticationEntryPoint, Serializable {

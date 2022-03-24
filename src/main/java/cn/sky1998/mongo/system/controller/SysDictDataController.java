@@ -21,7 +21,7 @@ import static cn.sky1998.mongo.framework.web.core.AjaxResult.success;
 /**
  * 数据字典信息
  * 
- * @author ruoyi
+ * @author tcy
  */
 @RestController
 @RequestMapping("/system/dict/data")

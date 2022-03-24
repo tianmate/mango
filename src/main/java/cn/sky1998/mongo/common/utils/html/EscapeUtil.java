@@ -6,7 +6,7 @@ import cn.sky1998.mongo.common.utils.StringUtils;
 /**
  * 转义和反转义工具类
  * 
- * @author ruoyi
+ * @author tcy
  */
 public class EscapeUtil
 {

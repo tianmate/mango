@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.exception.user;
 /**
  * 验证码失效异常类
  *
- * @author ruoyi
+ * @author tcy
  */
 public class CaptchaExpireException extends UserException {
   private static final long serialVersionUID = 1L;

@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 #if($table.crud || $table.sub)
 import cn.sky1998.mongo.gen.core.BaseEntity;
 #elseif($table.tree)
-import com.ruoyi.common.core.domain.TreeEntity;
+import com.tcy.common.core.domain.TreeEntity;
 #end
 
 /**

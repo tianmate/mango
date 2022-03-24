@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.utils.sign;
 /**
  * Base64工具类
  *
- * @author ruoyi
+ * @author tcy
  */
 public final class Base64 {
   static private final int BASELENGTH = 128;
