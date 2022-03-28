@@ -8,6 +8,8 @@ import cn.sky1998.mongo.framework.web.core.AjaxResult;
 
 import java.util.List;
 
+import static cn.sky1998.mongo.system.security.utils.SecurityUtils.getLoginUser;
+
 /**
  * 基础Controller
  */
@@ -43,5 +45,13 @@ public class BaseController {
     protected void startPage()
     {
         PageUtils.startPage();
+    }
+
+    /**
+     * 获取登录用户名
+     */
+    public String getUsername()
+    {
+        return getLoginUser().getUsername();
     }
 }

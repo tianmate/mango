@@ -60,4 +60,6 @@ public interface RoleMapper {
     List<RoleMenuVo> getRoleMenu(Role role);
 
     int removeRoleMenu(RoleMenuVo roleMenuVo);
+
+    public int checkMenuExistRole(Long menuId);
 }

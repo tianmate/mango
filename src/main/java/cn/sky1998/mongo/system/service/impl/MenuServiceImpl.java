@@ -3,6 +3,7 @@ package cn.sky1998.mongo.system.service.impl;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.Menu;
 import cn.sky1998.mongo.system.domain.dto.MenuTree;
+import cn.sky1998.mongo.system.domain.dto.RouterVo;
 import cn.sky1998.mongo.system.mapper.MenuMapper;
 import cn.sky1998.mongo.system.security.utils.SecurityUtils;
 import cn.sky1998.mongo.system.service.MenuService;
@@ -72,6 +73,11 @@ public class MenuServiceImpl implements MenuService {
     public Menu getDatail(Menu menu) {
 
         return menuMapper.selectByPrimaryKey(menu.getId());
+    }
+
+    @Override
+    public List<RouterVo> buildMenus(List<MenuTree> menus) {
+        return null;
     }
 
     private void tree(List<MenuTree> components,Long userId) {

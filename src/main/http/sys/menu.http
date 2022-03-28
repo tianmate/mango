@@ -75,3 +75,15 @@ Authorization: {{token}}
 
   "id": 2
 }
+
+###获取菜单列表详情
+GET {{host}}/system/menu/getRouters
+Accept: */*
+Content-Encoding: utf-8
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+
+
+}

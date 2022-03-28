@@ -180,4 +180,8 @@
     set del=#{del}
     where id=#{voId}
   </update>
+
+  <select id="checkMenuExistRole" resultType="Integer">
+    select count(1) from sys_role_menu where menu_id = #{menuId}
+  </select>
 </mapper>

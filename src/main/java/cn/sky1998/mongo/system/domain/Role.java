@@ -44,6 +44,9 @@ public class Role implements Serializable {
     */
     private String remark;
 
+    /** 菜单树选择项是否关联显示（ 0：父子不互相关联显示 1：父子互相关联显示） */
+    private boolean menuCheckStrictly;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -102,6 +105,10 @@ public class Role implements Serializable {
         this.remark = remark;
     }
 
+    public boolean isMenuCheckStrictly()
+    {
+        return menuCheckStrictly;
+    }
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

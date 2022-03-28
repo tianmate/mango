@@ -182,4 +182,9 @@ public class Account implements Serializable {
         result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
         return result;
     }
+
+        public static boolean isAdmin(Long userId)
+        {
+            return userId != null && 1L == userId;
+        }
 }

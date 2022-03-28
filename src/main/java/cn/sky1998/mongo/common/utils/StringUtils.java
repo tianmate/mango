@@ -1,6 +1,7 @@
 package cn.sky1998.mongo.common.utils;
 
 import cn.hutool.core.text.StrFormatter;
+import cn.sky1998.mongo.common.constant.Constants;
 
 import java.util.*;
 
@@ -396,5 +397,16 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
   @SuppressWarnings("unchecked")
   public static <T> T cast(Object obj) {
     return (T) obj;
+  }
+
+  /**
+   * 是否为http(s)://开头
+   *
+   * @param link 链接
+   * @return 结果
+   */
+  public static boolean ishttp(String link)
+  {
+    return StringUtils.startsWithAny(link, Constants.HTTP, Constants.HTTPS);
   }
 }

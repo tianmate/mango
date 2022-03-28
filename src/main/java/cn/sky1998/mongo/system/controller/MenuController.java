@@ -5,9 +5,13 @@ import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.Menu;
+import cn.sky1998.mongo.system.domain.dto.MenuTree;
+import cn.sky1998.mongo.system.security.utils.SecurityUtils;
 import cn.sky1998.mongo.system.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 菜单管理
@@ -58,4 +62,16 @@ public class MenuController extends BaseController {
     public AjaxResult tree(){
         return  AjaxResult.success(menuResourceService.tree());
     }
+
+    /**
+     * 获取路由信息
+     *
+     * @return 路由信息
+     */
+    //@GetMapping("getRouters")
+    //public AjaxResult getRouters()
+    //{
+    //    List<MenuTree> tree = menuResourceService.tree();
+    //    return AjaxResult.success(menuResourceService.buildMenus(tree));
+    //}
 }

@@ -39,7 +39,7 @@ public class Menu implements Serializable {
     /**
     * 显示状态
     */
-    private Byte hidden;
+    private Byte visible;
 
     /**
     * 图标
@@ -108,12 +108,12 @@ public class Menu implements Serializable {
         this.path = path;
     }
 
-    public Byte getHidden() {
-        return hidden;
+    public Byte getVisible() {
+        return visible;
     }
 
-    public void setHidden(Byte hidden) {
-        this.hidden = hidden;
+    public void setVisible(Byte visible) {
+        this.visible = visible;
     }
 
     public String getIcon() {
