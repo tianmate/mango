@@ -1,7 +1,7 @@
 package cn.sky1998.mongo.system.wxapp.domain;
 
 /**
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 17-02-2022
  */
 public class KfContentMsg {

@@ -7,7 +7,7 @@ import cn.sky1998.mongo.system.domain.form.LoginBody;
 import java.util.Map;
 
 /**
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 20-01-2022
  */
 public interface LoginService {

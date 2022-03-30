@@ -6,7 +6,7 @@ import cn.sky1998.mongo.common.utils.StringUtils;
 /**
  * 路由显示信息
  * 
- * @author ruoyi
+ * @author tcy@1753163342@qq.com
  */
 public class MetaVo
 {

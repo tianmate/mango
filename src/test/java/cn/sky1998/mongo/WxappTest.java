@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 15-12-2021
  */
 @SpringBootTest
@@ -30,7 +30,6 @@ public class WxappTest {
 
     @Test
     public void test2(){
-        System.out.println(wxappService.searchWord("没有昵称"));
     }
 
 }

@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 /**
  * 字典数据表 sys_dict_data
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class SysDictData extends BaseEntity
 {

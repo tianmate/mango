@@ -10,7 +10,7 @@ package cn.sky1998.mongo.common.enums;
  * {@code 4**}  客户端错误，请求包含语法错误或无法完成请求
  * {@code 5**}  服务器错误，服务器在处理请求的过程中发生了错误
  *
- * @author Cikaros
+ * @author tcy@1753163342@qq.com
  * @date 2021/6/30
  */
 public enum HttpStatus {

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 业务 数据层
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 @Mapper
 public interface GenTableMapper

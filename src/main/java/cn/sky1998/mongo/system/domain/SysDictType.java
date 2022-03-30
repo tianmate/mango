@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 /**
  * 字典类型表 sys_dict_type
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class SysDictType extends BaseEntity
 {

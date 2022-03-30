@@ -6,7 +6,7 @@ import cn.sky1998.mongo.common.utils.StringUtils;
 /**
  * 分页数据
  *
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class PageDomain {
   /**

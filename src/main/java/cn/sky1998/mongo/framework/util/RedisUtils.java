@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * redis操作的相关工具类
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 13-12-2021
  */
 public class RedisUtils {

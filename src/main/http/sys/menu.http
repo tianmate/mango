@@ -76,7 +76,7 @@ Authorization: {{token}}
   "id": 2
 }
 
-###获取菜单列表详情
+###获取路由
 GET {{host}}/system/menu/getRouters
 Accept: */*
 Content-Encoding: utf-8

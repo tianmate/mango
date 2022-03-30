@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * token工具类
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 16-12-2021
  */
 public class TokenUtils {

@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.exception;
 /**
  * 业务异常
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public final class ServiceException extends RuntimeException
 {

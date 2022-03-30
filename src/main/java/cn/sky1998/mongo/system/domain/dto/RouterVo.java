@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 路由配置信息
  * 
- * @author ruoyi
+ * @author tcy@1753163342@qq.com
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RouterVo

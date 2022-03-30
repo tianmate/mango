@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * springmvc过滤器配置
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 15-12-2021
  */
 @Configuration

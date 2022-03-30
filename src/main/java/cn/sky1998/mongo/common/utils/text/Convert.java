@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * 类型转换器
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class Convert
 {

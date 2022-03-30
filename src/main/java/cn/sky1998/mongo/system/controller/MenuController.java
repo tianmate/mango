@@ -1,66 +1,128 @@
 package cn.sky1998.mongo.system.controller;
 
-import cn.sky1998.mongo.framework.web.core.BaseController;
+import cn.sky1998.mongo.common.utils.StringUtils;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
-import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
-import cn.sky1998.mongo.system.domain.Account;
+import cn.sky1998.mongo.framework.web.core.BaseController;
+import cn.sky1998.mongo.gen.common.constant.UserConstants;
 import cn.sky1998.mongo.system.domain.Menu;
-import cn.sky1998.mongo.system.domain.dto.MenuTree;
 import cn.sky1998.mongo.system.security.utils.SecurityUtils;
-import cn.sky1998.mongo.system.service.MenuService;
+import cn.sky1998.mongo.system.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static cn.sky1998.mongo.system.security.utils.SecurityUtils.getUserId;
+
 /**
- * 菜单管理
- * @author tcy
- * @Date 13-01-2022
+ * 菜单信息
+ * 
+ * @author tcy@1753163342@qq.com
  */
 @RestController
 @RequestMapping("/system/menu")
-public class MenuController extends BaseController {
-
+public class MenuController extends BaseController
+{
     @Autowired
-    private MenuService menuResourceService;
+    private IMenuService menuService;
 
-
-    @PostMapping("/getListByRole")
-    public AjaxResult getListByRole(){
-        return AjaxResult.success(menuResourceService.getListByRole());
+    /**
+     * 获取菜单列表
+     */
+    @GetMapping("/list")
+    public AjaxResult list(Menu menu)
+    {
+        List<Menu> menus = menuService.selectMenuList(menu, getUserId());
+        return AjaxResult.success(menus);
     }
 
-    @PostMapping("/add")
-    public AjaxResult add(@RequestBody Menu menuResource){
-        return AjaxResult.success(menuResourceService.add(menuResource));
+    /**
+     * 根据菜单编号获取详细信息
+     */
+    @GetMapping(value = "/{menuId}")
+    public AjaxResult getInfo(@PathVariable Long menuId)
+    {
+        return AjaxResult.success(menuService.selectMenuById(menuId));
     }
 
-    @PostMapping("/update")
-    public AjaxResult update(@RequestBody Menu menuResource){
-        return AjaxResult.success(menuResourceService.update(menuResource));
+    /**
+     * 获取菜单下拉树列表
+     */
+    @GetMapping("/treeselect")
+    public AjaxResult treeselect(Menu menu)
+    {
+        List<Menu> menus = menuService.selectMenuList(menu, getUserId());
+        return AjaxResult.success(menuService.buildMenuTreeSelect(menus));
     }
 
-    @PostMapping("/getList")
-    public TableDataInfo getList(@RequestBody Menu query){
-
-        return getDataTable(menuResourceService.getList(query));
+    /**
+     * 加载对应角色菜单列表树
+     */
+    @GetMapping(value = "/roleMenuTreeselect/{roleId}")
+    public AjaxResult roleMenuTreeselect(@PathVariable("roleId") Long roleId)
+    {
+        List<Menu> menus = menuService.selectMenuList(getUserId());
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("checkedKeys", menuService.selectMenuListByRoleId(roleId));
+        ajax.put("menus", menuService.buildMenuTreeSelect(menus));
+        return ajax;
     }
 
-    @PostMapping("/getDetail")
-    public AjaxResult getDetail(@RequestBody Menu query){
-
-        return AjaxResult.success(menuResourceService.getDatail(query));
+    /**
+     * 新增菜单
+     */
+    @PostMapping
+    public AjaxResult add(@Validated @RequestBody Menu menu)
+    {
+        if (UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu)))
+        {
+            return AjaxResult.error("新增菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
+        }
+        else if (UserConstants.YES_FRAME.equals(menu.getIsFrame()) && !StringUtils.ishttp(menu.getPath()))
+        {
+            return AjaxResult.error("新增菜单'" + menu.getMenuName() + "'失败，地址必须以http(s)://开头");
+        }
+        menu.setCreateBy(getUsername());
+        return toAjax(menuService.insertMenu(menu));
     }
 
-    @PostMapping("/getMenuByUser")
-    public AjaxResult getMenuByUser(@RequestBody Account account){
-        return  AjaxResult.success(menuResourceService.getMenuByUser(account));
+    /**
+     * 修改菜单
+     */
+    @PutMapping
+    public AjaxResult edit(@Validated @RequestBody Menu menu)
+    {
+        if (UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu)))
+        {
+            return AjaxResult.error("修改菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
+        }
+        else if (UserConstants.YES_FRAME.equals(menu.getIsFrame()) && !StringUtils.ishttp(menu.getPath()))
+        {
+            return AjaxResult.error("修改菜单'" + menu.getMenuName() + "'失败，地址必须以http(s)://开头");
+        }
+        else if (menu.getMenuId().equals(menu.getParentId()))
+        {
+            return AjaxResult.error("修改菜单'" + menu.getMenuName() + "'失败，上级菜单不能选择自己");
+        }
+        return toAjax(menuService.updateMenu(menu));
     }
 
-    @PostMapping("/tree")
-    public AjaxResult tree(){
-        return  AjaxResult.success(menuResourceService.tree());
+    /**
+     * 删除菜单
+     */
+    @DeleteMapping("/{menuId}")
+    public AjaxResult remove(@PathVariable("menuId") Long menuId)
+    {
+        if (menuService.hasChildByMenuId(menuId))
+        {
+            return AjaxResult.error("存在子菜单,不允许删除");
+        }
+        if (menuService.checkMenuExistRole(menuId))
+        {
+            return AjaxResult.error("菜单已分配,不允许删除");
+        }
+        return toAjax(menuService.deleteMenuById(menuId));
     }
 
     /**
@@ -68,10 +130,20 @@ public class MenuController extends BaseController {
      *
      * @return 路由信息
      */
-    //@GetMapping("getRouters")
-    //public AjaxResult getRouters()
-    //{
-    //    List<MenuTree> tree = menuResourceService.tree();
-    //    return AjaxResult.success(menuResourceService.buildMenus(tree));
-    //}
+    @GetMapping("/getRouters")
+    public AjaxResult getRouters()
+    {
+        Long userId = SecurityUtils.getUserId();
+        List<Menu> menus = menuService.selectMenuTreeByUserId(userId);
+        return AjaxResult.success(menuService.buildMenus(menus));
+    }
+
+    /**
+     * 获取菜单树
+     * @return
+     */
+    @PostMapping("/tree")
+    public AjaxResult tree(){
+        return  AjaxResult.success(menuService.tree());
+    }
 }

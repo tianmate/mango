@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.exception;
 /**
  * 工具类异常
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class UtilException extends RuntimeException
 {

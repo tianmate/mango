@@ -6,7 +6,7 @@ import cn.sky1998.mongo.common.utils.StringUtils;
 /**
  * 基础异常
  *
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class BaseException extends RuntimeException {
   private static final long serialVersionUID = 1L;

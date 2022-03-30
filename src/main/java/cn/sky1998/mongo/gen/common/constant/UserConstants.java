@@ -3,7 +3,7 @@ package cn.sky1998.mongo.gen.common.constant;
 /**
  * 用户常量信息
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class UserConstants
 {

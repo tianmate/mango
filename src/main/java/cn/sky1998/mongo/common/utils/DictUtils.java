@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 字典工具类
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class DictUtils
 {

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Treeselect树结构实体类
  * 
- * @author ruoyi
+ * @author tcy@1753163342@qq.com
  */
 public class TreeSelect implements Serializable
 {
@@ -37,7 +37,7 @@ public class TreeSelect implements Serializable
     //    this.children = dept.getChildren().stream().map(TreeSelect::new).collect(Collectors.toList());
     //}
 
-    public TreeSelect(SysMenu menu)
+    public TreeSelect(Menu menu)
     {
         this.id = menu.getMenuId();
         this.label = menu.getMenuName();

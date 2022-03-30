@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.constant;
 /**
  * 通用常量信息
  *
- * @author Cikaros
+ * @author tcy@1753163342@qq.com
  * @date 2021/7/7
  */
 public class Constants {

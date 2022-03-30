@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 业务字段 服务层
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public interface IGenTableColumnService
 {

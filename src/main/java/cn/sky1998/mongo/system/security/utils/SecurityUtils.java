@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * 获取当前登录用户的信息
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 16-12-2021
  */
 public class SecurityUtils {

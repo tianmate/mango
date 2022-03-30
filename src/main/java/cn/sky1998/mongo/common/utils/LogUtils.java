@@ -3,7 +3,7 @@ package cn.sky1998.mongo.common.utils;
 /**
  * 处理并记录日志文件
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class LogUtils
 {

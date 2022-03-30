@@ -14,7 +14,7 @@ import java.util.Arrays;
 /**
  * 代码生成器 工具类
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 @Component
 public class GenUtils

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 /**
  * 代码生成业务字段表 gen_table_column
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class GenTableColumn extends BaseEntity
 {

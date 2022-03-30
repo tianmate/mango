@@ -11,7 +11,7 @@ import static com.google.code.kaptcha.Constants.*;
 import static com.google.code.kaptcha.Constants.KAPTCHA_OBSCURIFICATOR_IMPL;
 
 /**
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 08-03-2022
  */
 @Configuration

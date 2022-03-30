@@ -17,7 +17,7 @@ import java.security.cert.X509Certificate;
 /**
  * 通用http发送方法
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class HttpUtils
 {

@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  * 加载词库
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 20-12-2021
  */
 @ConditionalOnProperty(prefix = "mango",name = "lexiconLoad",havingValue = "true")

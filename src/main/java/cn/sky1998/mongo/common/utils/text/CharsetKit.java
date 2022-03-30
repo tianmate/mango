@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * 字符集工具类
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class CharsetKit
 {

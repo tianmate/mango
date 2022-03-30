@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * 验证码文本生成器
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public class KaptchaTextCreator extends DefaultTextCreator
 {

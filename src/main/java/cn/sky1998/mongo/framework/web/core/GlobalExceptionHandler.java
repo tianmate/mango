@@ -1,7 +1,6 @@
-package cn.sky1998.mongo.framework.web.exception;
+package cn.sky1998.mongo.framework.web.core;
 
 import cn.sky1998.mongo.common.enums.HttpStatus;
-import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -14,9 +13,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 全局异常处理器
+ * 全局异常处理器,Springboot统一异常处理
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler

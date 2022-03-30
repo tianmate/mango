@@ -11,7 +11,7 @@ import java.io.*;
 
 /**
  * 构建可重复读取的HttpServletRequest
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 15-12-2021
  */
 public class RepeateRequestWrapper extends HttpServletRequestWrapper {

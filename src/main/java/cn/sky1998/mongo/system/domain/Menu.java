@@ -1,166 +1,258 @@
 package cn.sky1998.mongo.system.domain;
 
-import cn.sky1998.mongo.system.domain.dto.MenuTree;
+import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
     * 菜单资源表
     */
-public class Menu implements Serializable {
-    /**
-    * 主键
-    */
-    private Long id;
+public class Menu extends BaseEntity {
+    private static final long serialVersionUID = 1L;
 
-    /**
-    * 组件名称
-    */
-    private String name;
+    /** 菜单ID */
+    private Long menuId;
 
-    /**
-    * 描述
-    */
-    private String description;
+    /** 菜单名称 */
+    private String menuName;
 
-    /**
-    * 父组件id
-    */
+    /** 父菜单名称 */
+    private String parentName;
+
+    /** 父菜单ID */
     private Long parentId;
 
-    /**
-    * 路由地址
-    */
+    /** 显示顺序 */
+    private Integer orderNum;
+
+    /** 路由地址 */
     private String path;
 
+    /** 组件路径 */
+    private String component;
 
-    /**
-    * 显示状态
-    */
-    private Byte visible;
+    /** 路由参数 */
+    private String query;
 
-    /**
-    * 图标
-    */
+    /** 是否为外链（0是 1否） */
+    private String isFrame;
+
+    /** 是否缓存（0缓存 1不缓存） */
+    private String isCache;
+
+    /** 类型（M目录 C菜单 F按钮） */
+    private String menuType;
+
+    /** 显示状态（0显示 1隐藏） */
+    private String visible;
+
+    /** 菜单状态（0显示 1隐藏） */
+    private String status;
+
+    /** 权限字符串 */
+    private String perms;
+
+    /** 菜单图标 */
     private String icon;
 
-    /**
-    * 同级优先级
-    */
-    private Short order;
+    /** 子菜单 */
+    private List<Menu> children = new ArrayList<Menu>();
 
-    /**
-    * 可用状态
-    */
-    private Byte enable;
-
-    /**
-    * 删除标记
-    */
-    private Byte del;
-
-    /**
-    * 备注
-    */
-    private String remark;
-
-    private List<MenuTree> children;
-
-    public Long getId() {
-        return id;
+    public Long getMenuId()
+    {
+        return menuId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMenuId(Long menuId)
+    {
+        this.menuId = menuId;
     }
 
-    public String getName() {
-        return name;
+    @NotBlank(message = "菜单名称不能为空")
+    @Size(min = 0, max = 50, message = "菜单名称长度不能超过50个字符")
+    public String getMenuName()
+    {
+        return menuName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMenuName(String menuName)
+    {
+        this.menuName = menuName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getParentName()
+    {
+        return parentName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setParentName(String parentName)
+    {
+        this.parentName = parentName;
     }
 
-    public Long getParentId() {
+    public Long getParentId()
+    {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(Long parentId)
+    {
         this.parentId = parentId;
     }
 
-    public String getPath() {
+    @NotNull(message = "显示顺序不能为空")
+    public Integer getOrderNum()
+    {
+        return orderNum;
+    }
+
+    public void setOrderNum(Integer orderNum)
+    {
+        this.orderNum = orderNum;
+    }
+
+    @Size(min = 0, max = 200, message = "路由地址不能超过200个字符")
+    public String getPath()
+    {
         return path;
     }
 
-    public void setPath(String path) {
+    public void setPath(String path)
+    {
         this.path = path;
     }
 
-    public Byte getVisible() {
+    @Size(min = 0, max = 200, message = "组件路径不能超过255个字符")
+    public String getComponent()
+    {
+        return component;
+    }
+
+    public void setComponent(String component)
+    {
+        this.component = component;
+    }
+
+    public String getQuery()
+    {
+        return query;
+    }
+
+    public void setQuery(String query)
+    {
+        this.query = query;
+    }
+
+    public String getIsFrame()
+    {
+        return isFrame;
+    }
+
+    public void setIsFrame(String isFrame)
+    {
+        this.isFrame = isFrame;
+    }
+
+    public String getIsCache()
+    {
+        return isCache;
+    }
+
+    public void setIsCache(String isCache)
+    {
+        this.isCache = isCache;
+    }
+
+    @NotBlank(message = "菜单类型不能为空")
+    public String getMenuType()
+    {
+        return menuType;
+    }
+
+    public void setMenuType(String menuType)
+    {
+        this.menuType = menuType;
+    }
+
+    public String getVisible()
+    {
         return visible;
     }
 
-    public void setVisible(Byte visible) {
+    public void setVisible(String visible)
+    {
         this.visible = visible;
     }
 
-    public String getIcon() {
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+
+    @Size(min = 0, max = 100, message = "权限标识长度不能超过100个字符")
+    public String getPerms()
+    {
+        return perms;
+    }
+
+    public void setPerms(String perms)
+    {
+        this.perms = perms;
+    }
+
+    public String getIcon()
+    {
         return icon;
     }
 
-    public void setIcon(String icon) {
+    public void setIcon(String icon)
+    {
         this.icon = icon;
     }
 
-    public Short getOrder() {
-        return order;
-    }
-
-    public void setOrder(Short order) {
-        this.order = order;
-    }
-
-    public Byte getEnable() {
-        return enable;
-    }
-
-    public void setEnable(Byte enable) {
-        this.enable = enable;
-    }
-
-    public Byte getDel() {
-        return del;
-    }
-
-    public void setDel(Byte del) {
-        this.del = del;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public List<MenuTree> getChildren() {
+    public List<Menu> getChildren()
+    {
         return children;
     }
 
-    public void setChildren(List<MenuTree> children) {
+    public void setChildren(List<Menu> children)
+    {
         this.children = children;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("menuId", getMenuId())
+                .append("menuName", getMenuName())
+                .append("parentId", getParentId())
+                .append("orderNum", getOrderNum())
+                .append("path", getPath())
+                .append("component", getComponent())
+                .append("isFrame", getIsFrame())
+                .append("IsCache", getIsCache())
+                .append("menuType", getMenuType())
+                .append("visible", getVisible())
+                .append("status ", getStatus())
+                .append("perms", getPerms())
+                .append("icon", getIcon())
+                .append("createBy", getCreateBy())
+                .append("createTime", getCreateTime())
+                .append("updateBy", getUpdateBy())
+                .append("updateTime", getUpdateTime())
+                .append("remark", getRemark())
+                .toString();
     }
 }

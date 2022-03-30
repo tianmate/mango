@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * HTML过滤器，用于去除XSS漏洞隐患。
  *
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public final class HTMLFilter
 {

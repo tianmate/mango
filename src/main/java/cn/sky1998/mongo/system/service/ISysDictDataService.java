@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 字典 业务层
  * 
- * @author tcy
+ * @author tcy@1753163342@qq.com
  */
 public interface ISysDictDataService
 {

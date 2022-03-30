@@ -1,13 +1,11 @@
 package cn.sky1998.mongo.system.wxapp;
 
-import cn.sky1998.mongo.common.exception.WorkException;
-import cn.sky1998.mongo.common.utils.DateUtils;
+import cn.sky1998.mongo.common.exception.CustomException;
 import cn.sky1998.mongo.common.utils.StringUtils;
 import cn.sky1998.mongo.framework.util.SpringUtils;
 import cn.sky1998.mongo.system.wxapp.domain.BaseContent;
 import cn.sky1998.mongo.system.wxapp.domain.ContentMsg;
 import cn.sky1998.mongo.system.wxapp.domain.KfContentMsg;
-import cn.sky1998.mongo.wxapp.domain.PublicUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +54,7 @@ public class WxappUtils {
 
                 } catch (JsonProcessingException e) {
                     //异常存档
-                    throw new WorkException("获取微信公众号access_token异常");
+                    throw new CustomException("获取微信公众号access_token异常");
                 }
                 String access_token = map.get("access_token").toString();
                 String expires_in = map.get("expires_in").toString();
@@ -164,16 +162,16 @@ public class WxappUtils {
         return contentMsg;
     }
 
-    public PublicUser getUserInfo(String openid){
-        PublicUser publicUser=new PublicUser();
-        Map map = restTemplate.getForObject("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + getAccessToken() + "&openid=" + openid + "&lang=zh_CN", Map.class);
-        publicUser.setOpenid(openid);
-        publicUser.setSubscribe((Integer) map.get("subscribe"));
-        publicUser.setSex((Integer) map.get("sex"));
-        publicUser.setSubscribeTime(DateUtils.stampToDate((Integer) map.get("subscribe_time")));
-        publicUser.setSubscribeScene((String) map.get("subscribe_scene"));
-        return publicUser;
-    }
+    //public PublicUser getUserInfo(String openid){
+    //    PublicUser publicUser=new PublicUser();
+    //    Map map = restTemplate.getForObject("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + getAccessToken() + "&openid=" + openid + "&lang=zh_CN", Map.class);
+    //    publicUser.setOpenid(openid);
+    //    publicUser.setSubscribe((Integer) map.get("subscribe"));
+    //    publicUser.setSex((Integer) map.get("sex"));
+    //    publicUser.setSubscribeTime(DateUtils.stampToDate((Integer) map.get("subscribe_time")));
+    //    publicUser.setSubscribeScene((String) map.get("subscribe_scene"));
+    //    return publicUser;
+    //}
 
     public ResponseEntity<String> sendKfMsg(String msg,String openid){
 

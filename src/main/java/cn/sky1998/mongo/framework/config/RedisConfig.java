@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 
 /**
  * 注入redis
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 08-12-2021
  */
 @Configuration

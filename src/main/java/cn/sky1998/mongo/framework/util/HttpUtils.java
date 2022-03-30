@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 14-12-2021
  */
 public class HttpUtils {
