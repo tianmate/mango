@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 122.51.66.24
+ Source Server         : 127.0.0.1
  Source Server Type    : MySQL
- Source Server Version : 50735
- Source Host           : 122.51.66.24:3306
+ Source Server Version : 50644
+ Source Host           : 127.0.0.1:3306
  Source Schema         : mango_dev
 
  Target Server Type    : MySQL
- Target Server Version : 50735
+ Target Server Version : 50644
  File Encoding         : 65001
 
- Date: 07/03/2022 09:46:21
+ Date: 02/04/2022 18:16:47
 */
 
 SET NAMES utf8mb4;
@@ -188,6 +188,114 @@ INSERT INTO `g_swag` VALUES (35, 'oZ2B35vrgE5AwaBdVXjsa1jtavzA', 'oZ2B35lvUXGm_f
 INSERT INTO `g_swag` VALUES (36, 'oZ2B35lvUXGm_fDzf-JFxSUBF-F0', 'oZ2B35vrgE5AwaBdVXjsa1jtavzA', '我是青藤派，这是我的第一条消息', '我是青藤派，这是我的回复', '2022-02-22 15:06:46', 2);
 
 -- ----------------------------
+-- Table structure for gen_table
+-- ----------------------------
+DROP TABLE IF EXISTS `gen_table`;
+CREATE TABLE `gen_table`  (
+  `table_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `table_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '表名称',
+  `table_comment` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '表描述',
+  `sub_table_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关联子表的表名',
+  `sub_table_fk_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '子表关联的外键名',
+  `class_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '实体类名称',
+  `tpl_category` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'crud' COMMENT '使用的模板（crud单表操作 tree树表操作）',
+  `package_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成包路径',
+  `module_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成模块名',
+  `business_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成业务名',
+  `function_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成功能名',
+  `function_author` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成功能作者',
+  `gen_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '生成代码方式（0zip压缩包 1自定义路径）',
+  `gen_path` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '/' COMMENT '生成路径（不填默认项目路径）',
+  `options` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '其它生成选项',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`table_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of gen_table
+-- ----------------------------
+INSERT INTO `gen_table` VALUES (2, 'sys_notice', '通知公告表', 'test1', 'test1', 'SysNotice', 'crud', 'cn.sky1998.mongo.work.base.notice', 'work', 'notice', '通知公告', 'tcy', '0', '/src/main/java/cn/sky1998/mongo/work/base', '{}', 'admin', '2022-03-15 09:02:37', '', '2022-03-18 17:33:13', NULL);
+
+-- ----------------------------
+-- Table structure for gen_table_column
+-- ----------------------------
+DROP TABLE IF EXISTS `gen_table_column`;
+CREATE TABLE `gen_table_column`  (
+  `column_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `table_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '归属表编号',
+  `column_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '列名称',
+  `column_comment` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '列描述',
+  `column_type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '列类型',
+  `java_type` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'JAVA类型',
+  `java_field` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'JAVA字段名',
+  `is_pk` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否主键（1是）',
+  `is_increment` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否自增（1是）',
+  `is_required` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否必填（1是）',
+  `is_insert` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否为插入字段（1是）',
+  `is_edit` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否编辑字段（1是）',
+  `is_list` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否列表字段（1是）',
+  `is_query` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否查询字段（1是）',
+  `query_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'EQ' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
+  `html_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
+  `dict_type` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '字典类型',
+  `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`column_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of gen_table_column
+-- ----------------------------
+INSERT INTO `gen_table_column` VALUES (12, '3', 'notice_id', '公告ID', 'int(4)', 'Integer', 'noticeId', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (13, '3', 'notice_title', '公告标题', 'varchar(50)', 'String', 'noticeTitle', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (14, '3', 'notice_type', '公告类型（1通知 2公告）', 'char(1)', 'String', 'noticeType', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', '', 3, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (15, '3', 'notice_content', '公告内容', 'longblob', 'String', 'noticeContent', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'editor', '', 4, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (16, '3', 'status', '公告状态（0正常 1关闭）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 5, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (17, '3', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 6, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (18, '3', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 7, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (19, '3', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 8, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (20, '3', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 9, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (21, '3', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 10, 'tcy', '2022-03-16 14:23:29', '', NULL);
+INSERT INTO `gen_table_column` VALUES (22, '4', 'notice_id', '公告ID', 'int(4)', 'Integer', 'noticeId', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (23, '4', 'notice_title', '公告标题', 'varchar(50)', 'String', 'noticeTitle', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (24, '4', 'notice_type', '公告类型（1通知 2公告）', 'char(1)', 'String', 'noticeType', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', '', 3, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (25, '4', 'notice_content', '公告内容', 'longblob', 'String', 'noticeContent', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'editor', '', 4, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (26, '4', 'status', '公告状态（0正常 1关闭）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 5, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (27, '4', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 6, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (28, '4', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 7, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (29, '4', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 8, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (30, '4', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 9, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (31, '4', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 10, 'tcy', '2022-03-16 14:24:09', '', NULL);
+INSERT INTO `gen_table_column` VALUES (32, '5', 'notice_id', '公告ID', 'int(4)', 'Integer', 'noticeId', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (33, '5', 'notice_title', '公告标题', 'varchar(50)', 'String', 'noticeTitle', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (34, '5', 'notice_type', '公告类型（1通知 2公告）', 'char(1)', 'String', 'noticeType', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', '', 3, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (35, '5', 'notice_content', '公告内容', 'longblob', 'String', 'noticeContent', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'editor', '', 4, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (36, '5', 'status', '公告状态（0正常 1关闭）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 5, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (37, '5', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 6, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (38, '5', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 7, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (39, '5', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 8, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (40, '5', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 9, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (41, '5', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 10, 'tcy', '2022-03-16 14:25:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (42, '2', 'notice_id', '公告ID', 'int(4)', 'Integer', 'noticeId', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (43, '2', 'notice_title', '公告标题', 'varchar(50)', 'String', 'noticeTitle', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (44, '2', 'notice_type', '公告类型（1通知 2公告）', 'char(1)', 'String', 'noticeType', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'select', '', 3, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (45, '2', 'notice_content', '公告内容', 'longblob', 'String', 'noticeContent', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'editor', '', 4, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (46, '2', 'status', '公告状态（0正常 1关闭）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 5, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (47, '2', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 6, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (48, '2', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 7, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (49, '2', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 8, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (50, '2', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 9, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (51, '2', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 10, 'admin', '2022-03-18 17:33:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (52, '2', 'test', '测试', 'varchar(64)', 'String', 'test', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 11, NULL, '2022-03-18 17:33:13', '', NULL);
+
+-- ----------------------------
 -- Table structure for log_exception
 -- ----------------------------
 DROP TABLE IF EXISTS `log_exception`;
@@ -310,37 +418,149 @@ INSERT INTO `sys_account_role` VALUES (30, 2, 5, 0, 0, NULL);
 INSERT INTO `sys_account_role` VALUES (33, 3, 6, 0, 0, NULL);
 
 -- ----------------------------
+-- Table structure for sys_dict_data
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_dict_data`;
+CREATE TABLE `sys_dict_data`  (
+  `dict_code` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典编码',
+  `dict_sort` int(4) NULL DEFAULT 0 COMMENT '字典排序',
+  `dict_label` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '字典标签',
+  `dict_value` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '字典键值',
+  `dict_type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '字典类型',
+  `css_class` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
+  `list_class` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '表格回显样式',
+  `is_default` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
+  `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`dict_code`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典数据表' ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of sys_dict_data
+-- ----------------------------
+INSERT INTO `sys_dict_data` VALUES (1, 1, '男', '0', 'sys_user_sex', '', '', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '性别男');
+INSERT INTO `sys_dict_data` VALUES (2, 2, '女', '1', 'sys_user_sex', '', '', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '性别女');
+INSERT INTO `sys_dict_data` VALUES (3, 3, '未知', '2', 'sys_user_sex', '', '', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '性别未知');
+INSERT INTO `sys_dict_data` VALUES (4, 1, '显示', '0', 'sys_show_hide', '', 'primary', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '显示菜单');
+INSERT INTO `sys_dict_data` VALUES (5, 2, '隐藏', '1', 'sys_show_hide', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '隐藏菜单');
+INSERT INTO `sys_dict_data` VALUES (6, 1, '正常', '0', 'sys_normal_disable', '', 'primary', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '正常状态');
+INSERT INTO `sys_dict_data` VALUES (7, 2, '停用', '1', 'sys_normal_disable', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '停用状态');
+INSERT INTO `sys_dict_data` VALUES (8, 1, '正常', '0', 'sys_job_status', '', 'primary', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '正常状态');
+INSERT INTO `sys_dict_data` VALUES (9, 2, '暂停', '1', 'sys_job_status', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '停用状态');
+INSERT INTO `sys_dict_data` VALUES (10, 1, '默认', 'DEFAULT', 'sys_job_group', '', '', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '默认分组');
+INSERT INTO `sys_dict_data` VALUES (11, 2, '系统', 'SYSTEM', 'sys_job_group', '', '', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '系统分组');
+INSERT INTO `sys_dict_data` VALUES (12, 1, '是', 'Y', 'sys_yes_no', '', 'primary', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '系统默认是');
+INSERT INTO `sys_dict_data` VALUES (13, 2, '否', 'N', 'sys_yes_no', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '系统默认否');
+INSERT INTO `sys_dict_data` VALUES (14, 1, '通知', '1', 'sys_notice_type', '', 'warning', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '通知');
+INSERT INTO `sys_dict_data` VALUES (15, 2, '公告', '2', 'sys_notice_type', '', 'success', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '公告');
+INSERT INTO `sys_dict_data` VALUES (16, 1, '正常', '0', 'sys_notice_status', '', 'primary', 'Y', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '正常状态');
+INSERT INTO `sys_dict_data` VALUES (17, 2, '关闭', '1', 'sys_notice_status', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '关闭状态');
+INSERT INTO `sys_dict_data` VALUES (18, 1, '新增', '1', 'sys_oper_type', '', 'info', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '新增操作');
+INSERT INTO `sys_dict_data` VALUES (19, 2, '修改', '2', 'sys_oper_type', '', 'info', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '修改操作');
+INSERT INTO `sys_dict_data` VALUES (20, 3, '删除', '3', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '删除操作');
+INSERT INTO `sys_dict_data` VALUES (21, 4, '授权', '4', 'sys_oper_type', '', 'primary', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '授权操作');
+INSERT INTO `sys_dict_data` VALUES (22, 5, '导出', '5', 'sys_oper_type', '', 'warning', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '导出操作');
+INSERT INTO `sys_dict_data` VALUES (23, 6, '导入', '6', 'sys_oper_type', '', 'warning', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '导入操作');
+INSERT INTO `sys_dict_data` VALUES (24, 7, '强退', '7', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '强退操作');
+INSERT INTO `sys_dict_data` VALUES (25, 8, '生成代码', '8', 'sys_oper_type', '', 'warning', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '生成操作');
+INSERT INTO `sys_dict_data` VALUES (26, 9, '清空数据', '9', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '清空操作');
+INSERT INTO `sys_dict_data` VALUES (27, 1, '成功', '0', 'sys_common_status', '', 'primary', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '正常状态');
+INSERT INTO `sys_dict_data` VALUES (28, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '停用状态');
+
+-- ----------------------------
+-- Table structure for sys_dict_type
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_dict_type`;
+CREATE TABLE `sys_dict_type`  (
+  `dict_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典主键',
+  `dict_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '字典名称',
+  `dict_type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '字典类型',
+  `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`dict_id`) USING BTREE,
+  UNIQUE INDEX `dict_type`(`dict_type`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典类型表' ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of sys_dict_type
+-- ----------------------------
+INSERT INTO `sys_dict_type` VALUES (1, '用户性别', 'sys_user_sex', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '用户性别列表');
+INSERT INTO `sys_dict_type` VALUES (2, '菜单状态', 'sys_show_hide', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '菜单状态列表');
+INSERT INTO `sys_dict_type` VALUES (3, '系统开关', 'sys_normal_disable', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '系统开关列表');
+INSERT INTO `sys_dict_type` VALUES (4, '任务状态', 'sys_job_status', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '任务状态列表');
+INSERT INTO `sys_dict_type` VALUES (5, '任务分组', 'sys_job_group', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '任务分组列表');
+INSERT INTO `sys_dict_type` VALUES (6, '系统是否', 'sys_yes_no', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '系统是否列表');
+INSERT INTO `sys_dict_type` VALUES (7, '通知类型', 'sys_notice_type', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '通知类型列表');
+INSERT INTO `sys_dict_type` VALUES (8, '通知状态', 'sys_notice_status', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '通知状态列表');
+INSERT INTO `sys_dict_type` VALUES (9, '操作类型', 'sys_oper_type', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '操作类型列表');
+INSERT INTO `sys_dict_type` VALUES (10, '系统状态', 'sys_common_status', '0', 'admin', '2022-03-08 17:36:09', '', NULL, '登录状态列表');
+
+-- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单名称',
-  `description` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '描述',
-  `parent_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '父菜单id',
-  `path` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '路由地址',
-  `hidden` tinyint(4) NULL DEFAULT 1 COMMENT '显示状态',
-  `icon` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '图标',
-  `order` smallint(6) NULL DEFAULT 0 COMMENT '同级优先级',
-  `enable` tinyint(4) UNSIGNED ZEROFILL NULL DEFAULT 0000 COMMENT '可用状态',
-  `del` tinyint(4) UNSIGNED ZEROFILL NULL DEFAULT 0000 COMMENT '删除标记',
-  `remark` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单表' ROW_FORMAT = DYNAMIC;
+  `menu_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `menu_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单名称',
+  `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '父菜单ID',
+  `order_num` int(4) NULL DEFAULT 0 COMMENT '显示顺序',
+  `path` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '路由地址',
+  `component` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '组件路径',
+  `query` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '路由参数',
+  `is_frame` int(1) NULL DEFAULT 1 COMMENT '是否为外链（0是 1否）',
+  `is_cache` int(1) NULL DEFAULT 0 COMMENT '是否缓存（0缓存 1不缓存）',
+  `menu_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
+  `visible` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
+  `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
+  `perms` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限标识',
+  `icon` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '#' COMMENT '菜单图标',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
+  PRIMARY KEY (`menu_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES (1, '用户管理', '用户管理', 0, '/pages/user', 0, 'el-icon-user\r\n', 1, 0000, 0000, '用户管理');
-INSERT INTO `sys_menu` VALUES (2, '角色管理', '角色管理', 0, '/pages/role', 0, 'el-icon-s-check', 2, 0000, 0000, NULL);
-INSERT INTO `sys_menu` VALUES (3, '菜单管理', '菜单管理', 0, '/pages/menu', 0, 'el-icon-menu', 3, 0000, 0000, NULL);
-INSERT INTO `sys_menu` VALUES (7, '配置管理', '公众号配置', 4, '/test2', 1, '', 8, 0000, 0001, NULL);
-INSERT INTO `sys_menu` VALUES (8, '关键词管理', '公众号关键词管理', 4, '/pages/gzh/keyword', 1, 'el-icon-document', 6, 0000, 0000, NULL);
-INSERT INTO `sys_menu` VALUES (10, '活动管理', '公众号统一活动管理', 0, '/pages/gzh/plan', 1, 'el-icon-s-flag', 7, 0000, 0000, NULL);
-INSERT INTO `sys_menu` VALUES (11, '公众号用户管理', '公众号用户信息', 0, '/pages/gzh/publicUser', 1, 'el-icon-user', 5, 0000, 0000, NULL);
-INSERT INTO `sys_menu` VALUES (12, '晚安计划管理', '晚安计划报名表', 0, '/pages/gzh/nightJoin', 1, ' el-icon-phone-outline', 8, 0000, 0000, NULL);
-INSERT INTO `sys_menu` VALUES (13, '晚安交换管理', '晚安交换管理', 0, '/pages/gzh/swag', 1, 'el-icon-tickets', 9, 0000, 0000, NULL);
-INSERT INTO `sys_menu` VALUES (14, '消息记录管理', '消息记录管理', 0, '/pages/gzh/message', 1, 'el-icon-bell', 10, 0000, 0000, NULL);
+INSERT INTO `sys_menu` VALUES (1, '用户管理', 4, 0, '/pages/user', 'user/user', NULL, 1, 0, 'C', '0', '0', NULL, 'el-icon-user', '', NULL, '', NULL, '用户管理');
+INSERT INTO `sys_menu` VALUES (2, '角色管理', 4, 1, '/pages/role', 'role/role', NULL, 1, 0, 'C', '0', '0', NULL, 'el-icon-s-check', '', NULL, '', NULL, '角色管理');
+INSERT INTO `sys_menu` VALUES (3, '菜单管理', 4, 2, '/pages/menu', 'menu/index', NULL, 1, 0, 'C', '0', '0', NULL, 'el-icon-menu', '', NULL, '', NULL, '菜单管理');
+INSERT INTO `sys_menu` VALUES (4, '系统管理', 0, 0, '', '', NULL, 1, 0, 'M', '0', '0', NULL, 'el-icon-menu', '', NULL, '', NULL, '系统管理');
+INSERT INTO `sys_menu` VALUES (5, '系统工具', 0, 0, '', '', NULL, 1, 0, 'M', '0', '0', NULL, 'el-icon-menu', '', NULL, '', NULL, '系统工具');
+INSERT INTO `sys_menu` VALUES (6, '代码生成', 5, 0, '/pages/createCode', 'gen/index', NULL, 1, 0, 'c', '0', '0', NULL, 'el-icon-s-check', '', NULL, '', NULL, '代码生成');
+
+-- ----------------------------
+-- Table structure for sys_notice
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_notice`;
+CREATE TABLE `sys_notice`  (
+  `notice_id` int(4) NULL DEFAULT NULL COMMENT '公告ID',
+  `notice_title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告标题',
+  `notice_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告类型（1通知 2公告）',
+  `notice_content` longblob NULL COMMENT '公告内容',
+  `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告状态（0正常 1关闭）',
+  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `test` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '测试'
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知公告表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sys_notice
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -379,7 +599,7 @@ CREATE TABLE `sys_role_menu`  (
   `del` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标记',
   `remark` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色菜单关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色菜单关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -388,9 +608,9 @@ INSERT INTO `sys_role_menu` VALUES (1, 1, 2, 0001, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (2, 1, 1, 0001, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (3, 1, 3, 0001, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (6, 2, 1, 0001, 0, NULL);
-INSERT INTO `sys_role_menu` VALUES (8, 1, 7, 0000, 1, NULL);
-INSERT INTO `sys_role_menu` VALUES (9, 1, 8, 0000, 0, NULL);
-INSERT INTO `sys_role_menu` VALUES (10, 1, 10, 0000, 0, NULL);
+INSERT INTO `sys_role_menu` VALUES (8, 1, 4, 0000, 1, NULL);
+INSERT INTO `sys_role_menu` VALUES (9, 1, 5, 0000, 0, NULL);
+INSERT INTO `sys_role_menu` VALUES (10, 1, 6, 0000, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (11, 1, 11, 0000, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (12, 1, 12, 0000, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (13, 1, 13, 0000, 0, NULL);
@@ -400,5 +620,10 @@ INSERT INTO `sys_role_menu` VALUES (16, 6, 12, 0000, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (17, 6, 13, 0000, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (18, 6, 8, 0000, 0, NULL);
 INSERT INTO `sys_role_menu` VALUES (19, 1, 14, 0000, 0, NULL);
+INSERT INTO `sys_role_menu` VALUES (20, 1, 14, 0000, 0, NULL);
+INSERT INTO `sys_role_menu` VALUES (21, 1, 16, 0000, 0, NULL);
+INSERT INTO `sys_role_menu` VALUES (22, 1, 17, 0000, 0, NULL);
+INSERT INTO `sys_role_menu` VALUES (23, 1, 18, 0000, 0, NULL);
+INSERT INTO `sys_role_menu` VALUES (24, 1, 19, 0000, 0, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
