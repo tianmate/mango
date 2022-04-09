@@ -1,10 +1,12 @@
 package cn.sky1998.mongo.system.service;
 
 
+import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.AccountRoleMenuVo;
 import cn.sky1998.mongo.system.domain.AccountRoleVo;
 import cn.sky1998.mongo.system.domain.Menu;
+import cn.sky1998.mongo.system.domain.dto.AccountRoleDto;
 import cn.sky1998.mongo.system.domain.form.AccountForm;
 import cn.sky1998.mongo.system.domain.form.AccountRoleForm;
 
@@ -33,5 +35,7 @@ public interface AccountService {
 
     public List<Menu> getUserMenu(Account account);
 
-    public Account profile();
+    public AccountRoleDto profile();
+
+    public AjaxResult updatePwd(String oldPassword, String newPassword);
 }

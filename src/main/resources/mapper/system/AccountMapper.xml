@@ -46,6 +46,34 @@
 
   </resultMap>
 
+
+  <resultMap id="BaseResultMapProfile" type="cn.sky1998.mongo.system.domain.dto.AccountRoleDto" >
+    <!--@mbg.generated-->
+    <!--@Table sys_account-->
+    <!--@mbg.generated-->
+    <!--@Table sys_account-->
+    <id column="id" property="id" />
+    <result column="username" property="username" />
+    <result column="password" property="password" />
+    <result column="tel" property="tel" />
+    <result column="user_type" property="userType" />
+    <result column="nick_name" property="nickName" />
+    <result column="enable" property="enable" />
+    <result column="del" property="del" />
+    <result column="remark" property="remark" />
+    <collection property="roles" ofType="cn.sky1998.mongo.system.domain.Role">
+      <!--@mbg.generated-->
+      <!--@Table sys_role-->
+      <id column="r_id" property="id" />
+      <result column="name" property="name" />
+      <result column="description" property="description" />
+      <result column="enable" property="enable" />
+      <result column="del" property="del" />
+      <result column="remark" property="remark" />
+    </collection>
+
+  </resultMap>
+
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, username, `password`, tel, user_type, nick_name, `enable`, del, remark
@@ -263,5 +291,29 @@
     left join sys_menu sm on sm.id=srm.menu_id
     where sa.id = #{id} and sm.name is not null
     order by sm.id asc
+  </select>
+
+  <select id="profile" resultMap="BaseResultMapProfile" parameterType="long">
+
+    <!--@mbg.generated-->
+    select
+    sa.id,
+    sa.username,
+    sa.`password`,
+    sa.tel,
+    sa.user_type,
+    sa.nick_name,
+    sa.`enable`,
+    sa.del,
+    sa.remark,
+
+    sr.id as r_id,
+    sr.name,
+    sr.description
+
+    from sys_account sa
+    left join sys_account_role sar on sar.account_id=sa.id
+    left join sys_role sr on sr.id=sar.role_id
+    where sa.id = #{id}
   </select>
 </mapper>

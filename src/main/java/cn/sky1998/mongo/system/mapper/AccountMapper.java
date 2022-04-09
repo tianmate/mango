@@ -1,6 +1,7 @@
 package cn.sky1998.mongo.system.mapper;
 
 import cn.sky1998.mongo.system.domain.*;
+import cn.sky1998.mongo.system.domain.dto.AccountRoleDto;
 import cn.sky1998.mongo.system.domain.form.AccountForm;
 import cn.sky1998.mongo.system.domain.form.AccountRoleForm;
 import org.apache.ibatis.annotations.Param;
@@ -69,4 +70,5 @@ public interface AccountMapper {
     public List<Menu> getUserMenu(Account account);
 
 
+     AccountRoleDto profile(Long userId);
 }

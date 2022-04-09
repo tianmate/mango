@@ -1,7 +1,9 @@
 package cn.sky1998.mongo.system.service.impl;
 
 import cn.sky1998.mongo.common.exception.CustomException;
+import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import cn.sky1998.mongo.system.domain.*;
+import cn.sky1998.mongo.system.domain.dto.AccountRoleDto;
 import cn.sky1998.mongo.system.domain.form.AccountForm;
 import cn.sky1998.mongo.system.domain.form.AccountRoleForm;
 import cn.sky1998.mongo.system.mapper.AccountMapper;
@@ -11,6 +13,7 @@ import cn.sky1998.mongo.system.service.AccountService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,14 +31,11 @@ public class AccountServiceImpl implements AccountService  {
    @Autowired
    private AccountMapper mapper;
 
-   @Autowired
-   private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
     @Override
     public int insert(Account account) {
         //密码加密
-        account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
+        account.setPassword(SecurityUtils.encryptPassword(account.getPassword()));
         //用户名校验不能有重复的
         Account accountSame = mapper.selectByUsername(account.getUsername());
         if (!Objects.isNull(accountSame)){
@@ -52,7 +52,7 @@ public class AccountServiceImpl implements AccountService  {
     @Override
     public int update(Account account) {
         if (account.getPassword()!=null){
-            account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
+            account.setPassword(SecurityUtils.encryptPassword(account.getPassword()));
         }
         return mapper.updateByPrimaryKeySelective(account);
     }
@@ -100,10 +100,45 @@ public class AccountServiceImpl implements AccountService  {
     }
 
     @Override
-    public Account profile() {
+    public AccountRoleDto profile() {
+
         Long userId = SecurityUtils.getUserId();
-        //查询用户角色
-        return mapper.selectByPrimaryKey(userId);
+
+        AccountRoleDto profile = mapper.profile(userId);
+
+        //查询用户信息
+        return profile;
+    }
+
+    /**
+     * 重置密码
+     * @return
+     */
+    @Override
+    public AjaxResult updatePwd(String oldPassword, String newPassword) {
+
+        Long userId = SecurityUtils.getUserId();
+
+        String password = SecurityUtils.getLoginUser().getPassword();
+
+        if (!SecurityUtils.matchesPassword(oldPassword, password))
+        {
+            throw new CustomException("修改密码失败，旧密码错误");
+        }
+        if (SecurityUtils.matchesPassword(newPassword, password))
+        {
+            throw new CustomException("新密码不能与旧密码相同");
+        }
+        Account account=new Account();
+        account.setId(userId);
+        account.setPassword(SecurityUtils.encryptPassword(newPassword));
+        int i = mapper.updateByPrimaryKeySelective(account);
+        if (i>0){
+            // 更新缓存用户密码 TODO
+
+            return AjaxResult.success();
+        }
+        throw new CustomException("修改密码异常，请联系管理员");
     }
 
 }
