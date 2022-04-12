@@ -57,7 +57,7 @@ public interface RoleMapper {
 
     int assignMenu(@Param("list")List<Menu> menus , @Param("id") Long id);
 
-    List<RoleMenuVo> getRoleMenu(Role role);
+    RoleMenuVo getRoleMenu(Role role);
 
     int removeRoleMenu(RoleMenuVo roleMenuVo);
 

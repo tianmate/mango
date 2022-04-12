@@ -67,4 +67,9 @@ public class AccountController {
     public AjaxResult profile(){
         return  AjaxResult.success(accountService.profile());
     }
+
+    @PostMapping("/updatePwd")
+    public AjaxResult updatePwd(String oldPassword, String newPassword){
+        return  AjaxResult.success(accountService.updatePwd(oldPassword,newPassword));
+    }
 }

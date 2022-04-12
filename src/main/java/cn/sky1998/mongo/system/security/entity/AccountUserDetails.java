@@ -1,6 +1,7 @@
 package cn.sky1998.mongo.system.security.entity;
 
 import cn.sky1998.mongo.system.domain.AccountRoleVo;
+import cn.sky1998.mongo.system.domain.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,14 +33,14 @@ public class AccountUserDetails implements UserDetails , Serializable{
         return serialVersionUID;
     }
 
-    private List<AccountRoleVo> sysRoles;
+    private List<Role> roles;
 
-    public List<AccountRoleVo> getSysRoles() {
-        return sysRoles;
+    public List<Role> getSysRoles() {
+        return roles;
     }
 
-    public void setSysRoles(List<AccountRoleVo> sysRoles) {
-        this.sysRoles = sysRoles;
+    public void setSysRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public void setUsername(String username) {
@@ -60,8 +61,8 @@ public class AccountUserDetails implements UserDetails , Serializable{
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
          List<SimpleGrantedAuthority> authoritiesinner = new ArrayList<>();
-        for (AccountRoleVo role : sysRoles) {
-            authoritiesinner.add(new SimpleGrantedAuthority(role.getRole().getName()));
+        for (Role role : roles) {
+            authoritiesinner.add(new SimpleGrantedAuthority(role.getName()));
         }
         return authoritiesinner;
     }
@@ -110,11 +111,11 @@ public class AccountUserDetails implements UserDetails , Serializable{
         this.id = id;
     }
 
-    public AccountUserDetails(Long id, String username, String password, List<AccountRoleVo> sysRoles) {
+    public AccountUserDetails(Long id, String username, String password, List<Role> sysRoles) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.sysRoles = sysRoles;
+        this.roles = sysRoles;
     }
 
 }

@@ -17,7 +17,7 @@ public interface RoleService {
 
     int assignMenu(RoleMenuForm form);
 
-    List<RoleMenuVo> getRoleMenu(Role role);
+    RoleMenuVo getRoleMenu(Role role);
 
     int removeRoleMenu(RoleMenuVo roleMenuVo);
 }

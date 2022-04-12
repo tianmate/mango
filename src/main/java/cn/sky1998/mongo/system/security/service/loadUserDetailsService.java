@@ -3,6 +3,7 @@ package cn.sky1998.mongo.system.security.service;
 import cn.sky1998.mongo.common.exception.CustomException;
 import cn.sky1998.mongo.system.domain.AccountRoleVo;
 import cn.sky1998.mongo.system.domain.Account;
+import cn.sky1998.mongo.system.domain.dto.AccountRoleDto;
 import cn.sky1998.mongo.system.mapper.AccountMapper;
 import cn.sky1998.mongo.system.security.entity.AccountUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,11 @@ public class loadUserDetailsService implements UserDetailsService {
             throw new CustomException("用户不存在");
         }
         //查询角色信息
-        List<AccountRoleVo> userRoles = sysAccountMapper.getUserRole(sysAccount);
+        AccountRoleDto userRole = sysAccountMapper.getUserRole(sysAccount);
         userDetails.setId(sysAccount.getId());
         userDetails.setUsername(username);
         userDetails.setPassword(sysAccount.getPassword());
-        userDetails.setSysRoles(userRoles);
+        userDetails.setSysRoles(userRole.getRoles());
 
         return userDetails;
     }

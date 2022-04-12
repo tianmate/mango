@@ -61,13 +61,13 @@ public interface AccountMapper {
 
     List<Account> getList(AccountForm account);
 
-    List<AccountRoleVo> getUserRole(Account account);
+    AccountRoleDto getUserRole(Account account);
 
     int assignRole(@Param("list")List<Role> roles ,@Param("id") Long id);
 
     public int removeUserRole(AccountRoleVo accountRoleVo);
 
-    public List<Menu> getUserMenu(Account account);
+    List<Menu> getUserMenu(Account account);
 
 
      AccountRoleDto profile(Long userId);

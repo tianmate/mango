@@ -73,19 +73,19 @@ public class AccountServiceImpl implements AccountService  {
     }
 
     private List<Role> filterRepeatRole(AccountRoleForm accountRoleForm) {
-        List<AccountRoleVo> userRole = mapper.getUserRole(accountRoleForm.getAccount());
+        AccountRoleDto userRole = mapper.getUserRole(accountRoleForm.getAccount());
         List<Role> collect=accountRoleForm.getRoles();
 
-        for (AccountRoleVo accountRoleVo : userRole) {
-
-            collect = collect.stream().filter(str -> !str.getId().equals(accountRoleVo.getRole().getId())).collect(Collectors.toList());
+        for (Role role : userRole.getRoles()) {
+            collect = collect.stream().filter(str -> !str.getId().equals(role.getId())).collect(Collectors.toList());
         }
+
 
         return collect;
     }
 
     @Override
-    public List<AccountRoleVo> getUserRole(Account account) {
+    public AccountRoleDto getUserRole(Account account) {
         return mapper.getUserRole(account);
     }
 

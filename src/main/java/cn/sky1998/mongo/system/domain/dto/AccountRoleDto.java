@@ -13,7 +13,6 @@ public class AccountRoleDto extends Account{
 
     private List<Role> roles;
 
-
     public List<Role> getRoles() {
         return roles;
     }
@@ -21,4 +20,5 @@ public class AccountRoleDto extends Account{
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
 }

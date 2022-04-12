@@ -29,7 +29,7 @@ public interface AccountService {
 
     public int assignRole(AccountRoleForm accountRole);
 
-    public List<AccountRoleVo> getUserRole(Account account);
+    AccountRoleDto getUserRole(Account account);
 
     public int removeUserRole(AccountRoleVo accountRoleVo);
 

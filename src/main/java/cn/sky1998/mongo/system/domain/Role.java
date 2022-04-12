@@ -44,6 +44,8 @@ public class Role implements Serializable {
     */
     private String remark;
 
+    private Long voId;
+
     /** 菜单树选择项是否关联显示（ 0：父子不互相关联显示 1：父子互相关联显示） */
     private boolean menuCheckStrictly;
 
@@ -111,5 +113,13 @@ public class Role implements Serializable {
     }
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public Long getVoId() {
+        return voId;
+    }
+
+    public void setVoId(Long voId) {
+        this.voId = voId;
     }
 }

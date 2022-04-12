@@ -49,7 +49,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleMenuVo> getRoleMenu(Role role) {
+    public RoleMenuVo getRoleMenu(Role role) {
         return roleMapper.getRoleMenu(role);
     }
 
