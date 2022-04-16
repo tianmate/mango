@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.gen.service;
+package cn.sky1998.mongo.gen.service.impl;
 
 import cn.sky1998.mongo.common.constant.Constants;
 import cn.sky1998.mongo.common.exception.CustomException;
@@ -12,6 +12,7 @@ import cn.sky1998.mongo.gen.mapper.GenTableMapper;
 import cn.sky1998.mongo.gen.common.util.GenUtils;
 import cn.sky1998.mongo.gen.common.util.VelocityInitializer;
 import cn.sky1998.mongo.gen.common.util.VelocityUtils;
+import cn.sky1998.mongo.gen.service.IGenTableService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.FileUtils;
@@ -32,6 +33,7 @@ import java.io.StringWriter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -67,6 +69,21 @@ public class GenTableServiceImpl implements IGenTableService
         GenTable genTable = genTableMapper.selectGenTableById(id);
         setTableFromOptions(genTable);
         return genTable;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int add(GenTable genTable) {
+        int i = genTableMapper.insertSelective(genTable);
+
+        //插入
+        if (!genTable.getColumns().isEmpty()){
+        for (GenTableColumn column : genTable.getColumns()) {
+            column.setTableId(genTable.getTableId());
+        }
+        genTableColumnMapper.insertListGenTableColumn(genTable.getColumns());
+        }
+        return i;
     }
 
     /**

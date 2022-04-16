@@ -71,6 +71,12 @@ public interface GenTableMapper
     public int insertGenTable(GenTable genTable);
 
     /**
+     * insert record to table selective
+     * @param record the record
+     * @return insert count
+     */
+    int insertSelective(GenTable record);
+    /**
      * 修改业务
      * 
      * @param genTable 业务信息

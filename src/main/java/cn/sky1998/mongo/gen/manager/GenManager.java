@@ -4,7 +4,6 @@ import cn.sky1998.mongo.common.exception.CustomException;
 import cn.sky1998.mongo.common.utils.text.Convert;
 import cn.sky1998.mongo.gen.domain.GenTable;
 import cn.sky1998.mongo.gen.mapper.GenTableMapper;
-import cn.sky1998.mongo.gen.properties.GenConfig;
 import cn.sky1998.mongo.gen.service.IGenTableService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,7 @@ public class GenManager {
     private GenTableMapper genTableMapper;
 
     public void generate(Long tableId) {
+
         //第一步：检查是否存在历史数据并删除
         GenTable genTable = genTableMapper.selectGenTableById(tableId);
         if (Objects.isNull(genTable)){
@@ -52,11 +52,11 @@ public class GenManager {
       //  genTableService.importGenTable(tableList);
 
         //创建数据库
-        genTableMapper.createTable(genTable);
+      //  genTableMapper.createTable(genTable);
         //第三步：生成代码并压缩文件
-      //  byte[] data = genTableService.downloadCode(tableNames);
+        byte[] data = genTableService.downloadCode(tableNames);
         //代码存放到 src/main/java/cn/sky1998/mongo/work/base目录下
-     //   genCode("tcy.zip", data);
+        genCode("tcy.zip", data);
     }
 
     /**

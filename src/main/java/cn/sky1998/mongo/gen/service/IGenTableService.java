@@ -15,6 +15,12 @@ import java.util.Map;
 public interface IGenTableService
 {
     /**
+     * 保存代码生成表
+     * @param genTable
+     * @return
+     */
+    public int add(GenTable genTable);
+    /**
      * 查询业务列表
      * 
      * @param genTable 业务信息

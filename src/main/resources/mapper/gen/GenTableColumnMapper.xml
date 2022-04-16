@@ -170,4 +170,142 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             )
     </foreach>
     </insert>
+
+<!--    <insert id="insertListSelective" >-->
+<!--        insert into gen_table_column-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="tableId != null">-->
+<!--                table_id,-->
+<!--            </if>-->
+<!--            <if test="columnName != null">-->
+<!--                `column_name`,-->
+<!--            </if>-->
+<!--            <if test="columnComment != null">-->
+<!--                column_comment,-->
+<!--            </if>-->
+<!--            <if test="columnType != null">-->
+<!--                column_type,-->
+<!--            </if>-->
+<!--            <if test="javaType != null">-->
+<!--                java_type,-->
+<!--            </if>-->
+<!--            <if test="javaField != null">-->
+<!--                java_field,-->
+<!--            </if>-->
+<!--            <if test="isPk != null">-->
+<!--                is_pk,-->
+<!--            </if>-->
+<!--            <if test="isIncrement != null">-->
+<!--                is_increment,-->
+<!--            </if>-->
+<!--            <if test="isRequired != null">-->
+<!--                is_required,-->
+<!--            </if>-->
+<!--            <if test="isInsert != null">-->
+<!--                is_insert,-->
+<!--            </if>-->
+<!--            <if test="isEdit != null">-->
+<!--                is_edit,-->
+<!--            </if>-->
+<!--            <if test="isList != null">-->
+<!--                is_list,-->
+<!--            </if>-->
+<!--            <if test="isQuery != null">-->
+<!--                is_query,-->
+<!--            </if>-->
+<!--            <if test="queryType != null">-->
+<!--                query_type,-->
+<!--            </if>-->
+<!--            <if test="htmlType != null">-->
+<!--                html_type,-->
+<!--            </if>-->
+<!--            <if test="dictType != null">-->
+<!--                dict_type,-->
+<!--            </if>-->
+<!--            <if test="sort != null">-->
+<!--                sort,-->
+<!--            </if>-->
+<!--            <if test="createBy != null">-->
+<!--                create_by,-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                create_time,-->
+<!--            </if>-->
+<!--            <if test="updateBy != null">-->
+<!--                update_by,-->
+<!--            </if>-->
+<!--            <if test="updateTime != null">-->
+<!--                update_time,-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--        values-->
+<!--        <foreach collection="list" item="item" index="index" separator=",">-->
+<!--            (-->
+<!--            <if test="item.tableId != null">-->
+<!--                #{item.tableId},-->
+<!--            </if>-->
+<!--            <if test="item.columnName != null">-->
+<!--                #{item.columnName},-->
+<!--            </if>-->
+<!--            <if test="item.columnComment != null">-->
+<!--                #{item.columnComment},-->
+<!--            </if>-->
+<!--            <if test="item.columnType != null">-->
+<!--                #{item.columnType},-->
+<!--            </if>-->
+<!--            <if test="item.javaType != null">-->
+<!--                #{item.javaType},-->
+<!--            </if>-->
+<!--            <if test="item.javaField != null">-->
+<!--                #{item.javaField},-->
+<!--            </if>-->
+<!--            <if test="item.isPk != null">-->
+<!--                #{item.isPk},-->
+<!--            </if>-->
+<!--            <if test="item.isIncrement != null">-->
+<!--                #{item.isIncrement},-->
+<!--            </if>-->
+<!--            <if test="item.isRequired != null">-->
+<!--                #{item.isRequired},-->
+<!--            </if>-->
+<!--            <if test="item.isInsert != null">-->
+<!--                #{item.isInsert},-->
+<!--            </if>-->
+<!--            <if test="item.isEdit != null">-->
+<!--                #{item.isEdit},-->
+<!--            </if>-->
+<!--            <if test="item.isList != null">-->
+<!--                #{item.isList},-->
+<!--            </if>-->
+<!--            <if test="item.isQuery != null">-->
+<!--                #{item.isQuery},-->
+<!--            </if>-->
+<!--            <if test="item.queryType != null">-->
+<!--                #{item.queryType},-->
+<!--            </if>-->
+<!--            <if test="item.htmlType != null">-->
+<!--                #{item.htmlType},-->
+<!--            </if>-->
+<!--            <if test="item.dictType != null">-->
+<!--                #{item.dictType},-->
+<!--            </if>-->
+<!--            <if test="item.sort != null">-->
+<!--                #{item.sort},-->
+<!--            </if>-->
+<!--            <if test="item.createBy != null">-->
+<!--                #{item.createBy},-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                #{createTime},-->
+<!--            </if>-->
+<!--            <if test="updateBy != null">-->
+<!--                #{updateBy},-->
+<!--            </if>-->
+<!--            <if test="updateTime != null">-->
+<!--                #{updateTime},-->
+<!--            </if>-->
+<!--            sysdate()-->
+<!--            )-->
+<!--        </foreach>-->
+<!--    </insert>-->
 </mapper>

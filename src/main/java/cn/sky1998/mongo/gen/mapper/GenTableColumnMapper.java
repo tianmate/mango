@@ -69,4 +69,6 @@ public interface GenTableColumnMapper
      * @return 结果
      */
     public int insertListGenTableColumn(List<GenTableColumn> genTableColumns);
+
+    public int insertListSelective(List<GenTableColumn> genTableColumns);
 }

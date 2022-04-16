@@ -166,7 +166,127 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sysdate()
          )
     </insert>
-    
+
+	<insert id="insertSelective" keyColumn="table_id" keyProperty="tableId" parameterType="cn.sky1998.mongo.gen.GenTable" useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into gen_table
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tableName != null">
+				`table_name`,
+			</if>
+			<if test="tableComment != null">
+				table_comment,
+			</if>
+			<if test="subTableName != null">
+				sub_table_name,
+			</if>
+			<if test="subTableFkName != null">
+				sub_table_fk_name,
+			</if>
+			<if test="className != null">
+				class_name,
+			</if>
+			<if test="tplCategory != null">
+				tpl_category,
+			</if>
+			<if test="packageName != null">
+				package_name,
+			</if>
+			<if test="moduleName != null">
+				module_name,
+			</if>
+			<if test="businessName != null">
+				business_name,
+			</if>
+			<if test="functionName != null">
+				function_name,
+			</if>
+			<if test="functionAuthor != null">
+				function_author,
+			</if>
+			<if test="genType != null">
+				gen_type,
+			</if>
+			<if test="genPath != null">
+				gen_path,
+			</if>
+			<if test="options != null">
+				`options`,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+				create_time,
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="tableName != null">
+				#{tableName},
+			</if>
+			<if test="tableComment != null">
+				#{tableComment},
+			</if>
+			<if test="subTableName != null">
+				#{subTableName},
+			</if>
+			<if test="subTableFkName != null">
+				#{subTableFkName},
+			</if>
+			<if test="className != null">
+				#{className},
+			</if>
+			<if test="tplCategory != null">
+				#{tplCategory},
+			</if>
+			<if test="packageName != null">
+				#{packageName},
+			</if>
+			<if test="moduleName != null">
+				#{moduleName},
+			</if>
+			<if test="businessName != null">
+				#{businessName},
+			</if>
+			<if test="functionName != null">
+				#{functionName},
+			</if>
+			<if test="functionAuthor != null">
+				#{functionAuthor},
+			</if>
+			<if test="genType != null">
+				#{genType},
+			</if>
+			<if test="genPath != null">
+				#{genPath},
+			</if>
+			<if test="options != null">
+				#{options},
+			</if>
+			<if test="createBy != null">
+				#{createBy},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime},
+			</if>
+			<if test="remark != null">
+				#{remark},
+			</if>
+			sysdate(),
+		</trim>
+	</insert>
     <update id="updateGenTable" parameterType="cn.sky1998.mongo.gen.domain.GenTable">
         update gen_table
         <set>

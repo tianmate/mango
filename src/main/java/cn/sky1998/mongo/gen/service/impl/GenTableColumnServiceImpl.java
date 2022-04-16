@@ -1,8 +1,9 @@
-package cn.sky1998.mongo.gen.service;
+package cn.sky1998.mongo.gen.service.impl;
 
 import cn.sky1998.mongo.common.utils.text.Convert;
 import cn.sky1998.mongo.gen.domain.GenTableColumn;
 import cn.sky1998.mongo.gen.mapper.GenTableColumnMapper;
+import cn.sky1998.mongo.gen.service.IGenTableColumnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @author tcy@1753163342@qq.com
  */
 @Service
-public class GenTableColumnServiceImpl implements IGenTableColumnService 
+public class GenTableColumnServiceImpl implements IGenTableColumnService
 {
 	@Autowired
 	private GenTableColumnMapper genTableColumnMapper;
