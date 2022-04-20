@@ -1,5 +1,6 @@
 package cn.sky1998.mongo.system.mapper;
 
+import cn.sky1998.mongo.gen.SysMenu;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.Menu;
 import org.apache.ibatis.annotations.Param;
@@ -139,4 +140,11 @@ public interface MenuMapper
      * @return
      */
     boolean selectChildIsExist(@Param("parentId") Long parentId);
+
+    /**
+     * insert record to table selective
+     * @param record the record
+     * @return insert count
+     */
+    int insertSelective(Menu record);
 }

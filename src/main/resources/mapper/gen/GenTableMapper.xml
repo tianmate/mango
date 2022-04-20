@@ -167,7 +167,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          )
     </insert>
 
-	<insert id="insertSelective" keyColumn="table_id" keyProperty="tableId" parameterType="cn.sky1998.mongo.gen.GenTable" useGeneratedKeys="true">
+	<insert id="insertSelective" keyColumn="table_id" keyProperty="tableId" parameterType="cn.sky1998.mongo.gen.domain.GenTable" useGeneratedKeys="true">
 		<!--@mbg.generated-->
 		insert into gen_table
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -323,6 +323,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			create table `${genTable.tableName}`(
 			<foreach collection="genTable.columns" item="field" separator=", ">
 				`${field.columnName}` ${field.columnType}
+
+				<choose>
+
+					<when test="field.isPk == '1'.toString() ">
+						primary key
+					</when>
+
+				</choose>
+				<choose>
+					<when test="field.isIncrement == '1'.toString() ">
+						auto_increment
+					</when>
+				</choose>
 				<choose>
 					<when test="field.columnType != null">
 						${' '}comment '${field.columnComment}'

@@ -37,10 +37,15 @@ public class GenController extends BaseController {
     @Autowired
     private IGenTableColumnService genTableColumnService;
 
+    /**
+     * 新增生成表信息
+     * @param genTable
+     * @return
+     */
     @PostMapping("/add")
     public AjaxResult add(@Validated @RequestBody GenTable genTable){
 
-      return   AjaxResult.success(genTableService.add(genTable));
+      return  AjaxResult.success(genTableService.add(genTable));
     }
     /**
      * 根据表id生成表和代码

@@ -247,4 +247,127 @@
 		limit 1
 	</select>
 
+	<insert id="insertSelective" parameterType="cn.sky1998.mongo.gen.SysMenu"  keyColumn="menu_id" keyProperty="menuId"  useGeneratedKeys="true">
+		<!--@mbg.generated-->
+		insert into sys_menu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="menuId != null">
+				menu_id,
+			</if>
+			<if test="menuName != null">
+				menu_name,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="orderNum != null">
+				order_num,
+			</if>
+			<if test="path != null">
+				`path`,
+			</if>
+			<if test="component != null">
+				component,
+			</if>
+			<if test="query != null">
+				query,
+			</if>
+			<if test="isFrame != null">
+				is_frame,
+			</if>
+			<if test="isCache != null">
+				is_cache,
+			</if>
+			<if test="menuType != null">
+				menu_type,
+			</if>
+			<if test="visible != null">
+				visible,
+			</if>
+			<if test="status != null">
+				`status`,
+			</if>
+			<if test="perms != null">
+				perms,
+			</if>
+			<if test="icon != null">
+				icon,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="menuId != null">
+				#{menuId},
+			</if>
+			<if test="menuName != null">
+				#{menuName},
+			</if>
+			<if test="parentId != null">
+				#{parentId},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum},
+			</if>
+			<if test="path != null">
+				#{path},
+			</if>
+			<if test="component != null">
+				#{component},
+			</if>
+			<if test="query != null">
+				#{query},
+			</if>
+			<if test="isFrame != null">
+				#{isFrame},
+			</if>
+			<if test="isCache != null">
+				#{isCache},
+			</if>
+			<if test="menuType != null">
+				#{menuType},
+			</if>
+			<if test="visible != null">
+				#{visible},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="perms != null">
+				#{perms},
+			</if>
+			<if test="icon != null">
+				#{icon},
+			</if>
+			<if test="createBy != null">
+				#{createBy},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime},
+			</if>
+			<if test="remark != null">
+				#{remark},
+			</if>
+		</trim>
+	</insert>
+
 </mapper> 

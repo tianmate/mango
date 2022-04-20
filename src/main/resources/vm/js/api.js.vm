@@ -29,8 +29,8 @@ export function add${BusinessName}(data) {
 // 修改${functionName}
 export function update${BusinessName}(data) {
   return request({
-    url: '/${moduleName}/${businessName}',
-    method: 'put',
+    url: '/${moduleName}/${businessName}/update',
+    method: 'post',
     data: data
   })
 }
@@ -38,8 +38,8 @@ export function update${BusinessName}(data) {
 // 删除${functionName}
 export function del${BusinessName}(${pkColumn.javaField}) {
   return request({
-    url: '/${moduleName}/${businessName}/' + ${pkColumn.javaField},
-    method: 'delete'
+    url: '/${moduleName}/${businessName}/' + ${pkColumn.javaField}+'/remove',
+    method: 'get'
   })
 }
 

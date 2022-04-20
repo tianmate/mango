@@ -172,7 +172,12 @@
     where id=#{voId}
   </update>
 
-  <select id="checkMenuExistRole" resultType="Integer">
+  <select id="checkMenuExistRole" resultType="Integer" >
     select count(1) from sys_role_menu where menu_id = #{menuId}
   </select>
+
+  <insert id="addRoleMenu" useGeneratedKeys="true">
+    insert into sys_role_menu(role_id,menu_id)
+    value(#{roleId},#{menuId})
+  </insert>
 </mapper>

@@ -62,4 +62,6 @@ public interface RoleMapper {
     int removeRoleMenu(RoleMenuVo roleMenuVo);
 
     public int checkMenuExistRole(Long menuId);
+
+    int addRoleMenu(@Param("roleId") Long roleId,@Param("menuId") Long menuId);
 }

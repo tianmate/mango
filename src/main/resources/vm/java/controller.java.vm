@@ -39,7 +39,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 查询${functionName}列表
      */
-    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
+    ##@PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
     @GetMapping("/list")
 #if($table.crud || $table.sub)
     public TableDataInfo list(${ClassName} ${className})
@@ -95,8 +95,8 @@ public class ${ClassName}Controller extends BaseController
      */
     ##@PreAuthorize("@ss.hasPermi('${permissionPrefix}:edit')")
     ##@Log(title = "${functionName}", businessType = BusinessType.UPDATE)
-    @PutMapping
-    public AjaxResult edit(@RequestBody ${ClassName} ${className})
+    @PostMapping("/update")
+    public AjaxResult update(@RequestBody ${ClassName} ${className})
     {
         return toAjax(${className}Service.update${ClassName}(${className}));
     }
@@ -106,7 +106,7 @@ public class ${ClassName}Controller extends BaseController
      */
     ##@PreAuthorize("@ss.hasPermi('${permissionPrefix}:remove')")
     ##@Log(title = "${functionName}", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{${pkColumn.javaField}s}")
+	@GetMapping("/remove/{${pkColumn.javaField}s}")
     public AjaxResult remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
     {
         return toAjax(${className}Service.delete${ClassName}ByIds(${pkColumn.javaField}s));

@@ -262,4 +262,119 @@ public class GenUtils
             return 0;
         }
     }
+
+    /**
+     * 下划线转驼峰
+     */
+    public static String toCamelCase(String s) {
+        if (s == null) {
+            return null;
+        }
+        s = s.toLowerCase();
+        StringBuilder sb = new StringBuilder(s.length());
+        boolean upperCase = false;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '_') {
+                upperCase = true;
+            } else if (upperCase) {
+                sb.append(Character.toUpperCase(c));
+                upperCase = false;
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * 下划线转驼峰命名
+     */
+    public static String toUnderScoreCase(String str) {
+        if (str == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        // 前置字符是否大写
+        boolean preCharIsUpperCase = true;
+        // 当前字符是否大写
+        boolean curreCharIsUpperCase = true;
+        // 下一字符是否大写
+        boolean nexteCharIsUpperCase = true;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (i > 0) {
+                preCharIsUpperCase = Character.isUpperCase(str.charAt(i - 1));
+            } else {
+                preCharIsUpperCase = false;
+            }
+
+            curreCharIsUpperCase = Character.isUpperCase(c);
+
+            if (i < (str.length() - 1)) {
+                nexteCharIsUpperCase = Character.isUpperCase(str.charAt(i + 1));
+            }
+
+            if (preCharIsUpperCase && curreCharIsUpperCase && !nexteCharIsUpperCase) {
+                sb.append("_");
+            } else if ((i != 0 && !preCharIsUpperCase) && curreCharIsUpperCase) {
+                sb.append("_");
+            }
+            sb.append(Character.toLowerCase(c));
+        }
+
+        return sb.toString();
+    }
+
+
+
+    /**
+     * 数据类型转化JAVA
+     * @param sqlType：类型名称
+     * @return
+     */
+    public static String toSqlToJava(String sqlType) {
+        if( sqlType == null || sqlType.trim().length() == 0 ) return sqlType;
+        sqlType = sqlType.toLowerCase();
+
+        switch(sqlType){
+            case "nvarchar":return "String";
+            case "char":return "String";
+            case "varchar":return "String";
+            case "text":return "String";
+            case "nchar":return "String";
+            case "blob":return "byte[]";
+            case "integer":return "Long";
+            case "tinyint":return "Integer";
+            case "smallint":return "Integer";
+            case "mediumint":return "Integer";
+            case "bit":return "Boolean";
+            case "bigint":return "java.math.BigInteger";
+            case "float":return "Fload";
+            case "double":return "Double";
+            case "decimal":return "java.math.BigDecimal";
+            case "boolean":return "Boolean";
+            case "id":return "Long";
+            case "date":return "java.util.Date";
+            case "datetime":return "java.util.Date";
+            case "year":return "java.util.Date";
+            case "time":return "java.sql.Time";
+            case "timestamp":return "java.sql.Timestamp";
+            case "numeric":return "java.math.BigDecimal";
+            case "real":return "java.math.BigDecimal";
+            case "money":return "Double";
+            case "smallmoney":return "Double";
+            case "image":return "byte[]";
+            default:
+                System.out.println("-----------------》转化失败：未发现的类型"+sqlType);
+                break;
+        }
+        return sqlType;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(toSqlToJava("varchar"));
+    }
 }

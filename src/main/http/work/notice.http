@@ -1,5 +1,5 @@
 ### 用户列表
-GET {{host}}/work/notice/list
+GET {{host}}/work/test/list
 Accept: */*
 Content-Encoding: utf-8
 Content-Type: application/json

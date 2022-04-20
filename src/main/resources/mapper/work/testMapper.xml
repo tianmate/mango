@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.work.mapper.testMapper">
+    
+    <resultMap type="cn.sky1998.mongo.work.domain.test" id="testResult">
+        <result property="id"    column="id"    />
+    </resultMap>
+
+    <sql id="selecttestVo">
+        select id from test
+    </sql>
+
+    <select id="selecttestList" parameterType="cn.sky1998.mongo.work.domain.test" resultMap="testResult">
+        <include refid="selecttestVo"/>
+        <where>  
+        </where>
+    </select>
+    
+    <select id="selecttestById" parameterType="String" resultMap="testResult">
+        <include refid="selecttestVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="inserttest" parameterType="cn.sky1998.mongo.work.domain.test">
+        insert into test
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+         </trim>
+    </insert>
+
+    <update id="updatetest" parameterType="cn.sky1998.mongo.work.domain.test">
+        update test
+        <trim prefix="SET" suffixOverrides=",">
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletetestById" parameterType="String">
+        delete from test where id = #{id}
+    </delete>
+
+    <delete id="deletetestByIds" parameterType="String">
+        delete from test where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

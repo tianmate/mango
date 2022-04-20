@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.work.mapper.testTeacherMapper">
+    
+    <resultMap type="cn.sky1998.mongo.work.domain.testTeacher" id="testTeacherResult">
+        <result property="name"    column="name"    />
+        <result property="course"    column="course"    />
+        <result property="id"    column="id"    />
+    </resultMap>
+
+    <sql id="selecttestTeacherVo">
+        select name, course, id from test_teacher
+    </sql>
+
+    <select id="selecttestTeacherList" parameterType="cn.sky1998.mongo.work.domain.testTeacher" resultMap="testTeacherResult">
+        <include refid="selecttestTeacherVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selecttestTeacherById" parameterType="java.math.BigInteger" resultMap="testTeacherResult">
+        <include refid="selecttestTeacherVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="inserttestTeacher" parameterType="cn.sky1998.mongo.work.domain.testTeacher" useGeneratedKeys="true" keyProperty="id">
+        insert into test_teacher
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="course != null">course,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="course != null">#{course},</if>
+         </trim>
+    </insert>
+
+    <update id="updatetestTeacher" parameterType="cn.sky1998.mongo.work.domain.testTeacher">
+        update test_teacher
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="course != null">course = #{course},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletetestTeacherById" parameterType="java.math.BigInteger">
+        delete from test_teacher where id = #{id}
+    </delete>
+
+    <delete id="deletetestTeacherByIds" parameterType="String">
+        delete from test_teacher where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

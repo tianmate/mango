@@ -37,7 +37,7 @@ public class GenTable extends BaseEntity
     private String subTableFkName;
 
     /** 实体类名称(首字母大写) */
-    @NotBlank(message = "实体类名称不能为空")
+    //@NotBlank(message = "实体类名称不能为空")
     private String className;
 
     /** 使用的模板（crud单表操作 tree树表操作 sub主子表操作） */
@@ -60,7 +60,7 @@ public class GenTable extends BaseEntity
     private String functionName;
 
     /** 生成作者 */
-    @NotBlank(message = "作者不能为空")
+    //@NotBlank(message = "作者不能为空")
     private String functionAuthor;
 
     /** 生成代码方式（0zip压缩包 1自定义路径） */

@@ -1,11 +1,15 @@
 package ${packageName}.domain;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
 #foreach ($import in $importList)
 import ${import};
 #end
 #if($table.crud || $table.sub)
 #elseif($table.tree)
 import com.tcy.common.core.domain.TreeEntity;
+
 #end
 
 /**

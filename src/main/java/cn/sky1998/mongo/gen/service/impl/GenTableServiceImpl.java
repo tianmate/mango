@@ -30,10 +30,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -74,13 +71,41 @@ public class GenTableServiceImpl implements IGenTableService
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int add(GenTable genTable) {
+
+        //实体类名称转化
+        genTable.setClassName(GenUtils.toCamelCase(genTable.getTableName()));
+
+        //作者
+        genTable.setFunctionAuthor("tcy");
+
         int i = genTableMapper.insertSelective(genTable);
 
         //插入
         if (!genTable.getColumns().isEmpty()){
         for (GenTableColumn column : genTable.getColumns()) {
             column.setTableId(genTable.getTableId());
+            column.setJavaField(GenUtils.toCamelCase(column.getColumnName()));
+            String[] split = column.getColumnType().split("\\(");
+            column.setJavaType(GenUtils.toSqlToJava(split[0]));
         }
+
+            //将主键放到getTable中
+            GenTableColumn genTableColumn=new GenTableColumn();
+            genTableColumn.setTableId(genTable.getTableId());
+            genTableColumn.setColumnName("id");
+            genTableColumn.setColumnComment("主键");
+            genTableColumn.setColumnType("bigint");
+            genTableColumn.setJavaType("Long");
+            genTableColumn.setJavaField("id");
+            genTableColumn.setIsPk("1");
+            genTableColumn.setIsIncrement("1");
+            genTableColumn.setQueryType("EQ");
+            genTableColumn.setHtmlType("input");
+            genTableColumn.setSort(1);
+            genTableColumn.setCreateBy("mango");
+            genTableColumn.setCreateTime(new Date());
+            genTable.getColumns().add(genTableColumn);
+
         genTableColumnMapper.insertListGenTableColumn(genTable.getColumns());
         }
         return i;
@@ -145,6 +170,8 @@ public class GenTableServiceImpl implements IGenTableService
     {
         String options = JSON.toJSONString(genTable.getParams());
         genTable.setOptions(options);
+
+
         int row = genTableMapper.updateGenTable(genTable);
         //将原有列删除，重新插入
         if (row > 0)
@@ -152,12 +179,18 @@ public class GenTableServiceImpl implements IGenTableService
             //删除
             genTableColumnMapper.deleteGenTableColumns(genTable.getColumns());
 
+            //1、将列名 下划线 转为驼峰 Java 属性
+            //2、将Sql类型转为Java类型
+            List<GenTableColumn> genTableColumns=genTable.getColumns();
+            for (GenTableColumn cenTableColumn : genTableColumns)
+            {
+                cenTableColumn.setJavaField(GenUtils.toCamelCase(cenTableColumn.getColumnName()));
+                String[] split = cenTableColumn.getColumnType().split("\\(");
+                cenTableColumn.setJavaType(GenUtils.toSqlToJava(split[0]));
+            }
             //插入
-            genTableColumnMapper.insertListGenTableColumn(genTable.getColumns());
-            //for (GenTableColumn cenTableColumn : genTable.getColumns())
-            //{
-            //    genTableColumnMapper.updateGenTableColumn(cenTableColumn);
-            //}
+            genTableColumnMapper.insertListGenTableColumn(genTableColumns);
+
         }
     }
 
