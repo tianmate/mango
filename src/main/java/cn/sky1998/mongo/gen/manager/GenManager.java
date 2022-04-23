@@ -3,7 +3,6 @@ package cn.sky1998.mongo.gen.manager;
 import cn.sky1998.mongo.common.exception.CustomException;
 import cn.sky1998.mongo.common.utils.text.Convert;
 import cn.sky1998.mongo.gen.domain.GenTable;
-import cn.sky1998.mongo.gen.domain.GenTableColumn;
 import cn.sky1998.mongo.gen.mapper.GenTableMapper;
 import cn.sky1998.mongo.gen.service.IGenTableService;
 import cn.sky1998.mongo.system.domain.Menu;
@@ -20,7 +19,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -44,7 +42,7 @@ public class GenManager {
     private RoleMapper roleMapper;
 
     @Transactional(rollbackFor = Exception.class)
-    public void generate(Long tableId) {
+    public int generate(Long tableId,Boolean IfCreateDb) {
 
         //第一步：检查是否存在历史数据并删除
         GenTable genTable = genTableMapper.selectGenTableById(tableId);
@@ -62,37 +60,25 @@ public class GenManager {
         }
         //第二步：导入表结构
         String[] tableNames = Convert.toStrArray(tableName);
-        // 查询表信息
-        List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
+        // 查询MYsql系统表信息
+      //  List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
       //  genTableService.importGenTable(tableList);
 
-        Menu menu=new Menu();
-        menu.setMenuName(genTable.getFunctionName());
-        menu.setParentId(7L);
-        menu.setIcon("el-icon-notebook-2");
-        menu.setMenuType("C");
-        String path="/pages/";
-        menu.setPath(path.concat(genTable.getClassName()));
+        if (IfCreateDb){
+            //增加角色
+             addMenuByGen(genTable);
 
-        String component="work/";
-        menu.setComponent(component.concat(genTable.getBusinessName()+"/index"));
-        //插入到菜单表
-        menuMapper.insertSelective(menu);
+            //创建数据库
+            createTable(genTable);
+        }
 
-        //插入到菜单-角色关联表(系统管理员角色，创建菜单id)
-        roleMapper.addRoleMenu(1l,menu.getMenuId());
-        //创建数据库
-       // try {
-
-            genTableMapper.createTable(genTable);
-        //}catch (BadSqlGrammarException e){
-        //    throw new CustomException("表已存在,请确定表是否已经生成！");
-        //}
 
         //第三步：生成代码并压缩文件
         byte[] data = genTableService.downloadCode(tableNames);
         //代码存放到 src/main/java/cn/sky1998/mongo/work/base目录下
-        genCode("mango.zip", data);
+        genCode("mongo.zip", data);
+
+        return 1;
     }
 
     /**
@@ -121,4 +107,39 @@ public class GenManager {
         }
     }
 
+    /**
+     * 根据表信息创建数据库表
+     * @param genTable
+     * @return
+     */
+   private int createTable(GenTable genTable){
+        try {
+
+      return genTableMapper.createTable(genTable);
+
+       }catch (BadSqlGrammarException e){
+           throw new CustomException("创建表失败，请确定表是否存在，或者确实信息！");
+       }
+    }
+
+    /**
+     * 将创建的菜单插入到菜单及菜单-角色关联表
+     * @param genTable
+     */
+    private void addMenuByGen(GenTable genTable){
+        Menu menu=new Menu();
+        menu.setMenuName(genTable.getFunctionName());
+        menu.setParentId(7L);
+        menu.setIcon("el-icon-notebook-2");
+        menu.setMenuType("C");
+        String path="/pages/";
+        menu.setPath(path.concat(genTable.getClassName()));
+
+        String component="work/";
+        menu.setComponent(component.concat(genTable.getBusinessName()+"/index"));
+        //插入到菜单表
+        menuMapper.insertSelective(menu);
+        //插入到菜单-角色关联表(系统管理员角色，创建菜单id)
+        roleMapper.addRoleMenu(1l,menu.getMenuId());
+    }
 }

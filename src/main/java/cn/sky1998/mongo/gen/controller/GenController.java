@@ -52,10 +52,19 @@ public class GenController extends BaseController {
      * @param tableId
      */
     @GetMapping("/createDbAndCode/{tableId}")
-    public void createDbAndCode(@PathVariable Long tableId){
-       genManager.generate(tableId);
+    public AjaxResult createDbAndCode(@PathVariable Long tableId){
+      return AjaxResult.success(genManager.generate(tableId,true));
     }
 
+
+    /**
+     * 根据表id代码
+     * @param tableId
+     */
+    @GetMapping("/createCode/{tableId}")
+    public AjaxResult createCode(@PathVariable Long tableId){
+       return AjaxResult.success(genManager.generate(tableId,false));
+    }
 
     /**
      * 查询代码生成列表

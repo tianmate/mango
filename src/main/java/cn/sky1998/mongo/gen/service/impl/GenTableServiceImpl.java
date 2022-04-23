@@ -78,6 +78,10 @@ public class GenTableServiceImpl implements IGenTableService
         //作者
         genTable.setFunctionAuthor("tcy");
 
+        //生成包路径
+        genTable.setPackageName("cn.sky1998.mongo.work."+genTable.getBusinessName());
+
+        genTable.setModuleName("work");
         int i = genTableMapper.insertSelective(genTable);
 
         //插入
@@ -287,6 +291,8 @@ public class GenTableServiceImpl implements IGenTableService
     {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zip = new ZipOutputStream(outputStream);
+
+        //将生成代码zip文件放到后端对应目录下
         generatorCode(tableName, zip);
         IOUtils.closeQuietly(zip);
         return outputStream.toByteArray();

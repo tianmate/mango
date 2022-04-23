@@ -17,7 +17,7 @@
 
 
     <collection property="menus" ofType="cn.sky1998.mongo.system.domain.Menu">
-      <id column="id" property="menuId" />
+      <id column="menu_id" property="menuId" />
       <result column="menu_name" property="menuName" />
       <result column="remark" property="remark" />
     </collection>
@@ -150,9 +150,6 @@
   <select id="getRoleMenu" resultMap="BaseRoleMenuMap">
     <!--@mbg.generated-->
     select
-    srm.id,
-    srm.del,
-
     sr.id,
     sr.name,
 

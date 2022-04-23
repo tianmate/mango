@@ -4,6 +4,7 @@ import cn.sky1998.mongo.common.exception.CustomException;
 import cn.sky1998.mongo.system.domain.Menu;
 import cn.sky1998.mongo.system.domain.Role;
 import cn.sky1998.mongo.system.domain.RoleMenuVo;
+import cn.sky1998.mongo.system.domain.dto.RoleMenuDto;
 import cn.sky1998.mongo.system.domain.form.RoleMenuForm;
 import cn.sky1998.mongo.system.mapper.RoleMapper;
 import cn.sky1998.mongo.system.service.RoleService;
@@ -49,7 +50,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleMenuVo getRoleMenu(Role role) {
+    public RoleMenuDto getRoleMenu(Role role) {
         return roleMapper.getRoleMenu(role);
     }
 

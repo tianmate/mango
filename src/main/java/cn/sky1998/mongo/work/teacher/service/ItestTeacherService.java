@@ -1,60 +1,60 @@
-package cn.sky1998.mongo.work.service;
+package cn.sky1998.mongo.work.teacher.service;
 
 import java.util.List;
-import cn.sky1998.mongo.work.domain.testTeacher;
+import cn.sky1998.mongo.work.teacher.domain.testTeacher;
 
 /**
- * teacher_fucService接口
+ * 教师管理Service接口
  * 
  * @author tcy
- * @date 2022-04-20
+ * @date 2022-04-21
  */
 public interface ItestTeacherService 
 {
     /**
-     * 查询teacher_fuc
+     * 查询教师管理
      * 
-     * @param id teacher_fucID
-     * @return teacher_fuc
+     * @param id 教师管理ID
+     * @return 教师管理
      */
     public testTeacher selecttestTeacherById(java.math.BigInteger id);
 
     /**
-     * 查询teacher_fuc列表
+     * 查询教师管理列表
      * 
-     * @param testTeacher teacher_fuc
-     * @return teacher_fuc集合
+     * @param testTeacher 教师管理
+     * @return 教师管理集合
      */
     public List<testTeacher> selecttestTeacherList(testTeacher testTeacher);
 
     /**
-     * 新增teacher_fuc
+     * 新增教师管理
      * 
-     * @param testTeacher teacher_fuc
+     * @param testTeacher 教师管理
      * @return 结果
      */
     public int inserttestTeacher(testTeacher testTeacher);
 
     /**
-     * 修改teacher_fuc
+     * 修改教师管理
      * 
-     * @param testTeacher teacher_fuc
+     * @param testTeacher 教师管理
      * @return 结果
      */
     public int updatetestTeacher(testTeacher testTeacher);
 
     /**
-     * 批量删除teacher_fuc
+     * 批量删除教师管理
      * 
-     * @param ids 需要删除的teacher_fucID
+     * @param ids 需要删除的教师管理ID
      * @return 结果
      */
     public int deletetestTeacherByIds(java.math.BigInteger[] ids);
 
     /**
-     * 删除teacher_fuc信息
+     * 删除教师管理信息
      * 
-     * @param id teacher_fucID
+     * @param id 教师管理ID
      * @return 结果
      */
     public int deletetestTeacherById(java.math.BigInteger id);

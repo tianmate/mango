@@ -1,15 +1,14 @@
-package cn.sky1998.mongo.work.domain;
+package cn.sky1998.mongo.work.teacher.domain;
 
-
-import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
 
 /**
- * teacher_fuc对象 test_teacher
+ * 教师管理对象 test_teacher
  * 
  * @author tcy
- * @date 2022-04-20
+ * @date 2022-04-21
  */
 public class testTeacher extends BaseEntity
 {
@@ -54,7 +53,7 @@ public class testTeacher extends BaseEntity
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("name", getName())
             .append("course", getCourse())
             .append("id", getId())

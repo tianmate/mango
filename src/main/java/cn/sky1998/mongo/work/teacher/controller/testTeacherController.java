@@ -1,4 +1,4 @@
-package cn.sky1998.mongo.work.controller;
+package cn.sky1998.mongo.work.teacher.controller;
 
 import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.framework.web.core.AjaxResult;
-import cn.sky1998.mongo.work.domain.testTeacher;
-import cn.sky1998.mongo.work.service.ItestTeacherService;
+import cn.sky1998.mongo.work.teacher.domain.testTeacher;
+import cn.sky1998.mongo.work.teacher.service.ItestTeacherService;
 import cn.sky1998.mongo.framework.web.core.page.TableDataInfo;
 
 /**
- * teacher_fucController
+ * 教师管理Controller
  * 
  * @author tcy
- * @date 2022-04-20
+ * @date 2022-04-21
  */
 @RestController
 @RequestMapping("/work/teacher")
@@ -31,7 +31,7 @@ public class testTeacherController extends BaseController
     private ItestTeacherService testTeacherService;
 
     /**
-     * 查询teacher_fuc列表
+     * 查询教师管理列表
      */
         @GetMapping("/list")
     public TableDataInfo list(testTeacher testTeacher)
@@ -42,11 +42,11 @@ public class testTeacherController extends BaseController
     }
 
     /**
-     * 导出teacher_fuc列表
+     * 导出教师管理列表
      */
                                     
     /**
-     * 获取teacher_fuc详细信息
+     * 获取教师管理详细信息
      */
         @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") java.math.BigInteger id)
@@ -55,7 +55,7 @@ public class testTeacherController extends BaseController
     }
 
     /**
-     * 新增teacher_fuc
+     * 新增教师管理
      */
             @PostMapping
     public AjaxResult add(@RequestBody testTeacher testTeacher)
@@ -64,7 +64,7 @@ public class testTeacherController extends BaseController
     }
 
     /**
-     * 修改teacher_fuc
+     * 修改教师管理
      */
             @PostMapping("/update")
     public AjaxResult update(@RequestBody testTeacher testTeacher)
@@ -73,7 +73,7 @@ public class testTeacherController extends BaseController
     }
 
     /**
-     * 删除teacher_fuc
+     * 删除教师管理
      */
         	@GetMapping("/remove/{ids}")
     public AjaxResult remove(@PathVariable java.math.BigInteger[] ids)

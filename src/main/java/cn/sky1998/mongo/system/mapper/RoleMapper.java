@@ -3,6 +3,7 @@ package cn.sky1998.mongo.system.mapper;
 import cn.sky1998.mongo.system.domain.Menu;
 import cn.sky1998.mongo.system.domain.Role;
 import cn.sky1998.mongo.system.domain.RoleMenuVo;
+import cn.sky1998.mongo.system.domain.dto.RoleMenuDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -57,7 +58,7 @@ public interface RoleMapper {
 
     int assignMenu(@Param("list")List<Menu> menus , @Param("id") Long id);
 
-    RoleMenuVo getRoleMenu(Role role);
+    RoleMenuDto getRoleMenu(Role role);
 
     int removeRoleMenu(RoleMenuVo roleMenuVo);
 
