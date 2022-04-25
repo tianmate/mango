@@ -10,12 +10,15 @@ import cn.sky1998.mongo.system.mapper.AccountMapper;
 import cn.sky1998.mongo.system.mapper.RoleMapper;
 import cn.sky1998.mongo.system.security.utils.SecurityUtils;
 import cn.sky1998.mongo.system.service.AccountService;
+import cn.sky1998.mongo.system.service.IMenuService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,24 +32,27 @@ import java.util.stream.Collectors;
 public class AccountServiceImpl implements AccountService  {
 
    @Autowired
-   private AccountMapper mapper;
+   private AccountMapper accountMapper;
 
+
+    @Autowired
+    private IMenuService menuService;
 
     @Override
     public int insert(Account account) {
         //密码加密
         account.setPassword(SecurityUtils.encryptPassword(account.getPassword()));
         //用户名校验不能有重复的
-        Account accountSame = mapper.selectByUsername(account.getUsername());
+        Account accountSame = accountMapper.selectByUsername(account.getUsername());
         if (!Objects.isNull(accountSame)){
             throw new CustomException("用户名重复");
         }
-        return mapper.insertSelective(account);
+        return accountMapper.insertSelective(account);
     }
 
     @Override
     public List<Account> getList(AccountForm account) {
-        return mapper.getList(account);
+        return accountMapper.getList(account);
     }
 
     @Override
@@ -54,13 +60,31 @@ public class AccountServiceImpl implements AccountService  {
         if (account.getPassword()!=null){
             account.setPassword(SecurityUtils.encryptPassword(account.getPassword()));
         }
-        return mapper.updateByPrimaryKeySelective(account);
+        return accountMapper.updateByPrimaryKeySelective(account);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int updateUserRole(AccountRoleDto accountRoleDto) {
+        //更新用户信息
+        Account account=new Account();
+        BeanUtils.copyProperties(accountRoleDto,account);
+        accountMapper.updateByPrimaryKeySelective(account);
+
+        //更新用户角色
+        for (Role role : accountRoleDto.getRoles()) {
+            accountMapper.removeUserRole(accountRoleDto.getId(),role.getId());
+        }
+
+        accountMapper.assignRole(accountRoleDto.getRoles(),accountRoleDto.getId());
+
+        return 1;
     }
 
     @Override
     public int remove(Account account) {
         account.setDel((byte) 1);
-        return mapper.updateByPrimaryKeySelective(account);
+        return accountMapper.updateByPrimaryKeySelective(account);
     }
 
 
@@ -69,11 +93,11 @@ public class AccountServiceImpl implements AccountService  {
         //过滤重复的角色
         List<Role> roles=filterRepeatRole(accountRole);
 
-        return mapper.assignRole(roles,accountRole.getAccount().getId());
+        return accountMapper.assignRole(roles,accountRole.getAccount().getId());
     }
 
     private List<Role> filterRepeatRole(AccountRoleForm accountRoleForm) {
-        AccountRoleDto userRole = mapper.getUserRole(accountRoleForm.getAccount());
+        AccountRoleDto userRole = accountMapper.getUserRole(accountRoleForm.getAccount());
         List<Role> collect=accountRoleForm.getRoles();
 
         for (Role role : userRole.getRoles()) {
@@ -86,17 +110,24 @@ public class AccountServiceImpl implements AccountService  {
 
     @Override
     public AccountRoleDto getUserRole(Account account) {
-        return mapper.getUserRole(account);
+        return accountMapper.getUserRole(account);
     }
 
-    @Override
-    public int removeUserRole(AccountRoleVo accountRoleVo) {
-        return mapper.removeUserRole(accountRoleVo);
-    }
+    /**
+     * 删除用户角色
+     * @param
+     * @return
+     */
+    //@Override
+    //public int removeUserRole(AccountRoleVo accountRoleVo) {
+    //    return accountMaper.removeUserRoles(accountRoleVo);
+    //}
 
     @Override
     public List<Menu> getUserMenu(Account account) {
-        return mapper.getUserMenu(account);
+
+        return menuService.tree(account.getId());
+
     }
 
     @Override
@@ -104,7 +135,7 @@ public class AccountServiceImpl implements AccountService  {
 
         Long userId = SecurityUtils.getUserId();
 
-        AccountRoleDto profile = mapper.profile(userId);
+        AccountRoleDto profile = accountMapper.profile(userId);
 
         //查询用户信息
         return profile;
@@ -132,7 +163,7 @@ public class AccountServiceImpl implements AccountService  {
         Account account=new Account();
         account.setId(userId);
         account.setPassword(SecurityUtils.encryptPassword(newPassword));
-        int i = mapper.updateByPrimaryKeySelective(account);
+        int i = accountMapper.updateByPrimaryKeySelective(account);
         if (i>0){
             // 更新缓存用户密码 TODO
 

@@ -31,10 +31,18 @@ public class RoleController {
         return AjaxResult.success(roleService.add(role));
     }
 
-
+    @PostMapping("/getDatail")
+    public AjaxResult getDatail(@RequestBody Role role){
+        return AjaxResult.success(roleService.getDatail(role));
+    }
     @PostMapping("/update")
     public AjaxResult update(@RequestBody Role role){
         return AjaxResult.success(roleService.update(role));
+    }
+
+    @PostMapping("/updateRoleMenu")
+    public AjaxResult updateRoleMenu(@RequestBody Role role){
+        return AjaxResult.success(roleService.updateRoleMenu(role));
     }
 
     @PostMapping("/assignMenu")

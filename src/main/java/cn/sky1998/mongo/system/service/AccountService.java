@@ -25,13 +25,15 @@ public interface AccountService {
 
     public int update(Account account);
 
+    public int updateUserRole(AccountRoleDto accountRoleDto);
+
     public int remove(Account account);
 
     public int assignRole(AccountRoleForm accountRole);
 
     AccountRoleDto getUserRole(Account account);
 
-    public int removeUserRole(AccountRoleVo accountRoleVo);
+    //public int removeUserRole(AccountRoleVo accountRoleVo);
 
     public List<Menu> getUserMenu(Account account);
 

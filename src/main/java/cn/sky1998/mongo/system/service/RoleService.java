@@ -12,9 +12,13 @@ public interface RoleService {
 
     List<Role> getlist(Role role);
 
+    RoleMenuDto getDatail(Role role);
+
     int add(Role role);
 
     int update(Role role);
+
+    int updateRoleMenu(Role role);
 
     int assignMenu(RoleMenuForm form);
 

@@ -2,6 +2,7 @@ package cn.sky1998.mongo.system.controller;
 
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.AccountRoleVo;
+import cn.sky1998.mongo.system.domain.dto.AccountRoleDto;
 import cn.sky1998.mongo.system.domain.form.AccountForm;
 import cn.sky1998.mongo.system.domain.form.AccountRoleForm;
 import cn.sky1998.mongo.system.service.AccountService;
@@ -38,9 +39,9 @@ public class AccountController {
         return  AjaxResult.success(accountService.update(sysAccount));
     }
 
-    @PostMapping("/remove")
-    public AjaxResult remove(@RequestBody Account sysAccount){
-        return  AjaxResult.success(accountService.remove(sysAccount));
+    @PostMapping("/updateUserRole")
+    public AjaxResult updateUserRole(@RequestBody AccountRoleDto accountRoleDto){
+        return  AjaxResult.success(accountService.updateUserRole(accountRoleDto));
     }
 
     @PostMapping("/assignRole")
@@ -53,10 +54,10 @@ public class AccountController {
         return  AjaxResult.success(accountService.getUserRole(account));
     }
 
-    @PostMapping("/removeUserRole")
-    public AjaxResult removeUserRole(@RequestBody AccountRoleVo accountRoleVo){
-        return  AjaxResult.success(accountService.removeUserRole(accountRoleVo));
-    }
+    //@PostMapping("/removeUserRole")
+    //public AjaxResult removeUserRole(@RequestBody AccountRoleVo accountRoleVo){
+    //    return  AjaxResult.success(accountService.removeUserRole(accountRoleVo));
+    //}
 
     @PostMapping("/getUserMenu")
     public AjaxResult getUserMenu(@RequestBody Account account){

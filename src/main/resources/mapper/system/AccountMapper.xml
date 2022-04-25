@@ -253,11 +253,12 @@
     </foreach>
   </insert>
 
-  <update id="removeUserRole">
-    update sys_account_role
-    set del = #{del}
-    where id=#{voId}
-  </update>
+
+  <delete id="removeUserRole">
+    delete
+    from sys_account_role
+    where  account_id=#{accountId} and role_id=#{roleId}
+  </delete>
 
   <select id="getUserMenu" resultType="cn.sky1998.mongo.system.domain.Menu">
     <!--@mbg.generated-->

@@ -94,7 +94,7 @@
 		select distinct m.menu_id, m.parent_id, m.menu_name, m.path, m.component, m.`query`, m.visible, m.status, ifnull(m.perms,'') as perms, m.is_frame, m.is_cache, m.menu_type, m.icon, m.order_num, m.create_time
 		from sys_menu m
 			 left join sys_role_menu rm on m.menu_id = rm.menu_id
-			 left join sys_account_role ur on rm.role_id = ur.id
+			 left join sys_account_role ur on rm.role_id = ur.role_id
 			 left join sys_role ro on ur.role_id = ro.id
 			 left join sys_account u on ur.account_id = u.id
 		where u.id = #{userId} and m.menu_type in ('M', 'C') and m.status = 0  AND ro.enable = 0
@@ -165,6 +165,68 @@
 		where menu_id = #{menuId}
 	</update>
 
+	<update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.system.domain.form.MenuForm">
+		<!--@mbg.generated-->
+		update sys_menu
+		<set>
+			<if test="menuName != null">
+				menu_name = #{menuName},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId},
+			</if>
+			<if test="orderNum != null">
+				order_num = #{orderNum},
+			</if>
+			<if test="path != null">
+				`path` = #{path},
+			</if>
+			<if test="component != null">
+				component = #{component},
+			</if>
+			<if test="query != null">
+				query = #{query},
+			</if>
+			<if test="isFrame != null">
+				is_frame = #{isFrame},
+			</if>
+			<if test="isCache != null">
+				is_cache = #{isCache},
+			</if>
+			<if test="menuType != null">
+				menu_type = #{menuType},
+			</if>
+			<if test="visible != null">
+				visible = #{visible},
+			</if>
+			<if test="status != null">
+				`status` = #{status},
+			</if>
+			<if test="perms != null">
+				perms = #{perms},
+			</if>
+			<if test="icon != null">
+				icon = #{icon},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+		</set>
+		where menu_id = #{menuId}
+	</update>
+
 	<insert id="insertMenu" parameterType="cn.sky1998.mongo.system.domain.Menu">
 		insert into sys_menu(
 		<if test="menuId != null and menuId != 0">menu_id,</if>
@@ -221,7 +283,7 @@
 		<if test="id != null">
 			and sar.account_id=#{id}
 		</if>
-
+		order by order_num
 	</select>
 
 	<select id="ChildTree" resultMap="BaseResultTree">
@@ -237,7 +299,7 @@
 		<if test="accountId != null">
 			and sar.account_id=#{accountId}
 		</if>
-
+		order by order_num
 	</select>
 
 	<select id="selectChildIsExist" parameterType="java.lang.Long" resultType="java.lang.Boolean">
@@ -370,4 +432,20 @@
 		</trim>
 	</insert>
 
-</mapper> 
+	<select id="ChildTreeByRoleId" resultMap="MenuResult">
+
+		select
+		DISTINCT (sm.menu_id),
+		<include refid="Base_Column_List" />
+
+		from sys_menu sm
+		left join sys_role_menu srm on sm.menu_id=srm.menu_id
+
+		where sm.parent_id=#{parentId}
+		<if test="roleId != null">
+			and srm.role_id=#{roleId}
+		</if>
+		order by order_num
+
+	</select>
+</mapper>

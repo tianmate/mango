@@ -3,6 +3,7 @@ package cn.sky1998.mongo.system.service;
 import cn.sky1998.mongo.system.domain.Menu;
 import cn.sky1998.mongo.system.domain.TreeSelect;
 import cn.sky1998.mongo.system.domain.dto.RouterVo;
+import cn.sky1998.mongo.system.domain.form.MenuForm;
 
 import java.util.List;
 import java.util.Set;
@@ -117,7 +118,7 @@ public interface IMenuService
      * @param menu 菜单信息
      * @return 结果
      */
-    public int updateMenu(Menu menu);
+    public int updateMenu(MenuForm menu);
 
     /**
      * 删除菜单管理信息
@@ -139,5 +140,5 @@ public interface IMenuService
      * 获取菜单树
      * @return
      */
-    List<Menu> tree();
+    List<Menu> tree(Long userId);
 }

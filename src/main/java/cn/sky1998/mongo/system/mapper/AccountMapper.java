@@ -65,7 +65,7 @@ public interface AccountMapper {
 
     int assignRole(@Param("list")List<Role> roles ,@Param("id") Long id);
 
-    public int removeUserRole(AccountRoleVo accountRoleVo);
+    int removeUserRole(@Param("accountId") Long accountId,@Param("roleId")Long roleId);
 
     List<Menu> getUserMenu(Account account);
 

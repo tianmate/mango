@@ -32,6 +32,8 @@ public interface RoleMapper {
      */
     int insertSelective(Role record);
 
+  //  RoleMenuDto getDetail(Role record);
+
     /**
      * select by primary key
      * @param id primary key
@@ -58,7 +60,7 @@ public interface RoleMapper {
 
     int assignMenu(@Param("list")List<Menu> menus , @Param("id") Long id);
 
-    RoleMenuDto getRoleMenu(Role role);
+    RoleMenuDto getRoleMenuRoot(Role role);
 
     int removeRoleMenu(RoleMenuVo roleMenuVo);
 

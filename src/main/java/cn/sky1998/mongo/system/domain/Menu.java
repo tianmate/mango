@@ -51,10 +51,10 @@ public class Menu extends BaseEntity {
     private String menuType;
 
     /** 显示状态（0显示 1隐藏） */
-    private String visible;
+    private Integer visible;
 
     /** 菜单状态（0显示 1隐藏） */
-    private String status;
+    private Integer status;
 
     /** 权限字符串 */
     private String perms;
@@ -181,22 +181,22 @@ public class Menu extends BaseEntity {
         this.menuType = menuType;
     }
 
-    public String getVisible()
+    public Integer getVisible()
     {
         return visible;
     }
 
-    public void setVisible(String visible)
+    public void setVisible(Integer visible)
     {
         this.visible = visible;
     }
 
-    public String getStatus()
+    public Integer getStatus()
     {
         return status;
     }
 
-    public void setStatus(String status)
+    public void setStatus(Integer status)
     {
         this.status = status;
     }

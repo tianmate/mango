@@ -3,6 +3,7 @@ package cn.sky1998.mongo.system.mapper;
 import cn.sky1998.mongo.gen.SysMenu;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.Menu;
+import cn.sky1998.mongo.system.domain.form.MenuForm;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -102,6 +103,14 @@ public interface MenuMapper
     public int updateMenu(Menu menu);
 
     /**
+     * update record selective
+     *
+     * @param record the updated record
+     * @return update count
+     */
+    int updateByPrimaryKeySelective(MenuForm record);
+
+    /**
      * 删除菜单管理信息
      *
      * @param menuId 菜单ID
@@ -133,6 +142,14 @@ public interface MenuMapper
      * @return
      */
     List<Menu> ChildTree( @Param("parentId") Long parentId,@Param("accountId") Long accountId);
+
+    /**
+     * 获取子菜单
+     * @param parentId
+     * @param roleId
+     * @return
+     */
+    List<Menu> ChildTreeByRoleId( @Param("parentId") Long parentId,@Param("roleId") Long roleId);
 
     /**
      * 查询子菜单是否存在

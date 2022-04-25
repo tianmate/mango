@@ -59,12 +59,12 @@ public class SysMenu {
     /**
      * 菜单状态（0显示 1隐藏）
      */
-    private String visible;
+    private Byte visible;
 
     /**
      * 菜单状态（0正常 1停用）
      */
-    private String status;
+    private Byte status;
 
     /**
      * 权限标识
@@ -181,19 +181,19 @@ public class SysMenu {
         this.menuType = menuType;
     }
 
-    public String getVisible() {
+    public Byte getVisible() {
         return visible;
     }
 
-    public void setVisible(String visible) {
+    public void setVisible(Byte visible) {
         this.visible = visible;
     }
 
-    public String getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

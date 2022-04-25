@@ -9,6 +9,7 @@ import cn.sky1998.mongo.system.domain.Menu;
 import cn.sky1998.mongo.system.domain.TreeSelect;
 import cn.sky1998.mongo.system.domain.dto.MetaVo;
 import cn.sky1998.mongo.system.domain.dto.RouterVo;
+import cn.sky1998.mongo.system.domain.form.MenuForm;
 import cn.sky1998.mongo.system.mapper.RoleMapper;
 import cn.sky1998.mongo.system.mapper.MenuMapper;
 import cn.sky1998.mongo.system.security.utils.SecurityUtils;
@@ -287,9 +288,9 @@ public class MenuServiceImpl implements IMenuService
      * @return 结果
      */
     @Override
-    public int updateMenu(Menu menu)
+    public int updateMenu(MenuForm menu)
     {
-        return menuMapper.updateMenu(menu);
+        return menuMapper.updateByPrimaryKeySelective(menu);
     }
 
     /**
@@ -327,9 +328,9 @@ public class MenuServiceImpl implements IMenuService
      * @return
      */
     @Override
-    public List<Menu> tree() {
+    public List<Menu> tree(Long userId) {
         //根据当前用户的id获取菜单列表
-        Long userId = SecurityUtils.getUserId();
+
         Account account=new Account();
         account.setId(userId);
         List<Menu> menus = menuMapper.RootTree(account);

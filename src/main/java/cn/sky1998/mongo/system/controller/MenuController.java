@@ -5,8 +5,10 @@ import cn.sky1998.mongo.framework.web.core.AjaxResult;
 import cn.sky1998.mongo.framework.web.core.BaseController;
 import cn.sky1998.mongo.gen.common.constant.UserConstants;
 import cn.sky1998.mongo.system.domain.Menu;
+import cn.sky1998.mongo.system.domain.form.MenuForm;
 import cn.sky1998.mongo.system.security.utils.SecurityUtils;
 import cn.sky1998.mongo.system.service.IMenuService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -91,9 +93,11 @@ public class MenuController extends BaseController
      * 修改菜单
      */
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody Menu menu)
+    public AjaxResult edit(@RequestBody MenuForm menu)
     {
-        if (UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu)))
+        Menu menuValid=new Menu();
+        BeanUtils.copyProperties(menu,menuValid);
+        if (StringUtils.isNotNull(menu.getMenuName())&&UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menuValid)))
         {
             return AjaxResult.error("修改菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
         }
@@ -101,7 +105,7 @@ public class MenuController extends BaseController
         {
             return AjaxResult.error("修改菜单'" + menu.getMenuName() + "'失败，地址必须以http(s)://开头");
         }
-        else if (menu.getMenuId().equals(menu.getParentId()))
+        else if (StringUtils.isNotNull(menu.getParentId())&&menu.getMenuId().equals(menu.getParentId()))
         {
             return AjaxResult.error("修改菜单'" + menu.getMenuName() + "'失败，上级菜单不能选择自己");
         }
@@ -144,6 +148,7 @@ public class MenuController extends BaseController
      */
     @PostMapping("/tree")
     public AjaxResult tree(){
-        return  AjaxResult.success(menuService.tree());
+        Long userId = SecurityUtils.getUserId();
+        return  AjaxResult.success(menuService.tree(userId));
     }
 }
