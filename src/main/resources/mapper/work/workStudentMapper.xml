@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mongo.work.student.mapper.workStudentMapper">
+    
+    <resultMap type="cn.sky1998.mongo.work.student.domain.workStudent" id="workStudentResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="num"    column="num"    />
+        <result property="course"    column="course"    />
+    </resultMap>
+
+    <sql id="selectworkStudentVo">
+        select id, code, name, num, course from work_student
+    </sql>
+
+    <select id="selectworkStudentList" parameterType="cn.sky1998.mongo.work.student.domain.workStudent" resultMap="workStudentResult">
+        <include refid="selectworkStudentVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="name != null  and name != ''"> and name = #{name}</if>
+            <if test="num != null and num !=0"> and num = #{num}</if>
+        </where>
+    </select>
+    
+    <select id="selectworkStudentById" parameterType="java.math.BigInteger" resultMap="workStudentResult">
+        <include refid="selectworkStudentVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertworkStudent" parameterType="cn.sky1998.mongo.work.student.domain.workStudent" useGeneratedKeys="true" keyProperty="id">
+        insert into work_student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">code,</if>
+            <if test="name != null">name,</if>
+            <if test="num != null">num,</if>
+            <if test="course != null">course,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">#{code},</if>
+            <if test="name != null">#{name},</if>
+            <if test="num != null">#{num},</if>
+            <if test="course != null">#{course},</if>
+         </trim>
+    </insert>
+
+    <update id="updateworkStudent" parameterType="cn.sky1998.mongo.work.student.domain.workStudent">
+        update work_student
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null">code = #{code},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="num != null">num = #{num},</if>
+            <if test="course != null">course = #{course},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteworkStudentById" parameterType="java.math.BigInteger">
+        delete from work_student where id = #{id}
+    </delete>
+
+    <delete id="deleteworkStudentByIds" parameterType="String">
+        delete from work_student where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

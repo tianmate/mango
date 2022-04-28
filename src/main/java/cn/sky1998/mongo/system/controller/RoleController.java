@@ -27,8 +27,8 @@ public class RoleController {
     }
 
     @PostMapping("/add")
-    public AjaxResult add(@RequestBody Role role){
-        return AjaxResult.success(roleService.add(role));
+    public AjaxResult add(@RequestBody RoleMenuForm form){
+        return AjaxResult.success(roleService.add(form));
     }
 
     @PostMapping("/getDatail")
@@ -45,7 +45,12 @@ public class RoleController {
         return AjaxResult.success(roleService.updateRoleMenu(role));
     }
 
-    @PostMapping("/assignMenu")
+    /**
+     * 编辑角色及角色-菜单关联
+     * @param form
+     * @return
+     */
+    @PostMapping("/edit")
     public AjaxResult assignMenu(@RequestBody RoleMenuForm form){
         return AjaxResult.success(roleService.assignMenu(form));
     }

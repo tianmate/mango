@@ -9,23 +9,13 @@ import java.util.List;
  * @author tcy@1753163342@qq.com
  * @Date 11-02-2022
  */
-public class RoleMenuForm {
-
-    private Role role;
+public class RoleMenuForm extends Role{
 
     private List<Menu> menus;
 
     private Long voId;
 
     private Byte del;
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public List<Menu> getMenus() {
         return menus;

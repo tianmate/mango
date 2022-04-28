@@ -75,9 +75,9 @@ public class AccountServiceImpl implements AccountService  {
         for (Role role : accountRoleDto.getRoles()) {
             accountMapper.removeUserRole(accountRoleDto.getId(),role.getId());
         }
-
+        if (accountRoleDto.getRoles().size()!=0){
         accountMapper.assignRole(accountRoleDto.getRoles(),accountRoleDto.getId());
-
+        }
         return 1;
     }
 

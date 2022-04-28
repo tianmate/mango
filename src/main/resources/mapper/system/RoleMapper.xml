@@ -142,7 +142,7 @@
     insert into sys_role_menu(role_id,menu_id)
     values
     <foreach collection="list" item="item" index="index" separator=",">
-      (#{id},#{item.id})
+      (#{id},#{item.menuId})
     </foreach>
 
     </insert>
@@ -150,6 +150,7 @@
   <select id="getRoleMenuRoot" resultMap="BaseRoleMenuMap">
     <!--@mbg.generated-->
     select
+    distinct (sm.menu_id),
     sr.id,
     sr.name,
     sr.description,
@@ -163,14 +164,14 @@
     from sys_role sr
     left join sys_role_menu srm on srm.role_id=sr.id
     left join sys_menu sm on sm.menu_id=srm.menu_id
-    where sr.id=#{id} and sm.parent_id=0
+    where sr.id=#{id} and sm.menu_id is not null
     </select>
 
-  <update id="removeRoleMenu">
-    update sys_role_menu
-    set del=#{del}
-    where id=#{voId}
-  </update>
+<!--  <update id="removeRoleMenu">-->
+<!--    update sys_role_menu-->
+<!--    set del=#{del}-->
+<!--    where id=#{voId}-->
+<!--  </update>-->
 
   <select id="checkMenuExistRole" resultType="Integer" >
     select count(1) from sys_role_menu where menu_id = #{menuId}
@@ -181,5 +182,13 @@
     value(#{roleId},#{menuId})
   </insert>
 
+  <delete id="removeRoleMenu">
+    delete from sys_role_menu
+    where role_id=#{roleId} and menu_id=#{menuId}
+  </delete>
 
+  <delete id="removeRoleMenuByRoleId">
+    delete from sys_role_menu
+    where role_id=#{roleId}
+  </delete>
 </mapper>

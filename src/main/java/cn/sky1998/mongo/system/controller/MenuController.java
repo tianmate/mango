@@ -143,12 +143,21 @@ public class MenuController extends BaseController
     }
 
     /**
-     * 获取菜单树
+     * 获取菜单树根据用户id
      * @return
      */
     @PostMapping("/tree")
     public AjaxResult tree(){
         Long userId = SecurityUtils.getUserId();
         return  AjaxResult.success(menuService.tree(userId));
+    }
+
+    /**
+     * 获取菜单树根据用户id
+     * @return
+     */
+    @GetMapping("/AllTree")
+    public AjaxResult AllTree(){
+        return  AjaxResult.success(menuService.tree(null));
     }
 }

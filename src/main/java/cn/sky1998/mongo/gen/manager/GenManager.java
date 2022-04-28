@@ -65,10 +65,8 @@ public class GenManager {
       //  genTableService.importGenTable(tableList);
 
         if (IfCreateDb){
-            //增加角色
-             addMenuByGen(genTable);
 
-            //创建数据库
+            //创建数据库和插入角色
             createTable(genTable);
         }
 
@@ -112,9 +110,11 @@ public class GenManager {
      * @param genTable
      * @return
      */
-   private int createTable(GenTable genTable){
+    @Transactional(rollbackFor = Exception.class)
+   int createTable(GenTable genTable){
         try {
-
+            //增加角色
+            addMenuByGen(genTable);
       return genTableMapper.createTable(genTable);
 
        }catch (BadSqlGrammarException e){

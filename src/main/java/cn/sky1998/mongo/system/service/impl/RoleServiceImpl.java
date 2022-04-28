@@ -9,8 +9,10 @@ import cn.sky1998.mongo.system.domain.form.RoleMenuForm;
 import cn.sky1998.mongo.system.mapper.MenuMapper;
 import cn.sky1998.mongo.system.mapper.RoleMapper;
 import cn.sky1998.mongo.system.service.RoleService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -44,11 +46,18 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public int add(Role role) {
-        if (Objects.isNull(role)){
+    @Transactional(rollbackFor = Exception.class)
+    public int add(RoleMenuForm form) {
+        if (Objects.isNull(form)){
             throw new CustomException("角色参数不能为空！");
         }
-        return roleMapper.insertSelective(role);
+        //增加到角色表
+        int i = roleMapper.insertSelective(form);
+
+        //增加到角色-菜单
+        roleMapper.assignMenu(form.getMenus(),form.getId());
+
+        return i;
     }
 
 
@@ -63,17 +72,30 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int assignMenu(RoleMenuForm form) {
+            //更新角色
+        Role role=new Role();
+        BeanUtils.copyProperties(form,role);
+            roleMapper.updateByPrimaryKeySelective(role);
+            //更新角色-菜单
+            //删掉原有角色-菜单数据
+            roleMapper.removeRoleMenuByRoleId(form.getId());
 
-        return roleMapper.assignMenu(form.getMenus(),form.getRole().getId());
+
+             return roleMapper.assignMenu(form.getMenus(),form.getId());
     }
 
     @Override
     public RoleMenuDto getRoleMenu(Role role) {
 
+        //列表结构
         RoleMenuDto roleMenu = roleMapper.getRoleMenuRoot(role);
 
-        tree(roleMenu.getMenus(),role.getId());
+        //树形结构
+        //if (Objects.nonNull(roleMenu)){
+        //    tree(roleMenu.getMenus(),role.getId());
+        //}
 
         return roleMenu;
     }
@@ -95,6 +117,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public int removeRoleMenu(RoleMenuVo roleMenuVo) {
-        return roleMapper.removeRoleMenu(roleMenuVo);
+        return roleMapper.removeRoleMenu(roleMenuVo.getRole().getId(),roleMenuVo.getMenu().getMenuId());
     }
 }

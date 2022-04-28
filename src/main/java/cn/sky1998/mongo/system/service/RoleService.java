@@ -14,7 +14,7 @@ public interface RoleService {
 
     RoleMenuDto getDatail(Role role);
 
-    int add(Role role);
+    int add(RoleMenuForm form);
 
     int update(Role role);
 

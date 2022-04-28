@@ -85,13 +85,14 @@ public class GenTableServiceImpl implements IGenTableService
         int i = genTableMapper.insertSelective(genTable);
 
         //插入
-        if (!genTable.getColumns().isEmpty()){
-        for (GenTableColumn column : genTable.getColumns()) {
-            column.setTableId(genTable.getTableId());
-            column.setJavaField(GenUtils.toCamelCase(column.getColumnName()));
-            String[] split = column.getColumnType().split("\\(");
-            column.setJavaType(GenUtils.toSqlToJava(split[0]));
-        }
+        //if (!genTable.getColumns().isEmpty()){
+        //for (GenTableColumn column : genTable.getColumns()) {
+          //  GenTableColumn column=new GenTableColumn();
+           // column.setTableId(genTable.getTableId());
+          //  column.setJavaField(GenUtils.toCamelCase(column.getColumnName()));
+        //    String[] split = column.getColumnType().split("\\(");
+          //  column.setJavaType(GenUtils.toSqlToJava(split[0]));
+        //}
 
             //将主键放到getTable中
             GenTableColumn genTableColumn=new GenTableColumn();
@@ -111,7 +112,7 @@ public class GenTableServiceImpl implements IGenTableService
             genTable.getColumns().add(genTableColumn);
 
         genTableColumnMapper.insertListGenTableColumn(genTable.getColumns());
-        }
+        //}
         return i;
     }
 
@@ -188,6 +189,7 @@ public class GenTableServiceImpl implements IGenTableService
             List<GenTableColumn> genTableColumns=genTable.getColumns();
             for (GenTableColumn cenTableColumn : genTableColumns)
             {
+                cenTableColumn.setTableId(genTable.getTableId());
                 cenTableColumn.setJavaField(GenUtils.toCamelCase(cenTableColumn.getColumnName()));
                 String[] split = cenTableColumn.getColumnType().split("\\(");
                 cenTableColumn.setJavaType(GenUtils.toSqlToJava(split[0]));
