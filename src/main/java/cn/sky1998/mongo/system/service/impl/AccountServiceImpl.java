@@ -60,6 +60,9 @@ public class AccountServiceImpl implements AccountService  {
         if (account.getPassword()!=null){
             account.setPassword(SecurityUtils.encryptPassword(account.getPassword()));
         }
+        if (SecurityUtils.getUserId()==account.getId()){
+            account.setPassword(null);
+        }
         return accountMapper.updateByPrimaryKeySelective(account);
     }
 

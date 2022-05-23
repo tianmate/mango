@@ -5,7 +5,7 @@ import ${import};
 #end
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.tcy.common.annotation.Excel;
+##import com.tcy.common.annotation.Excel;
 import com.tcy.common.core.domain.BaseEntity;
 
 /**
@@ -29,12 +29,12 @@ public class ${subClassName} extends BaseEntity
 #set($comment=$column.columnComment)
 #end
 #if($parentheseIndex != -1)
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    ##@Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
 #elseif($column.javaType == 'Date')
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "${comment}", width = 30, dateFormat = "yyyy-MM-dd")
+    ##@Excel(name = "${comment}", width = 30, dateFormat = "yyyy-MM-dd")
 #else
-    @Excel(name = "${comment}")
+    ##@Excel(name = "${comment}")
 #end
 #end
     private $column.javaType $column.javaField;
