@@ -10,8 +10,8 @@ mango:
   wxapp:
     #公众号
     gzh:
-      appid: wxc9a4518ec83192f2 #测试号appid
-      secret: c5f9f0943c897145dc39878761c6748b #测试号sercret
+      appid: wxc9a4518ec83192f21 #测试号appid
+      secret: c5f9f0943c897145dc39878761c6748b1 #测试号sercret
       #接口鉴权token
       token: qingtengpai
       #对象存储
