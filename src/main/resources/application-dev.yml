@@ -6,6 +6,8 @@ mango:
   cron: 0 46 11 * * ? #定时时间
   # 获取ip地址开关
   addressEnabled: false
+  # 验证码开关
+  captchaEnable: false
   #微信参数配置
   wxapp:
     #公众号

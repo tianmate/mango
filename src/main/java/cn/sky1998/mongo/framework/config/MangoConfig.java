@@ -33,6 +33,11 @@ public class MangoConfig {
      */
     private static Boolean addressEnabled;
 
+    /**
+     * 验证码开关
+     */
+    private Boolean captchaEnable;
+
     @Value("${mango.wxapp.gzh.appid}")
     private String wxappGzhAppid;
 
@@ -151,5 +156,13 @@ public class MangoConfig {
 
     public static void setAddressEnabled(Boolean addressEnabled) {
         MangoConfig.addressEnabled = addressEnabled;
+    }
+
+    public Boolean getCaptchaEnable() {
+        return captchaEnable;
+    }
+
+    public void setCaptchaEnable(Boolean captchaEnable) {
+        this.captchaEnable = captchaEnable;
     }
 }

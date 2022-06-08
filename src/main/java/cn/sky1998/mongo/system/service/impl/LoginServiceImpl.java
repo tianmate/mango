@@ -4,6 +4,7 @@ import cn.sky1998.mongo.common.constant.Constants;
 import cn.sky1998.mongo.common.exception.user.CaptchaException;
 import cn.sky1998.mongo.common.exception.user.CaptchaExpireException;
 import cn.sky1998.mongo.common.utils.StringUtils;
+import cn.sky1998.mongo.framework.config.MangoConfig;
 import cn.sky1998.mongo.framework.util.RedisUtils;
 import cn.sky1998.mongo.system.domain.Account;
 import cn.sky1998.mongo.system.domain.form.LoginBody;
@@ -24,23 +25,32 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private SecurityLoginService service;
+
+    @Autowired
+    private MangoConfig mangoConfig;
+
     @Override
     public Map<Object, Object> commonLogin(LoginBody loginBody) {
 
-        //校验验证码
-        if (StringUtils.isEmpty(loginBody.getCode())&&StringUtils.isEmpty(loginBody.getUuid())){
-            throw new CaptchaExpireException();
-        }
-        String verifyKey = Constants.CAPTCHA_CODE_KEY + loginBody.getUuid();
-        String value = (String) RedisUtils.getValue(verifyKey);
-        if (value==null){
-            throw new CaptchaExpireException();
-        }
-        if (!value.equals(loginBody.getCode())){
-           // AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginBody.getUsername(), Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.error")));
-            throw new CaptchaException();
-        }
+        //验证码开关
+        Boolean captchaEnable = mangoConfig.getCaptchaEnable();
 
+        if (captchaEnable) {
+            //校验验证码
+            if (StringUtils.isEmpty(loginBody.getCode()) && StringUtils.isEmpty(loginBody.getUuid())) {
+                throw new CaptchaExpireException();
+            }
+            String verifyKey = Constants.CAPTCHA_CODE_KEY + loginBody.getUuid();
+            String value = (String) RedisUtils.getValue(verifyKey);
+            if (value == null) {
+                throw new CaptchaExpireException();
+            }
+            if (!value.equals(loginBody.getCode())) {
+                // AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginBody.getUsername(), Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.error")));
+                throw new CaptchaException();
+            }
+
+        }
         return service.login(loginBody.getUsername(),loginBody.getPassword());
     }
 
