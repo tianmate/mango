@@ -51,6 +51,7 @@ public class LoginServiceImpl implements LoginService {
             }
 
         }
+        //校验用户是否存在或者是否启用
         return service.login(loginBody.getUsername(),loginBody.getPassword());
     }
 

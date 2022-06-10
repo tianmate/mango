@@ -34,6 +34,10 @@ public class loadUserDetailsService implements UserDetailsService {
         Account sysAccount = sysAccountMapper.selectByUsername(username);
         if (Objects.isNull(sysAccount)){
             throw new CustomException("用户不存在");
+        }else if (sysAccount.getEnable()==1){
+            throw new CustomException("账户已经锁定，请联系管理员");
+        }else if (sysAccount.getDel()==1){
+            throw new CustomException("账户已经删除，请联系管理员");
         }
         //查询角色信息
         AccountRoleDto userRole = sysAccountMapper.getUserRole(sysAccount);
