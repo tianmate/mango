@@ -2,7 +2,7 @@ package ${packageName}.domain;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import cn.sky1998.mongo.framework.web.core.entity.BaseEntity;
+import cn.sky1998.mango.framework.web.core.entity.BaseEntity;
 #foreach ($import in $importList)
 import ${import};
 #end

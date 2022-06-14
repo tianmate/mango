@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sky1998.mongo.work.student.mapper.workStudentMapper">
+<mapper namespace="cn.sky1998.mango.work.student.mapper.workStudentMapper">
     
-    <resultMap type="cn.sky1998.mongo.work.student.domain.workStudent" id="workStudentResult">
+    <resultMap type="cn.sky1998.mango.work.student.domain.workStudent" id="workStudentResult">
         <result property="id"    column="id"    />
         <result property="code"    column="code"    />
         <result property="name"    column="name"    />
@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select id, code, name, num, course from work_student
     </sql>
 
-    <select id="selectworkStudentList" parameterType="cn.sky1998.mongo.work.student.domain.workStudent" resultMap="workStudentResult">
+    <select id="selectworkStudentList" parameterType="cn.sky1998.mango.work.student.domain.workStudent" resultMap="workStudentResult">
         <include refid="selectworkStudentVo"/>
         <where>  
             <if test="code != null  and code != ''"> and code = #{code}</if>
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertworkStudent" parameterType="cn.sky1998.mongo.work.student.domain.workStudent" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertworkStudent" parameterType="cn.sky1998.mango.work.student.domain.workStudent" useGeneratedKeys="true" keyProperty="id">
         insert into work_student
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">code,</if>
@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateworkStudent" parameterType="cn.sky1998.mongo.work.student.domain.workStudent">
+    <update id="updateworkStudent" parameterType="cn.sky1998.mango.work.student.domain.workStudent">
         update work_student
         <trim prefix="SET" suffixOverrides=",">
             <if test="code != null">code = #{code},</if>

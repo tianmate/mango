@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sky1998.mongo.system.mapper.AccountMapper">
-  <resultMap id="BaseResultMap" type="cn.sky1998.mongo.system.domain.Account">
+<mapper namespace="cn.sky1998.mango.system.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="cn.sky1998.mango.system.domain.Account">
     <!--@mbg.generated-->
     <!--@Table sys_account-->
     <id column="id" property="id" />
@@ -15,12 +15,12 @@
     <result column="remark" property="remark" />
   </resultMap>
 
-  <resultMap id="BaseResultMapRole" type="cn.sky1998.mongo.system.domain.dto.AccountRoleDto" extends="BaseResultMap">
+  <resultMap id="BaseResultMapRole" type="cn.sky1998.mango.system.domain.dto.AccountRoleDto" extends="BaseResultMap">
     <!--@mbg.generated-->
     <!--@Table sys_account-->
 
 
-    <collection property="roles" ofType="cn.sky1998.mongo.system.domain.Role">
+    <collection property="roles" ofType="cn.sky1998.mango.system.domain.Role">
       <!--@mbg.generated-->
       <!--@Table sys_role-->
       <id column="r_id" property="id" />
@@ -32,7 +32,7 @@
   </resultMap>
 
 
-  <resultMap id="BaseResultMapProfile" type="cn.sky1998.mongo.system.domain.dto.AccountRoleDto" >
+  <resultMap id="BaseResultMapProfile" type="cn.sky1998.mango.system.domain.dto.AccountRoleDto" >
     <!--@mbg.generated-->
     <!--@Table sys_account-->
     <!--@mbg.generated-->
@@ -46,7 +46,7 @@
     <result column="enable" property="enable" />
     <result column="del" property="del" />
     <result column="remark" property="remark" />
-    <collection property="roles" ofType="cn.sky1998.mongo.system.domain.Role">
+    <collection property="roles" ofType="cn.sky1998.mango.system.domain.Role">
       <!--@mbg.generated-->
       <!--@Table sys_role-->
       <id column="r_id" property="id" />
@@ -75,14 +75,14 @@
     delete from sys_account
     where id = #{id}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Account" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mango.system.domain.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into sys_account (username, `password`, tel, user_type, nick_name, `enable`, del, 
       remark)
     values (#{username}, #{password}, #{tel}, #{userType}, #{nickName}, #{enable}, #{del}, 
       #{remark})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Account" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mango.system.domain.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into sys_account
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -138,7 +138,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.system.domain.Account">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mango.system.domain.Account">
     <!--@mbg.generated-->
     update sys_account
     <set>
@@ -169,7 +169,7 @@
     </set>
     where id = #{id}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mongo.system.domain.Account">
+  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mango.system.domain.Account">
     <!--@mbg.generated-->
     update sys_account
     set username = #{username},
@@ -218,7 +218,7 @@
     </where>
   </select>
 
-  <select id="getUserRole" resultMap="BaseResultMapRole" parameterType="cn.sky1998.mongo.system.domain.Account">
+  <select id="getUserRole" resultMap="BaseResultMapRole" parameterType="cn.sky1998.mango.system.domain.Account">
 
     <!--@mbg.generated-->
     select
@@ -260,7 +260,7 @@
     where  account_id=#{accountId} and role_id=#{roleId}
   </delete>
 
-  <select id="getUserMenu" resultType="cn.sky1998.mongo.system.domain.Menu">
+  <select id="getUserMenu" resultType="cn.sky1998.mango.system.domain.Menu">
     <!--@mbg.generated-->
     select
     DISTINCT (sm.menu_id) as menuId,

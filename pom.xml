@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.sky1998</groupId>
-    <artifactId>mongo</artifactId>
+    <artifactId>mango</artifactId>
     <version>1.0.0</version>
-    <name>mongo</name>
+    <name>mango</name>
     <description>芒果管理系统</description>
     <properties>
         <java.version>1.8</java.version>

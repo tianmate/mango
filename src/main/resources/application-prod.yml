@@ -58,7 +58,7 @@ spring:
         login-username: root
         login-password: 123456
         url-pattern: /druid/*
-      aop-patterns: cn.sky1998.mongo.MongoApplication
+      aop-patterns: cn.sky1998.mango.mangoApplication
       filters: stat,wall
   # redis配置
   redis:

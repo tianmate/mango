@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sky1998.mongo.system.mapper.RoleMapper">
-  <resultMap id="BaseResultMap" type="cn.sky1998.mongo.system.domain.Role">
+<mapper namespace="cn.sky1998.mango.system.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="cn.sky1998.mango.system.domain.Role">
     <!--@mbg.generated-->
     <!--@Table sys_role-->
     <id column="id" property="id" />
@@ -13,10 +13,10 @@
     <result column="remark" property="remark" />
   </resultMap>
 
-  <resultMap id="BaseRoleMenuMap" type="cn.sky1998.mongo.system.domain.dto.RoleMenuDto" extends="BaseResultMap">
+  <resultMap id="BaseRoleMenuMap" type="cn.sky1998.mango.system.domain.dto.RoleMenuDto" extends="BaseResultMap">
 
 
-    <collection property="menus" ofType="cn.sky1998.mongo.system.domain.Menu">
+    <collection property="menus" ofType="cn.sky1998.mango.system.domain.Menu">
       <id column="menu_id" property="menuId" />
       <result column="menu_name" property="menuName" />
       <result column="remark" property="remark" />
@@ -40,12 +40,12 @@
     delete from sys_role
     where id = #{id}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Role" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mango.system.domain.Role" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into sys_role (`name`, description, sort, `enable`, del, remark)
     values (#{name}, #{description}, #{order}, #{enable}, #{del}, #{remark})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mongo.system.domain.Role" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.sky1998.mango.system.domain.Role" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -89,7 +89,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mongo.system.domain.Role">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sky1998.mango.system.domain.Role">
     <!--@mbg.generated-->
     update sys_role
     <set>
@@ -114,7 +114,7 @@
     </set>
     where id = #{id}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mongo.system.domain.Role">
+  <update id="updateByPrimaryKey" parameterType="cn.sky1998.mango.system.domain.Role">
     <!--@mbg.generated-->
     update sys_role
     set `name` = #{name},
@@ -138,7 +138,7 @@
     </where>
     </select>
 
-  <insert id="assignMenu" parameterType="cn.sky1998.mongo.system.domain.RoleMenuVo">
+  <insert id="assignMenu" parameterType="cn.sky1998.mango.system.domain.RoleMenuVo">
     insert into sys_role_menu(role_id,menu_id)
     values
     <foreach collection="list" item="item" index="index" separator=",">

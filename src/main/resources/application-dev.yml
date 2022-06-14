@@ -7,7 +7,7 @@ mango:
   # 获取ip地址开关
   addressEnabled: false
   # 验证码开关
-  captchaEnable: false
+  captchaEnable: true
   #微信参数配置
   wxapp:
     #公众号
@@ -58,7 +58,7 @@ spring:
         login-username: root
         login-password: 123456
         url-pattern: /druid/*
-      aop-patterns: cn.sky1998.mongo.MongoApplication
+      aop-patterns: cn.sky1998.mango.mangoApplication
       filters: stat,wall
   #redis配置
   redis:
