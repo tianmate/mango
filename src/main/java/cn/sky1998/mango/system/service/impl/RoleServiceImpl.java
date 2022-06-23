@@ -1,6 +1,7 @@
 package cn.sky1998.mango.system.service.impl;
 
 import cn.sky1998.mango.common.exception.CustomException;
+import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.system.domain.Menu;
 import cn.sky1998.mango.system.domain.Role;
 import cn.sky1998.mango.system.domain.RoleMenuVo;
@@ -14,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author tcy@1753163342@qq.com
@@ -118,5 +118,26 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int removeRoleMenu(RoleMenuVo roleMenuVo) {
         return roleMapper.removeRoleMenu(roleMenuVo.getRole().getId(),roleMenuVo.getMenu().getMenuId());
+    }
+
+    /**
+     * 根据用户ID查询权限
+     *
+     * @param userId 用户ID
+     * @return 权限列表
+     */
+    @Override
+    public Set<String> selectRolePermissionByUserId(Long userId)
+    {
+        List<Role> perms = roleMapper.selectRolePermissionByUserId(userId);
+        Set<String> permsSet = new HashSet<>();
+        for (Role perm : perms)
+        {
+            if (StringUtils.isNotNull(perm))
+            {
+                permsSet.addAll(Arrays.asList(perm.getName().trim().split(",")));
+            }
+        }
+        return permsSet;
     }
 }

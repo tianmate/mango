@@ -71,4 +71,12 @@ public interface RoleMapper {
     public int checkMenuExistRole(Long menuId);
 
     int addRoleMenu(@Param("roleId") Long roleId,@Param("menuId") Long menuId);
+
+    /**
+     * 根据用户ID查询角色
+     *
+     * @param userId 用户ID
+     * @return 角色列表
+     */
+    public List<Role> selectRolePermissionByUserId(Long userId);
 }

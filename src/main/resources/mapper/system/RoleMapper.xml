@@ -191,4 +191,15 @@
     delete from sys_role_menu
     where role_id=#{roleId}
   </delete>
+
+  <select id="selectRolePermissionByUserId" parameterType="Long" resultMap="BaseResultMap">
+
+      select distinct r.id, r.name, r.description, r.sort,r.enable, r.del, r.remark
+      from sys_role r
+                   left join sys_account_role ur on ur.role_id = r.id
+                   left join sys_user u on u.id = ur.account_id
+
+    WHERE r.del = 0 and ur.account_id = #{userId}
+  </select>
+
 </mapper>

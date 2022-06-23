@@ -25,6 +25,9 @@ public class loadUserDetailsService implements UserDetailsService {
     @Autowired
     private AccountMapper sysAccountMapper;
 
+    @Autowired
+    private SysPermissionService permissionService;
+
     @Override
     public AccountUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -32,6 +35,7 @@ public class loadUserDetailsService implements UserDetailsService {
 
         //查询用户信息
         Account sysAccount = sysAccountMapper.selectByUsername(username);
+
         if (Objects.isNull(sysAccount)){
             throw new CustomException("用户不存在");
         }else if (sysAccount.getEnable()==1){
@@ -45,7 +49,7 @@ public class loadUserDetailsService implements UserDetailsService {
         userDetails.setUsername(username);
         userDetails.setPassword(sysAccount.getPassword());
         userDetails.setSysRoles(userRole.getRoles());
-
+        userDetails.setPermissions(permissionService.getMenuPermission(sysAccount));
         return userDetails;
     }
 

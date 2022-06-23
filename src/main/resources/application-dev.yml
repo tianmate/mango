@@ -7,7 +7,7 @@ mango:
   # 获取ip地址开关
   addressEnabled: false
   # 验证码开关
-  captchaEnable: true
+  captchaEnable: false
   #微信参数配置
   wxapp:
     #公众号

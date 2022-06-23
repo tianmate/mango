@@ -7,6 +7,7 @@ import cn.sky1998.mango.system.domain.dto.RoleMenuDto;
 import cn.sky1998.mango.system.domain.form.RoleMenuForm;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RoleService {
 
@@ -25,4 +26,12 @@ public interface RoleService {
     RoleMenuDto getRoleMenu(Role role);
 
     int removeRoleMenu(RoleMenuVo roleMenuVo);
+
+    /**
+     * 根据用户ID查询角色权限
+     *
+     * @param userId 用户ID
+     * @return 权限列表
+     */
+    public Set<String> selectRolePermissionByUserId(Long userId);
 }

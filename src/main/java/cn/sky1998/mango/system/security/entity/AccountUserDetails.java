@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author tcy@1753163342@qq.com
@@ -25,6 +26,19 @@ public class AccountUserDetails implements UserDetails , Serializable{
     private Long id;
     private String username;
     private String password;
+
+    /**
+     * 权限列表
+     */
+    private Set<String> permissions;
+
+    public Set<String> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<String> permissions) {
+        this.permissions = permissions;
+    }
 
     @JsonIgnore
     private Collection<? extends GrantedAuthority> authorities;

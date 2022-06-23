@@ -8,6 +8,7 @@ import cn.sky1998.mango.system.domain.form.AccountRoleForm;
 import cn.sky1998.mango.system.service.AccountService;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -34,11 +35,13 @@ public class AccountController {
         return  AjaxResult.success(accountService.getList(accountForm));
     }
 
+
     @PostMapping("/update")
     public AjaxResult update(@RequestBody Account sysAccount){
         return  AjaxResult.success(accountService.update(sysAccount));
     }
 
+    @PreAuthorize("@ss.hasPermi('system:user:update')") //判断用户是否有操作该按钮的权限
     @PostMapping("/updateUserRole")
     public AjaxResult updateUserRole(@RequestBody AccountRoleDto accountRoleDto){
         return  AjaxResult.success(accountService.updateUserRole(accountRoleDto));
