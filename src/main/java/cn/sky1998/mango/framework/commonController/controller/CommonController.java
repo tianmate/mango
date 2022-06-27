@@ -1,4 +1,4 @@
-package cn.sky1998.mango.framework.common.controller;
+package cn.sky1998.mango.framework.commonController.controller;
 
 import cn.sky1998.mango.common.utils.FileUtils;
 import cn.sky1998.mango.framework.config.MangoConfig;

@@ -1,6 +1,8 @@
-package cn.sky1998.mango.work.student.controller;
+package cn.sky1998.mango.system.controller;
 
 import java.util.List;
+
+import cn.sky1998.mango.system.domain.sysLog;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,71 +15,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
-import cn.sky1998.mango.work.student.domain.workStudent;
-import cn.sky1998.mango.work.student.service.IworkStudentService;
+import cn.sky1998.mango.system.domain.sysLog;
+import cn.sky1998.mango.system.service.IsysLogService;
 import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 
 /**
- * 学生成绩管理Controller
+ * 日志管理Controller
  * 
  * @author tcy
- * @date 2022-04-26
+ * @date 2022-06-27
  */
 @RestController
-@RequestMapping("/work/student")
-public class workStudentController extends BaseController
+@RequestMapping("/system/sysLog")
+public class sysLogController extends BaseController
 {
     @Autowired
-    private IworkStudentService workStudentService;
+    private IsysLogService sysLogService;
 
     /**
-     * 查询学生成绩管理列表
+     * 查询日志管理列表
      */
         @GetMapping("/list")
-    public TableDataInfo list(workStudent workStudent)
+    public TableDataInfo list(sysLog sysLog)
     {
         startPage();
-        List<workStudent> list = workStudentService.selectworkStudentList(workStudent);
+        List<sysLog> list = sysLogService.selectsysLogList(sysLog);
         return getDataTable(list);
     }
 
-    /**
-     * 导出学生成绩管理列表
-     */
                                     
     /**
-     * 获取学生成绩管理详细信息
+     * 获取日志管理详细信息
      */
         @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") java.math.BigInteger id)
     {
-        return AjaxResult.success(workStudentService.selectworkStudentById(id));
+        return AjaxResult.success(sysLogService.selectsysLogById(id));
     }
 
     /**
-     * 新增学生成绩管理
+     * 新增日志管理
      */
             @PostMapping
-    public AjaxResult add(@RequestBody workStudent workStudent)
+    public AjaxResult add(@RequestBody sysLog sysLog)
     {
-        return toAjax(workStudentService.insertworkStudent(workStudent));
+        return toAjax(sysLogService.insertsysLog(sysLog));
     }
 
     /**
-     * 修改学生成绩管理
+     * 修改日志管理
      */
             @PostMapping("/update")
-    public AjaxResult update(@RequestBody workStudent workStudent)
+    public AjaxResult update(@RequestBody sysLog sysLog)
     {
-        return toAjax(workStudentService.updateworkStudent(workStudent));
+        return toAjax(sysLogService.updatesysLog(sysLog));
     }
 
     /**
-     * 删除学生成绩管理
+     * 删除日志管理
      */
         	@GetMapping("/remove/{ids}")
     public AjaxResult remove(@PathVariable java.math.BigInteger[] ids)
     {
-        return toAjax(workStudentService.deleteworkStudentByIds(ids));
+        return toAjax(sysLogService.deletesysLogByIds(ids));
     }
 }

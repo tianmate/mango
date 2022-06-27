@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mango.system.mapper.sysLogMapper">
+    
+    <resultMap type="cn.sky1998.mango.system.domain.sysLog" id="sysLogResult">
+        <result property="id"    column="id"    />
+        <result property="logType"    column="log_type"    />
+        <result property="logContent"    column="log_content"    />
+        <result property="operateType"    column="operate_type"    />
+        <result property="username"    column="username"    />
+        <result property="ip"    column="ip"    />
+        <result property="workKey"    column="work_key"    />
+        <result property="workValue"    column="work_value"    />
+        <result property="requestUrl"    column="request_url"    />
+        <result property="requestParam"    column="request_param"    />
+        <result property="method"    column="method"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectsysLogVo">
+        select id, log_type, log_content, operate_type, username, ip, work_key, work_value, request_url, request_param, method, create_time from sys_log
+    </sql>
+
+    <select id="selectsysLogList" parameterType="cn.sky1998.mango.system.domain.sysLog" resultMap="sysLogResult">
+        <include refid="selectsysLogVo"/>
+        <where>  
+            <if test="logType != null  and logType != 0 "> and log_type = #{logType}</if>
+            <if test="operateType != null  and operateType != 0 "> and operate_type = #{operateType}</if>
+            <if test="username != null  and username != ''"> and username = #{username}</if>
+            <if test="workKey != null  and workKey != ''"> and work_key = #{workKey}</if>
+            <if test="workValue != null  and workValue != ''"> and work_value = #{workValue}</if>
+            <if test="requestUrl != null  and requestUrl != ''"> and request_url = #{requestUrl}</if>
+            <if test="method != null  and method != ''"> and method = #{method}</if>
+        </where>
+    </select>
+    
+    <select id="selectsysLogById" parameterType="java.math.BigInteger" resultMap="sysLogResult">
+        <include refid="selectsysLogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertsysLog" parameterType="cn.sky1998.mango.system.domain.sysLog" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="logType != null">log_type,</if>
+            <if test="logContent != null">log_content,</if>
+            <if test="operateType != null">operate_type,</if>
+            <if test="username != null">username,</if>
+            <if test="ip != null">ip,</if>
+            <if test="workKey != null">work_key,</if>
+            <if test="workValue != null">work_value,</if>
+            <if test="requestUrl != null">request_url,</if>
+            <if test="requestParam != null">request_param,</if>
+            <if test="method != null">method,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="logType != null">#{logType},</if>
+            <if test="logContent != null">#{logContent},</if>
+            <if test="operateType != null">#{operateType},</if>
+            <if test="username != null">#{username},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="workKey != null">#{workKey},</if>
+            <if test="workValue != null">#{workValue},</if>
+            <if test="requestUrl != null">#{requestUrl},</if>
+            <if test="requestParam != null">#{requestParam},</if>
+            <if test="method != null">#{method},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updatesysLog" parameterType="cn.sky1998.mango.system.domain.sysLog">
+        update sys_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="logType != null">log_type = #{logType},</if>
+            <if test="logContent != null">log_content = #{logContent},</if>
+            <if test="operateType != null">operate_type = #{operateType},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="workKey != null">work_key = #{workKey},</if>
+            <if test="workValue != null">work_value = #{workValue},</if>
+            <if test="requestUrl != null">request_url = #{requestUrl},</if>
+            <if test="requestParam != null">request_param = #{requestParam},</if>
+            <if test="method != null">method = #{method},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletesysLogById" parameterType="java.math.BigInteger">
+        delete from sys_log where id = #{id}
+    </delete>
+
+    <delete id="deletesysLogByIds" parameterType="String">
+        delete from sys_log where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

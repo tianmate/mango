@@ -1,5 +1,6 @@
 package cn.sky1998.mango.system.controller;
 
+import cn.sky1998.mango.framework.aspect.annotation.AutoLog;
 import cn.sky1998.mango.system.domain.Account;
 import cn.sky1998.mango.system.domain.AccountRoleVo;
 import cn.sky1998.mango.system.domain.dto.AccountRoleDto;

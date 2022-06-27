@@ -3,6 +3,7 @@ package cn.sky1998.mango.system.controller;
 import cn.sky1998.mango.common.constant.Constants;
 import cn.sky1998.mango.common.utils.sign.Base64;
 import cn.sky1998.mango.common.utils.uuid.IdUtils;
+import cn.sky1998.mango.framework.aspect.annotation.AutoLog;
 import cn.sky1998.mango.framework.util.RedisUtils;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.system.domain.Account;
@@ -35,6 +36,7 @@ public class LoginController {
     private Producer captchaProducerMath;
 
 
+    @AutoLog(value = "系统用户登录",key = "username",logType = 1)
     @PostMapping("/common")
     public AjaxResult login(@RequestBody LoginBody loginBody ){
         return  AjaxResult.success(loginService.commonLogin(loginBody));

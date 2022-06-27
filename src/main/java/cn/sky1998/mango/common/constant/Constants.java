@@ -23,21 +23,20 @@ public class Constants {
      */
     public static final String HTTP = "http://";
 
+
     /**
      * https请求
      */
     public static final String HTTPS = "https://";
 
-    /**
-     * 通用成功标识
-     */
-    public static final String SUCCESS = "0";
+    /**POST请求*/
+    public static final String HTTP_POST = "POST";
 
-    /**
-     * 通用失败标识
-     */
-    public static final String FAIL = "1";
+    /**PUT请求*/
+    public static final String HTTP_PUT = "PUT";
 
+    /**PATCH请求*/
+    public static final String HTTP_PATCH = "PATCH";
     /**
      * http内容类型 json
      */
@@ -57,11 +56,6 @@ public class Constants {
      */
     public static final String LOGIN_USER_KEY = "login_user_key";
 
-    /** 句号, 切割标准 */
-    public static final String PERIOD = "。";
-
-    /** 文章长度边界 */
-    public static final int MAX_LENGTH = 2000;
     /**
      * 验证码 redis key
      */
@@ -78,23 +72,43 @@ public class Constants {
     public static final String SYS_DICT_KEY = "sys_dict:";
 
     /**
-     * 注销
+     * 系统日志类型： 登录
      */
-    public static final String LOGOUT = "Logout";
+    public static final int LOG_TYPE_1 = 1;
 
     /**
-     * 注册
+     * 系统日志类型： 操作
      */
-    public static final String REGISTER = "Register";
+    public static final int LOG_TYPE_2 = 2;
 
     /**
-     * 登录成功
+     * 操作日志类型： 增加
      */
-    public static final String LOGIN_SUCCESS = "Success";
+    public static final int OPERATE_TYPE_1 = 1;
 
     /**
-     * 登录失败
+     * 操作日志类型： 删除
      */
-    public static final String LOGIN_FAIL = "Error";
+    public static final int OPERATE_TYPE_2 = 2;
+
+    /**
+     * 操作日志类型： 更新
+     */
+    public static final int OPERATE_TYPE_3 = 3;
+
+    /**
+     * 操作日志类型： 查询
+     */
+    public static final int OPERATE_TYPE_4 = 4;
+
+    /**
+     * 操作日志类型： 倒入
+     */
+    public static final int OPERATE_TYPE_5 = 5;
+
+    /**
+     * 操作日志类型： 导出
+     */
+    public static final int OPERATE_TYPE_6 = 6;
 
 }
