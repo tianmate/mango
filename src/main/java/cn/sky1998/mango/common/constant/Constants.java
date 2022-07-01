@@ -71,6 +71,8 @@ public class Constants {
      */
     public static final String SYS_DICT_KEY = "sys_dict:";
 
+    /**String 类型的空值*/
+    public static final String STRING_NULL = "null";
     /**
      * 系统日志类型： 登录
      */
@@ -110,5 +112,8 @@ public class Constants {
      * 操作日志类型： 导出
      */
     public static final int OPERATE_TYPE_6 = 6;
+
+    /**字典翻译文本后缀*/
+    public static final String DICT_TEXT_SUFFIX = "_dictText";
 
 }

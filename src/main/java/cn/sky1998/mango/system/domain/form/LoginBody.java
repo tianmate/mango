@@ -1,5 +1,7 @@
 package cn.sky1998.mango.system.domain.form;
 
+import cn.sky1998.mango.framework.aspect.annotation.Dict;
+
 /**
  * @author tcy@1753163342@qq.com
  * @Date 09-03-2022

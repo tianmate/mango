@@ -1,5 +1,6 @@
 package cn.sky1998.mango.system.domain;
 
+import cn.sky1998.mango.framework.aspect.annotation.Dict;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Role implements Serializable {
     /**
     * 角色名称
     */
+    @Dict(dictTable = "sys_account",dicCode = "username",dicText = "nick_name")
     private String name;
 
     /**

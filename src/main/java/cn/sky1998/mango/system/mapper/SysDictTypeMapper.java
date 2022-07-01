@@ -1,7 +1,10 @@
 package cn.sky1998.mango.system.mapper;
 
 import cn.sky1998.mango.system.domain.SysDictType;
+import cn.sky1998.mango.system.domain.dto.DictModel;
+import cn.sky1998.mango.system.domain.dto.DictModelMany;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -83,4 +86,23 @@ public interface SysDictTypeMapper
      * @return 结果
      */
     public SysDictType checkDictTypeUnique(String dictType);
+
+    /**
+     * 查询字典表的数据
+     * @param table 表名
+     * @param text   显示字段名
+     * @param code   存储字段名
+     * @param filterSql 条件sql
+     * @param codeValues 存储字段值 作为查询条件in
+     * @return
+     */
+    List<DictModel> queryTableDictByKeysAndFilterSql(@Param("table") String table, @Param("text") String text, @Param("code") String code, @Param("filterSql") String filterSql, @Param("codeValues") List<String> codeValues);
+
+    /**
+     * 可通过多个字典code查询翻译文本
+     * @param dictCodeList 多个字典code
+     * @param keys 数据列表
+     * @return
+     */
+    List<DictModelMany> queryManyDictByKeys(@Param("dictCodeList") List<String> dictCodeList, @Param("keys") List<String> keys);
 }

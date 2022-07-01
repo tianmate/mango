@@ -6,6 +6,8 @@ import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.gen.common.constant.UserConstants;
 import cn.sky1998.mango.system.domain.SysDictData;
 import cn.sky1998.mango.system.domain.SysDictType;
+import cn.sky1998.mango.system.domain.dto.DictModel;
+import cn.sky1998.mango.system.domain.dto.DictModelMany;
 import cn.sky1998.mango.system.mapper.SysDictDataMapper;
 import cn.sky1998.mango.system.mapper.SysDictTypeMapper;
 import cn.sky1998.mango.system.service.ISysDictTypeService;
@@ -14,9 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -220,5 +220,31 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
             return UserConstants.NOT_UNIQUE;
         }
         return UserConstants.UNIQUE;
+    }
+
+    @Override
+    public List<DictModel> translateDictFromTableByKeys(String table, String text, String code, String keys) {
+        String filterSql = null;
+        if(table.toLowerCase().indexOf("where")>0){
+            String[] arr = table.split(" (?i)where ");
+            table = arr[0];
+            filterSql = arr[1];
+        }
+        return dictTypeMapper.queryTableDictByKeysAndFilterSql(table, text, code, filterSql, Arrays.asList(keys.split(",")));
+
+    }
+
+    @Override
+    public Map<String, List<DictModel>> translateManyDict(String dictCodes, String keys) {
+        List<String> dictCodeList = Arrays.asList(dictCodes.split(","));
+        List<String> values = Arrays.asList(keys.split(","));
+
+        List<DictModelMany> list = dictTypeMapper.queryManyDictByKeys(dictCodeList, values);
+        Map<String, List<DictModel>> dictMap = new HashMap(5);
+        for (DictModelMany dict : list) {
+            List<DictModel> dictItemList = dictMap.computeIfAbsent(dict.getDictCode(), i -> new ArrayList<>());
+            dictItemList.add(new DictModel(dict.getValue(), dict.getText()));
+        }
+        return dictMap;
     }
 }

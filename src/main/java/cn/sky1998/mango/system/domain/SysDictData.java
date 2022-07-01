@@ -39,7 +39,7 @@ public class SysDictData extends BaseEntity
     private String listClass;
 
     /** 是否默认（Y是 N否） */
-    private String isDefault;
+    private String isDefault1;
 
     /** 状态（0正常 1停用） */
     private String status;
@@ -121,20 +121,6 @@ public class SysDictData extends BaseEntity
         this.listClass = listClass;
     }
 
-    public boolean getDefault()
-    {
-        return UserConstants.YES.equals(this.isDefault) ? true : false;
-    }
-
-    public String getIsDefault()
-    {
-        return isDefault;
-    }
-
-    public void setIsDefault(String isDefault)
-    {
-        this.isDefault = isDefault;
-    }
 
     public String getStatus()
     {
@@ -145,24 +131,28 @@ public class SysDictData extends BaseEntity
     {
         this.status = status;
     }
-    
+
+    public String getIsDefault1() {
+        return isDefault1;
+    }
+
+    public void setIsDefault1(String isDefault1) {
+        this.isDefault1 = isDefault1;
+    }
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("dictCode", getDictCode())
-            .append("dictSort", getDictSort())
-            .append("dictLabel", getDictLabel())
-            .append("dictValue", getDictValue())
-            .append("dictType", getDictType())
-            .append("cssClass", getCssClass())
-            .append("listClass", getListClass())
-            .append("isDefault", getIsDefault())
-            .append("status", getStatus())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateBy", getUpdateBy())
-            .append("updateTime", getUpdateTime())
-            .append("remark", getRemark())
-            .toString();
+        return "SysDictData{" +
+                "dictCode=" + dictCode +
+                ", dictSort=" + dictSort +
+                ", dictLabel='" + dictLabel + '\'' +
+                ", dictValue='" + dictValue + '\'' +
+                ", dictType='" + dictType + '\'' +
+                ", cssClass='" + cssClass + '\'' +
+                ", listClass='" + listClass + '\'' +
+                ", isDefault1='" + isDefault1 + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
+
+
 }

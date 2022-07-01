@@ -43,6 +43,14 @@ public class TableDataInfo implements Serializable {
   public TableDataInfo() {
   }
 
+  public TableDataInfo(long total, long count, List<?> datas, int code, String msg) {
+    this.total = total;
+    this.count = count;
+    this.datas = datas;
+    this.code = code;
+    this.msg = msg;
+  }
+
   /**
    * 分页
    *

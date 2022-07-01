@@ -1,5 +1,6 @@
 package cn.sky1998.mango.system.domain;
 
+import cn.sky1998.mango.framework.aspect.annotation.Dict;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import cn.sky1998.mango.framework.web.core.entity.BaseEntity;
@@ -27,6 +28,7 @@ public class sysLog extends BaseEntity
     private int operateType;
 
     /** 用户名称 */
+    @Dict(dictTable = "sys_account",dicCode = "username",dicText = "nick_name")
     private String username;
 
     /** ip */

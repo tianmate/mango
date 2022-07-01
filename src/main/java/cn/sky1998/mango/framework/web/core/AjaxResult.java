@@ -28,6 +28,7 @@ public class AjaxResult extends HashMap<String,Object> implements Serializable {
      */
     public static final String DATA_TAG = "datas";
 
+
     /**
      * 初始化一个新创建的 AjaxResult 对象，使其表示一个空消息。
      */

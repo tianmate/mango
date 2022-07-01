@@ -1,5 +1,7 @@
 package cn.sky1998.mango.system.domain;
 
+import cn.sky1998.mango.framework.aspect.annotation.Dict;
+
 import java.io.Serializable;
 
     /**

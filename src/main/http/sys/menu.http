@@ -30,7 +30,7 @@ Authorization: {{token}}
   "id": 3
 }
 ### 获取菜单列表
-POST {{host}}/system/menu/getList
+GET {{host}}/system/menu/getList
 Accept: */*
 Content-Encoding: utf-8
 Content-Type: application/json

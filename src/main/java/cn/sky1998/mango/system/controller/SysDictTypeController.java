@@ -1,5 +1,6 @@
 package cn.sky1998.mango.system.controller;
 
+import cn.sky1998.mango.framework.aspect.annotation.Dict;
 import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
@@ -20,7 +21,7 @@ import static cn.sky1998.mango.framework.web.core.AjaxResult.success;
  * @author tcy@1753163342@qq.com
  */
 @RestController
-@RequestMapping("/system/dict/type")
+@RequestMapping("/system/dict")
 public class SysDictTypeController extends BaseController
 {
     @Autowired

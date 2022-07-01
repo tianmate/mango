@@ -1,5 +1,6 @@
 package cn.sky1998.mango.system.domain;
 
+import cn.sky1998.mango.framework.aspect.annotation.Dict;
 import cn.sky1998.mango.framework.web.core.entity.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -26,6 +27,7 @@ public class SysDictType extends BaseEntity
     private String dictType;
 
     /** 状态（0正常 1停用） */
+    @Dict(dicCode = "status")
     private String status;
 
     public Long getDictId()
