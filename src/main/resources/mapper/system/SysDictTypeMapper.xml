@@ -118,17 +118,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryManyDictByKeys" parameterType="String"  resultType="cn.sky1998.mango.system.domain.dto.DictModelMany">
 		SELECT
 		dict.dict_type,
-		item.dict_lable AS "text",
+		item.dict_label AS "text",
 		item.dict_value AS "value"
 		FROM
 		sys_dict_data item
 		INNER JOIN sys_dict_type dict ON dict.dict_type = item.dict_type
-		WHERE dict.dict_code IN (
+		WHERE dict.dict_type IN (
 		<foreach item="dictCode" collection="dictCodeList" separator=",">
 			#{dictCode}
 		</foreach>
 		)
-		AND item.item_value IN (
+		AND item.dict_value IN (
 		<foreach item="key" collection="keys" separator=",">
 			#{key}
 		</foreach>

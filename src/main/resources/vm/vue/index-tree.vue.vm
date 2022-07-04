@@ -351,7 +351,7 @@ export default {
 #foreach ($column in $columns)
 #if(${column.dictType} != '')
     this.getDicts("${column.dictType}").then(response => {
-      this.${column.javaField}Options = response.data;
+      this.${column.javaField}Options = response.datas;
     });
 #end
 #end
@@ -376,7 +376,7 @@ export default {
 #end
 #end
       list${BusinessName}(this.queryParams).then(response => {
-        this.${businessName}List = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
+        this.${businessName}List = this.handleTree(response.datas, "${treeCode}", "${treeParentCode}");
         this.loading = false;
       });
     },
@@ -396,7 +396,7 @@ export default {
       list${BusinessName}().then(response => {
         this.${businessName}Options = [];
         const data = { ${treeCode}: 0, ${treeName}: '顶级节点', children: [] };
-        data.children = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
+        data.children = this.handleTree(response.datas, "${treeCode}", "${treeParentCode}");
         this.${businessName}Options.push(data);
       });
     },
@@ -467,7 +467,7 @@ export default {
         this.form.${treeParentCode} = row.${treeCode};
       }
       get${BusinessName}(row.${pkColumn.javaField}).then(response => {
-        this.form = response.data;
+        this.form = response.datas;
 #foreach ($column in $columns)
 #if($column.htmlType == "checkbox")
         this.form.$column.javaField = this.form.${column.javaField}.split(",");

@@ -56,9 +56,9 @@ public class ${ClassName}Controller extends BaseController
     }
 #end
 
-    /**
-     * 导出${functionName}列表
-     */
+    ##/**
+    ## * 导出${functionName}列表
+    ## */
     ##@PreAuthorize("@ss.hasPermi('${permissionPrefix}:export')")
     ##@Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     ##@GetMapping("/export")
