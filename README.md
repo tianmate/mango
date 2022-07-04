@@ -1,4 +1,4 @@
-# Mango框架
+﻿# Mango框架后端
 
 网上的框架五花八门，但无不有一个共同特点，集成了大量的组件，对于新手来说操作异常的繁琐。
 
@@ -16,15 +16,22 @@ Mango是一个后台管理系统，基于经典技术组合（Spring Boot、Spri
 
 另外集成了腾讯云和阿里云短信服务，集成微信公众号中的接口，包含扫码登录、发消息、回复消息、点击菜单等事件处理等。
 
+**文档**
+
+框架说明文档：(https://qingtengpai.gitee.io/mango-doc/#/guide)
+
 **特点**
 
 出色的代码生成功能，开发者自己的选择一键生成前后端代码及数据库，开发者只需关注自身业务逻辑，无需在表数据的管理系统中浪费时间。
 
+自定义注解，如，字典翻译、权限粒度细化、日志记录。
+
 **在线体验**
 
-- 代码下载：(<https://gitee.com/qingtengpai/mango.git>)
+- 后端代码下载：(<https://gitee.com/qingtengpai/mango.git>)
+- 前端代码下载：(https://gitee.com/qingtengpai/mango-web.git)
 
-**系统需求**
+**系统环境**
 
 - JDK >= 1.8
 
@@ -32,9 +39,11 @@ Mango是一个后台管理系统，基于经典技术组合（Spring Boot、Spri
 
 - Maven >= 3.0
 
-**联系作者**
+**关于作者**
 
 - 公众号：程序员田同学
+
+​	![image-20220704115049039](http://pic.zan12306.com/image-20220704115049039.png)
 
 - 作者博客：[传送门](http://www.sky1998.cn)
 
