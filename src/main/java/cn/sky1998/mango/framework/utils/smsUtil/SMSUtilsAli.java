@@ -1,4 +1,4 @@
-package cn.sky1998.mango.system.util;
+package cn.sky1998.mango.framework.utils.smsUtil;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;

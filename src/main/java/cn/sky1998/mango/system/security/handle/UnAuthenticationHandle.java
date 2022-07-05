@@ -1,6 +1,6 @@
 package cn.sky1998.mango.system.security.handle;
 
-import cn.sky1998.mango.framework.util.ServletUtils;
+import cn.sky1998.mango.framework.utils.ServletUtils;
 import cn.sky1998.mango.common.enums.HttpStatus;
 import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.web.core.AjaxResult;

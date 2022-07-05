@@ -1,6 +1,6 @@
 package cn.sky1998.mango.common.utils;
 
-import cn.sky1998.mango.framework.util.SpringUtils;
+import cn.sky1998.mango.framework.utils.SpringUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 

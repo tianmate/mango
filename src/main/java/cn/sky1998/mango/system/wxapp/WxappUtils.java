@@ -2,7 +2,7 @@ package cn.sky1998.mango.system.wxapp;
 
 import cn.sky1998.mango.common.exception.CustomException;
 import cn.sky1998.mango.common.utils.StringUtils;
-import cn.sky1998.mango.framework.util.SpringUtils;
+import cn.sky1998.mango.framework.utils.SpringUtils;
 import cn.sky1998.mango.system.wxapp.domain.BaseContent;
 import cn.sky1998.mango.system.wxapp.domain.ContentMsg;
 import cn.sky1998.mango.system.wxapp.domain.KfContentMsg;

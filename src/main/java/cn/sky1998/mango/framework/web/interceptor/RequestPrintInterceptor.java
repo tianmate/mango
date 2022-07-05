@@ -4,7 +4,7 @@ package cn.sky1998.mango.framework.web.interceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cn.sky1998.mango.common.constant.Constants;
 import cn.sky1998.mango.common.utils.StringUtils;
-import cn.sky1998.mango.framework.util.HttpUtils;
+import cn.sky1998.mango.framework.utils.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

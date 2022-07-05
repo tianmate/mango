@@ -6,7 +6,7 @@ import ${import};
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 ##import com.tcy.common.annotation.Excel;
-import com.tcy.common.core.domain.BaseEntity;
+import cn.sky1998.mango.framework.web.core.entity.BaseEntity;
 
 /**
  * ${subTable.functionName}对象 ${subTableName}

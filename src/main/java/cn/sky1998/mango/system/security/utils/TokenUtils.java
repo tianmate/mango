@@ -1,7 +1,7 @@
 package cn.sky1998.mango.system.security.utils;
 
 import cn.sky1998.mango.common.utils.StringUtils;
-import cn.sky1998.mango.framework.util.RedisUtils;
+import cn.sky1998.mango.framework.utils.RedisUtils;
 import cn.sky1998.mango.system.security.entity.AccountUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

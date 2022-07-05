@@ -1,9 +1,6 @@
 package cn.sky1998.mango;
 
-import cn.sky1998.mango.framework.util.RedisUtils;
-import cn.sky1998.mango.framework.util.SpringUtils;
 import cn.sky1998.mango.system.mapper.AccountMapper;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

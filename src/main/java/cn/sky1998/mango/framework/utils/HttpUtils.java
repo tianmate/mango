@@ -1,4 +1,4 @@
-package cn.sky1998.mango.framework.util;
+package cn.sky1998.mango.framework.utils;
 
 import javax.servlet.ServletRequest;
 import java.io.BufferedReader;

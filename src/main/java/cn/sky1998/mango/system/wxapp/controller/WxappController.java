@@ -19,6 +19,10 @@ public class WxappController {
     @Autowired
     private WxappService wxappService;
 
+    /**
+     * 公众号-获取二维码
+     * @return
+     */
     @GetMapping("/getQrCode/public")
     public AjaxResult getQrCode(){
         return AjaxResult.success(wxappService.getQrCode());
@@ -54,7 +58,6 @@ public class WxappController {
 
         return wxappService.getMessage(request,openid);
     }
-
 
 
 }

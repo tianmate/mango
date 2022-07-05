@@ -1,7 +1,7 @@
 package cn.sky1998.mango.common.utils;
 
 import cn.sky1998.mango.common.constant.Constants;
-import cn.sky1998.mango.framework.util.RedisUtils;
+import cn.sky1998.mango.framework.utils.RedisUtils;
 import cn.sky1998.mango.system.domain.SysDictData;
 
 import java.util.Collection;

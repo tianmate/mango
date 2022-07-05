@@ -1,4 +1,4 @@
-package cn.sky1998.mango.system.util;
+package cn.sky1998.mango.framework.utils.smsUtil;
 
 import com.tencentcloudapi.common.Credential;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;

@@ -1,4 +1,4 @@
-package cn.sky1998.mango.framework.util;
+package cn.sky1998.mango.framework.utils;
 
 import org.springframework.data.redis.core.RedisTemplate;
 

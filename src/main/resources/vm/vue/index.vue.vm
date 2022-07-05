@@ -425,7 +425,7 @@ export default {
 #foreach ($column in $columns)
 #if(${column.dictType} != '')
     this.getDicts("${column.dictType}").then(response => {
-      this.${column.javaField}Options = response.data;
+      this.${column.javaField}Options = response.datas;
     });
 #end
 #end
@@ -535,7 +535,7 @@ export default {
 #end
 #end
 #if($table.sub)
-        this.${subclassName}List = response.data.${subclassName}List;
+        this.${subclassName}List = response.datas.${subclassName}List;
 #end
         this.open = true;
         this.title = "修改${functionName}";

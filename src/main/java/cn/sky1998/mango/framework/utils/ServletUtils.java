@@ -1,4 +1,4 @@
-package cn.sky1998.mango.framework.util;
+package cn.sky1998.mango.framework.utils;
 
 import cn.sky1998.mango.common.utils.text.Convert;
 import org.springframework.web.context.request.RequestAttributes;

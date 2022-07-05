@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sky1998.mango.work.course.mapper.workCourseMapper">
+    
+    <resultMap type="cn.sky1998.mango.work.course.domain.workCourse" id="workCourseResult">
+        <result property="id"    column="id"  />
+        <result property="name"    column="name"   />
+        <result property="teacher"    column="teacher"   />
+    </resultMap>
+
+    <resultMap id="workCourseworkStudentResult" type="cn.sky1998.mango.work.course.domain.workCourse" extends="workCourseResult">
+        <collection property="workStudentList" notNullColumn="id" javaType="java.util.List" resultMap="workStudentResult" />
+    </resultMap>
+
+    <resultMap type="cn.sky1998.mango.work.course.domain.workStudent" id="workStudentResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="num"    column="num"    />
+        <result property="course"    column="course"    />
+    </resultMap>
+
+    <sql id="selectworkCourseVo">
+        select id, name, teacher from work_course
+    </sql>
+
+    <select id="selectworkCourseList" parameterType="cn.sky1998.mango.work.course.domain.workCourse" resultMap="workCourseResult">
+        <include refid="selectworkCourseVo"/>
+        <where>  
+        </where>
+    </select>
+    
+    <select id="selectworkCourseById" parameterType="Long" resultMap="workCourseworkStudentResult">
+        select a.id, a.name, a.teacher,
+            b.id, b.code, b.name, b.num, b.course
+        from work_course a
+        left join work_student b on b.course = a.id
+        where a.id = #{id}
+    </select>
+        
+    <insert id="insertworkCourse" parameterType="cn.sky1998.mango.work.course.domain.workCourse" useGeneratedKeys="true" keyProperty="id">
+        insert into work_course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="teacher != null">teacher,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="teacher != null">#{teacher},</if>
+         </trim>
+    </insert>
+
+    <update id="updateworkCourse" parameterType="cn.sky1998.mango.work.course.domain.workCourse">
+        update work_course
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="teacher != null">teacher = #{teacher},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteworkCourseById" parameterType="java.math.BigInteger">
+        delete from work_course where id = #{id}
+    </delete>
+
+    <delete id="deleteworkCourseByIds" parameterType="String">
+        delete from work_course where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+    <delete id="deleteworkStudentByCourses" parameterType="String">
+        delete from work_student where course in 
+        <foreach item="course" collection="array" open="(" separator="," close=")">
+            #{course}
+        </foreach>
+    </delete>
+
+    <delete id="deleteworkStudentByCourse" parameterType="Long">
+        delete from work_student where course = #{course}
+    </delete>
+
+    <insert id="batchworkStudent">
+        insert into work_student( id, code, name, num, course) values
+		<foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.id}, #{item.code}, #{item.name}, #{item.num}, #{item.course})
+        </foreach>
+    </insert>
+</mapper>

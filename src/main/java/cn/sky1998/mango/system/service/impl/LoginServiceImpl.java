@@ -5,7 +5,7 @@ import cn.sky1998.mango.common.exception.user.CaptchaException;
 import cn.sky1998.mango.common.exception.user.CaptchaExpireException;
 import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.config.MangoConfig;
-import cn.sky1998.mango.framework.util.RedisUtils;
+import cn.sky1998.mango.framework.utils.RedisUtils;
 import cn.sky1998.mango.system.domain.Account;
 import cn.sky1998.mango.system.domain.form.LoginBody;
 import cn.sky1998.mango.system.security.service.SecurityLoginService;

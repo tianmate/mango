@@ -1,4 +1,4 @@
-package cn.sky1998.mango.framework.commonApi.controller;
+package cn.sky1998.mango.framework.commonApi;
 
 import cn.sky1998.mango.common.utils.FileUtils;
 import cn.sky1998.mango.framework.config.MangoConfig;
@@ -27,7 +27,7 @@ public class CommonController {
     private MangoConfig mangoConfig;
 
     /**
-     * 文件上传到腾讯云oss并解析文件成 树 数据结构
+     * 文件上传到服务器本地
      * @param file
      * @return
      * @throws IOException

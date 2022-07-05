@@ -1,6 +1,6 @@
 package cn.sky1998.mango.framework.web.core.page;
 
-import cn.sky1998.mango.framework.util.ServletUtils;
+import cn.sky1998.mango.framework.utils.ServletUtils;
 
 /**
  * 表格数据处理

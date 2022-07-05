@@ -1,17 +1,12 @@
 package cn.sky1998.mango.system.security.handle;
 
 import cn.sky1998.mango.common.utils.StringUtils;
-import cn.sky1998.mango.framework.util.ServletUtils;
 import cn.sky1998.mango.system.security.entity.AccountUserDetails;
 import cn.sky1998.mango.system.security.utils.SecurityUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
 import java.util.Set;
-
-import static sun.security.util.SecurityConstants.ALL_PERMISSION;
 
 /**
  * 鉴权模块

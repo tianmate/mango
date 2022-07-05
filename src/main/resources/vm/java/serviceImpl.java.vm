@@ -154,6 +154,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
             for (${subClassName} ${subclassName} : ${subclassName}List)
             {
                 ${subclassName}.set${subTableFkClassName}(${pkColumn.javaField});
+                ${subclassName}.setId(null);
                 list.add(${subclassName});
             }
             if (list.size() > 0)

@@ -1,7 +1,7 @@
 package cn.sky1998.mango.system.security.service;
 
 import cn.sky1998.mango.common.exception.user.UserPasswordNotMatchException;
-import cn.sky1998.mango.framework.util.RedisUtils;
+import cn.sky1998.mango.framework.utils.RedisUtils;
 import cn.sky1998.mango.system.domain.Account;
 import cn.sky1998.mango.system.mapper.AccountMapper;
 import cn.sky1998.mango.system.security.utils.TokenUtils;

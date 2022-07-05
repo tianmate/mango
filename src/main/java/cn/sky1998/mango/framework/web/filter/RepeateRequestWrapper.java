@@ -1,6 +1,6 @@
 package cn.sky1998.mango.framework.web.filter;
 
-import cn.sky1998.mango.framework.util.HttpUtils;
+import cn.sky1998.mango.framework.utils.HttpUtils;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

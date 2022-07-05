@@ -1,7 +1,7 @@
 package cn.sky1998.mango.system.wxapp.service.impl;
 
 import cn.sky1998.mango.common.exception.CustomException;
-import cn.sky1998.mango.framework.util.SpringUtils;
+import cn.sky1998.mango.framework.utils.SpringUtils;
 import cn.sky1998.mango.system.wxapp.WxappUtils;
 import cn.sky1998.mango.system.wxapp.domain.ContentMsg;
 import com.fasterxml.jackson.core.JsonProcessingException;

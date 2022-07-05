@@ -4,7 +4,7 @@ import cn.sky1998.mango.common.constant.Constants;
 import cn.sky1998.mango.common.utils.sign.Base64;
 import cn.sky1998.mango.common.utils.uuid.IdUtils;
 import cn.sky1998.mango.framework.aspect.annotation.AutoLog;
-import cn.sky1998.mango.framework.util.RedisUtils;
+import cn.sky1998.mango.framework.utils.RedisUtils;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.system.domain.Account;
 import cn.sky1998.mango.system.domain.form.LoginBody;
