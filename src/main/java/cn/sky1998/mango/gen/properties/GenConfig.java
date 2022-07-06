@@ -30,9 +30,9 @@ public class GenConfig
     @Value("${gen.tablePrefix}")
     public String tablePrefix;
 
-    /** 表名字*/
-    @Value("${gen.tableName}")
-    private String tableName;
+    /** 模块名 */
+    @Value("${gen.moduleName}")
+    public String moduleName;
 
     public Boolean getAutoRemovePre() {
         return autoRemovePre;
@@ -71,11 +71,11 @@ public class GenConfig
         this.tablePrefix = tablePrefix;
     }
 
-    public String getTableName() {
-        return tableName;
+    public String getModuleName() {
+        return moduleName;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
     }
 }

@@ -13,6 +13,7 @@ import cn.sky1998.mango.gen.mapper.GenTableMapper;
 import cn.sky1998.mango.gen.common.util.GenUtils;
 import cn.sky1998.mango.gen.common.util.VelocityInitializer;
 import cn.sky1998.mango.gen.common.util.VelocityUtils;
+import cn.sky1998.mango.gen.properties.GenConfig;
 import cn.sky1998.mango.gen.service.IGenTableService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -56,7 +57,7 @@ public class GenTableServiceImpl implements IGenTableService
     private GenUtils genUtils;
 
     @Autowired
-    private MangoConfig mangoConfig;
+    private GenConfig genConfig;
     /**
      * 查询业务信息
      * 
@@ -79,13 +80,13 @@ public class GenTableServiceImpl implements IGenTableService
         genTable.setClassName(GenUtils.toCamelCase(genTable.getTableName()));
 
         //作者
-        genTable.setFunctionAuthor(mangoConfig.getAuthor());
+        genTable.setFunctionAuthor(genConfig.getAuthor());
 
         //生成包路径
-        genTable.setPackageName(mangoConfig.getPackageName()+"."+genTable.getBusinessName());
+        genTable.setPackageName(genConfig.getPackageName()+"."+genTable.getBusinessName());
 
         //模块名
-        genTable.setModuleName(mangoConfig.getModuleName());
+        genTable.setModuleName(genConfig.getModuleName());
 
         int i = genTableMapper.insertSelective(genTable);
 

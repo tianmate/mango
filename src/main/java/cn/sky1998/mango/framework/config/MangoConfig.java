@@ -62,13 +62,7 @@ public class MangoConfig {
     @Value("${mango.wxapp.uniapp.secret}")
     private String wxappUniappSecret;
 
-    //代码生成
-    @Value("${gen.author}")
-    private String author;
-    @Value("${gen.packageName}")
-    private String packageName;
-    @Value("${gen.moduleName}")
-    private String moduleName;
+
 
     public String getName() {
         return name;
@@ -174,27 +168,5 @@ public class MangoConfig {
         this.captchaEnable = captchaEnable;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getPackageName() {
-        return packageName;
-    }
-
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
-    }
-
-    public String getModuleName() {
-        return moduleName;
-    }
-
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
-    }
 }

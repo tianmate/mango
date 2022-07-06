@@ -6,6 +6,11 @@ gen:
   packageName: cn.sky1998.mango.work
   #模块名，默认在work模块下
   moduleName: work
+  # 自动去除表前缀，默认是false
+  autoRemovePre: false
+  # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
+  tablePrefix: sys_
+
 #环境变量配置
 spring:
   # 资源信息
