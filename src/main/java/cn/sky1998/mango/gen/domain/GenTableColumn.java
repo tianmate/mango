@@ -70,6 +70,25 @@ public class GenTableColumn extends BaseEntity
     /** 排序 */
     private Integer sort;
 
+    //v2.0新增字段
+    /** 长度 */
+    private Integer fieldNum;
+
+    /** 小数点 */
+    private Integer pointNum;
+
+    /** 默认值 */
+    private String defaultValue;
+
+    /** 字典table */
+    private String dictTable;
+
+    /** 字典code */
+    private String dictCode;
+
+    /** 字典text */
+    private String dictText;
+
     public void setColumnId(Long columnId)
     {
         this.columnId = columnId;
@@ -325,9 +344,57 @@ public class GenTableColumn extends BaseEntity
         return sort;
     }
 
+    public String getDictTable() {
+        return dictTable;
+    }
+
+    public void setDictTable(String dictTable) {
+        this.dictTable = dictTable;
+    }
+
     public boolean isSuperColumn()
     {
         return isSuperColumn(this.javaField);
+    }
+
+    public String getDefaultValue() {
+        return defaultValue;
+    }
+
+    public void setDefaultValue(String defaultValue) {
+        this.defaultValue = defaultValue;
+    }
+
+    public String getDictCode() {
+        return dictCode;
+    }
+
+    public void setDictCode(String dictCode) {
+        this.dictCode = dictCode;
+    }
+
+    public String getDictText() {
+        return dictText;
+    }
+
+    public void setDictText(String dictText) {
+        this.dictText = dictText;
+    }
+
+    public Integer getFieldNum() {
+        return fieldNum;
+    }
+
+    public void setFieldNum(Integer fieldNum) {
+        this.fieldNum = fieldNum;
+    }
+
+    public Integer getPointNum() {
+        return pointNum;
+    }
+
+    public void setPointNum(Integer pointNum) {
+        this.pointNum = pointNum;
     }
 
     public static boolean isSuperColumn(String javaField)

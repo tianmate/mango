@@ -1,11 +1,14 @@
 package cn.sky1998.mango.gen.common.util;
 
 import cn.sky1998.mango.common.utils.StringUtils;
+import cn.sky1998.mango.framework.aspect.DictAspect;
 import cn.sky1998.mango.gen.common.constant.GenConstants;
 import cn.sky1998.mango.gen.domain.GenTable;
 import cn.sky1998.mango.gen.domain.GenTableColumn;
 import cn.sky1998.mango.gen.properties.GenConfig;
 import org.apache.commons.lang3.RegExUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +22,8 @@ import java.util.Arrays;
 @Component
 public class GenUtils
 {
+    private static Logger log = LoggerFactory.getLogger(GenUtils.class);
+
     @Autowired
     private GenConfig genConfig;
 
@@ -368,13 +373,36 @@ public class GenUtils
             case "smallmoney":return "Double";
             case "image":return "byte[]";
             default:
-                System.out.println("-----------------》转化失败：未发现的类型"+sqlType);
+                log.info("-----------------》转化失败：未发现的类型"+sqlType);
                 break;
         }
         return sqlType;
     }
 
-    public static void main(String[] args) {
-        System.out.println(toSqlToJava("varchar"));
+    /**
+     * 数据类型转化JAVA
+     * @param javaType：类型名称
+     * @return
+     */
+    public static String toJavaToSql(String javaType,Integer fieldNum,Integer pointNum) {
+        if( javaType == null || javaType.trim().length() == 0 ) return javaType;
+        javaType = javaType.toLowerCase();
+
+        switch(javaType){
+            case "String":return "varchar"+"("+fieldNum+")";
+            case "Integer":return "int"+"("+fieldNum+")";
+            case "Double":return "Double";
+            case "Date":return "Date";
+            case "Datetime":return "Datetime";
+            case "BigDecimal":return "decimal"+"("+fieldNum+","+pointNum+")";
+            case "Text":return "text";
+            case "Blod":return "blod";
+
+            default:
+                log.info("-----------------》转化失败：未发现的类型"+javaType);
+                break;
+        }
+        return javaType;
     }
+
 }

@@ -2,7 +2,9 @@ package cn.sky1998.mango.gen.manager;
 
 import cn.sky1998.mango.common.exception.CustomException;
 import cn.sky1998.mango.common.utils.text.Convert;
+import cn.sky1998.mango.gen.common.util.GenUtils;
 import cn.sky1998.mango.gen.domain.GenTable;
+import cn.sky1998.mango.gen.domain.GenTableColumn;
 import cn.sky1998.mango.gen.mapper.GenTableMapper;
 import cn.sky1998.mango.gen.service.IGenTableService;
 import cn.sky1998.mango.system.domain.Menu;
@@ -65,7 +67,6 @@ public class GenManager {
       //  genTableService.importGenTable(tableList);
 
         if (IfCreateDb){
-
             //创建数据库和插入角色
             createTable(genTable);
         }
@@ -115,7 +116,9 @@ public class GenManager {
         try {
             //增加角色
             addMenuByGen(genTable);
-      return genTableMapper.createTable(genTable);
+            //字段长度、小数点、默认值改造
+
+            return genTableMapper.createTable(genTable);
 
        }catch (BadSqlGrammarException e){
            throw new CustomException("创建表失败，请确定表是否存在，或者确实信息！");

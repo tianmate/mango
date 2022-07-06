@@ -3,6 +3,7 @@ package cn.sky1998.mango.gen.service.impl;
 import cn.sky1998.mango.common.constant.Constants;
 import cn.sky1998.mango.common.exception.CustomException;
 import cn.sky1998.mango.common.utils.StringUtils;
+import cn.sky1998.mango.framework.config.MangoConfig;
 import cn.sky1998.mango.gen.common.constant.GenConstants;
 import cn.sky1998.mango.common.utils.text.CharsetKit;
 import cn.sky1998.mango.gen.domain.GenTable;
@@ -54,6 +55,8 @@ public class GenTableServiceImpl implements IGenTableService
     @Autowired
     private GenUtils genUtils;
 
+    @Autowired
+    private MangoConfig mangoConfig;
     /**
      * 查询业务信息
      * 
@@ -76,12 +79,14 @@ public class GenTableServiceImpl implements IGenTableService
         genTable.setClassName(GenUtils.toCamelCase(genTable.getTableName()));
 
         //作者
-        genTable.setFunctionAuthor("tcy");
+        genTable.setFunctionAuthor(mangoConfig.getAuthor());
 
         //生成包路径
-        genTable.setPackageName("cn.sky1998.mango.work."+genTable.getBusinessName());
+        genTable.setPackageName(mangoConfig.getPackageName()+"."+genTable.getBusinessName());
 
-        genTable.setModuleName("work");
+        //模块名
+        genTable.setModuleName(mangoConfig.getModuleName());
+
         int i = genTableMapper.insertSelective(genTable);
 
         //插入
@@ -176,7 +181,6 @@ public class GenTableServiceImpl implements IGenTableService
         String options = JSON.toJSONString(genTable.getParams());
         genTable.setOptions(options);
 
-
         int row = genTableMapper.updateGenTable(genTable);
         //将原有列删除，重新插入
         if (row > 0)
@@ -191,8 +195,17 @@ public class GenTableServiceImpl implements IGenTableService
             {
                 cenTableColumn.setTableId(genTable.getTableId());
                 cenTableColumn.setJavaField(GenUtils.toCamelCase(cenTableColumn.getColumnName()));
-                String[] split = cenTableColumn.getColumnType().split("\\(");
-                cenTableColumn.setJavaType(GenUtils.toSqlToJava(split[0]));
+
+                //将javaType根据字段长度和小数点拼接成数据库columnType需要格式
+                String columnType = GenUtils.toJavaToSql(cenTableColumn.getJavaType(), cenTableColumn.getFieldNum(), cenTableColumn.getPointNum());
+                cenTableColumn.setColumnType(columnType);
+
+                if ("Text".equals(cenTableColumn.getJavaType())||"Blod".equals(cenTableColumn.getJavaType())){
+                    cenTableColumn.setJavaType("String");
+                }
+                //String[] split = cenTableColumn.getColumnType().split("\\(");
+                //cenTableColumn.setJavaType(GenUtils.toSqlToJava(split[0]));
+
             }
             //插入
             genTableColumnMapper.insertListGenTableColumn(genTableColumns);

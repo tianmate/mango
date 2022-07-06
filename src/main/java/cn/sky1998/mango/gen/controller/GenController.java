@@ -58,7 +58,7 @@ public class GenController extends BaseController {
 
 
     /**
-     * 根据表id代码
+     * 根据表id 生成代码
      * @param tableId
      */
     @GetMapping("/createCode/{tableId}")
