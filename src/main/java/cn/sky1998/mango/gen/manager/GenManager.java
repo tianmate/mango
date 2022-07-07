@@ -121,7 +121,7 @@ public class GenManager {
             return genTableMapper.createTable(genTable);
 
        }catch (BadSqlGrammarException e){
-           throw new CustomException("创建表失败，请确定表是否存在，或者确实信息！");
+           throw new CustomException("创建表失败，请确定表是否存在，或者缺失信息！");
        }
     }
 

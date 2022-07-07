@@ -1,5 +1,6 @@
 package ${packageName}.domain;
 
+import cn.sky1998.mango.framework.aspect.annotation.Dict;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import cn.sky1998.mango.framework.web.core.entity.BaseEntity;
@@ -46,7 +47,7 @@ public class ${ClassName} extends ${Entity}
 #end
 #end
 #if($column.dictCode)
-@Dict(dictTable = "$column.dictTable",dicCode = "$column.dictCode",dicText = "$column.dictText")
+    @Dict(dictTable = "$column.dictTable",dicCode = "$column.dictCode",dicText = "$column.dictText")
 #end
     private $column.javaType $column.javaField;
 

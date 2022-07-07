@@ -386,15 +386,28 @@ public class GenUtils
      */
     public static String toJavaToSql(String javaType,Integer fieldNum,Integer pointNum) {
         if( javaType == null || javaType.trim().length() == 0 ) return javaType;
-        javaType = javaType.toLowerCase();
+      //  javaType = javaType.toLowerCase();
 
         switch(javaType){
-            case "String":return "varchar"+"("+fieldNum+")";
-            case "Integer":return "int"+"("+fieldNum+")";
+            case "String":
+                 if (fieldNum==null){
+                     return "varchar";
+                 }
+                return "varchar"+"("+fieldNum+")";
+            case "Integer":
+                if (fieldNum==null){
+                    return "int";
+                }
+                return "int"+"("+fieldNum+")";
             case "Double":return "Double";
+            case "java.util.Date":return "Date";
             case "Date":return "Date";
             case "Datetime":return "Datetime";
-            case "BigDecimal":return "decimal"+"("+fieldNum+","+pointNum+")";
+            case "BigDecimal":
+                if (fieldNum==null){
+                    return "decimal";
+                }
+                return "decimal"+"("+fieldNum+","+pointNum+")";
             case "Text":return "text";
             case "Blod":return "blod";
 
