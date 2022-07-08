@@ -131,7 +131,36 @@ public class GenTableServiceImpl implements IGenTableService
     @Override
     public List<GenTable> selectGenTableList(GenTable genTable)
     {
-        return genTableMapper.selectGenTableList(genTable);
+        List<GenTable> genTables= genTableMapper.selectGenTableList(genTable);
+
+        for (GenTable table : genTables) {
+            //查询存储的字段信息
+            List<GenTableColumn> tableColumns =  genTableColumnMapper.selectGenTableColumnListByTableId(table.getTableId());
+
+            List<String> tableColumnNames = tableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
+
+            //查询物理表字段信息
+            List<GenTableColumn> dbTableColumns = genTableColumnMapper.selectDbTableColumnsByName(table.getTableName());
+
+            if (StringUtils.isEmpty(dbTableColumns))
+            {
+                table.setIfSyn(0);
+            }else {
+                //比对存储的表信息和数据库中的物理表
+                dbTableColumns.forEach(column -> {
+                    //当前物理表和存储的字段信息不一致
+                    if (!tableColumnNames.contains(column.getColumnName()))
+                    {
+                        table.setIfSyn(0);
+                    }else {
+                        table.setIfSyn(1);
+                    }
+                });
+            }
+
+        }
+
+        return genTables;
     }
 
     /**
@@ -358,13 +387,38 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 同步数据库
+     * 同步到物理表
+     * @param tableName 表名称
+     */
+    @Override
+    public void synchDbTo(String tableName) {
+
+        //将物理表源数据提取出来
+        //查询原物理表是否存在
+        List<GenTable> genTables = genTableMapper.selectTableByName(tableName);
+
+        if (genTables.size()!=0){
+            //删除原物理表
+            genTableMapper.deleteTable(tableName);
+        }
+        //重新生成表
+        GenTable genTable = genTableMapper.selectGenTableByName(tableName);
+        List<GenTableColumn> tableColumns = genTable.getColumns();
+        genTable.setColumns(tableColumns);
+
+        genTableMapper.createTable(genTable);
+        //将源数据重新插入
+
+    }
+
+    /**
+     * 从物理表同步
      * 
      * @param tableName 表名称
      */
     @Override
     @Transactional
-    public void synchDb(String tableName)
+    public void synchDbFrom(String tableName)
     {
         GenTable table = genTableMapper.selectGenTableByName(tableName);
         List<GenTableColumn> tableColumns = table.getColumns();

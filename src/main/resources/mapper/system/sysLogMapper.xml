@@ -34,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="requestUrl != null  and requestUrl != ''"> and request_url = #{requestUrl}</if>
             <if test="method != null  and method != ''"> and method = #{method}</if>
         </where>
+        order by create_time desc
     </select>
     
     <select id="selectsysLogById" parameterType="java.math.BigInteger" resultMap="sysLogResult">

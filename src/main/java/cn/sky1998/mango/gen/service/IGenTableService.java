@@ -107,11 +107,18 @@ public interface IGenTableService
     public void generatorCode(String tableName);
 
     /**
-     * 同步数据库
+     * 从物理表同步
      * 
      * @param tableName 表名称
      */
-    public void synchDb(String tableName);
+    public void synchDbFrom(String tableName);
+
+    /**
+     * 同步到物理表
+     *
+     * @param tableName 表名称
+     */
+    public void synchDbTo(String tableName);
 
     /**
      * 批量生成代码（下载方式）

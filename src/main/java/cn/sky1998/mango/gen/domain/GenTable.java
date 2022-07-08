@@ -97,6 +97,17 @@ public class GenTable extends BaseEntity
     /** 上级菜单名称字段 */
     private String parentMenuName;
 
+    /** 是否已经同步 */
+    private Integer ifSyn;
+
+    public Integer getIfSyn() {
+        return ifSyn;
+    }
+
+    public void setIfSyn(Integer ifSyn) {
+        this.ifSyn = ifSyn;
+    }
+
     public Long getTableId()
     {
         return tableId;

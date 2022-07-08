@@ -40,6 +40,14 @@ public interface GenTableMapper
     public List<GenTable> selectDbTableListByNames(String[] tableNames);
 
     /**
+     * 查询据库列表
+     *
+     * @param tableNames 表名称
+     * @return 数据库表集合
+     */
+    public List<GenTable> selectTableByName(String tableNames);
+
+    /**
      * 查询所有表信息
      * 
      * @return 表信息集合
@@ -93,4 +101,6 @@ public interface GenTableMapper
     public int deleteGenTableByIds(Long[] ids);
 
      int createTable(@Param("genTable")GenTable genTable);
+
+     int deleteTable(@Param("tableName")String tableName);
 }

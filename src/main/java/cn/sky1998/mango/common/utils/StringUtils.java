@@ -4,6 +4,8 @@ import cn.hutool.core.text.StrFormatter;
 import cn.sky1998.mango.common.constant.Constants;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 字符串工具类
@@ -409,4 +411,40 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
   {
     return StringUtils.startsWithAny(link, Constants.HTTP, Constants.HTTPS);
   }
+
+  /**
+   * 包含数字的字符串中提取数字
+   * @param s
+   * @return
+   */
+  public static Integer extractDigital(String s){
+    String regEx="[^0-9]";
+    Pattern p = Pattern.compile(regEx);
+    Matcher m = p.matcher(s);
+    String trim = m.replaceAll("").trim();
+
+      return Integer.valueOf(trim);
+
+  }
+
+  /**
+   * 包含小数点的字符串中提取数组
+   * @param s
+   * @return
+   */
+  public static Integer[] extractDigitalsToPoint(String s){
+
+    Integer[] ints = new Integer[2];
+    String[] split = s.split(".");
+    for (int i = 0; i < split.length; i++) {
+      String regEx="[^0-9]";
+      Pattern p = Pattern.compile(regEx);
+      Matcher m = p.matcher(s);
+      while (m.find()) {
+        ints[i]=Integer.parseInt(m.group(0));
+      }
+    }
+    return ints;
+  }
+
 }

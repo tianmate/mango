@@ -1,5 +1,6 @@
 package cn.sky1998.mango.gen.controller;
 
+import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
@@ -88,6 +89,16 @@ public class GenController extends BaseController {
         GenTable table = genTableService.selectGenTableById(tableId);
         List<GenTable> tables = genTableService.selectGenTableAll();
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(tableId);
+        for (GenTableColumn column : list) {
+            if (column.getColumnType().contains(".")){
+                Integer[] integers = StringUtils.extractDigitalsToPoint(column.getColumnType());
+                column.setFieldNum(integers[0]);
+                column.setPointNum(integers[1]);
+            }else if (column.getColumnType().contains("(")){
+                Integer s = StringUtils.extractDigital(column.getColumnType());
+                column.setFieldNum(s);
+            }
+        }
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("info", table);
         map.put("rows", list);
@@ -96,7 +107,7 @@ public class GenController extends BaseController {
     }
 
     /**
-     * 查询数据库列表
+     * 查询物理数据库列表且不在get_table中的
      */
   //  @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @GetMapping("/db/list")
@@ -129,7 +140,7 @@ public class GenController extends BaseController {
     public AjaxResult importTableSave(String tables)
     {
         String[] tableNames = Convert.toStrArray(tables);
-        // 查询表信息
+        // 查询表信息 字段长度查出来
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
         genTableService.importGenTable(tableList);
         return AjaxResult.success();
@@ -192,16 +203,31 @@ public class GenController extends BaseController {
     }
 
     /**
-     * 同步数据库
+     * 从物理表同步
      */
   //  @PreAuthorize("@ss.hasPermi('tool:gen:edit')")
-    @GetMapping("/synchDb/{tableName}")
-    public AjaxResult synchDb(@PathVariable("tableName") String tableName)
+    @GetMapping("/synchDbForm/{tableName}")
+    public AjaxResult synchDbForm(@PathVariable("tableName") String tableName)
     {
-        genTableService.synchDb(tableName);
+        genTableService.synchDbFrom(tableName);
         return AjaxResult.success();
     }
 
+    /**
+     * 同步到物理表
+     */
+    //  @PreAuthorize("@ss.hasPermi('tool:gen:edit')")
+    @GetMapping("/synchDbTo/{tableName}")
+    public AjaxResult synchDbTo(@PathVariable("tableName") String tableName)
+    {
+        genTableService.synchDbTo(tableName);
+        return AjaxResult.success();
+    }
+
+
+    /**
+     * 导入数据库、从
+     */
     /**
      * 批量生成代码
      */
