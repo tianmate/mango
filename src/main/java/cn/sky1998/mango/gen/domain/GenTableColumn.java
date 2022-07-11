@@ -5,6 +5,7 @@ import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.web.core.entity.BaseEntity;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 /**
  * 代码生成业务字段表 gen_table_column
@@ -438,5 +439,18 @@ public class GenTableColumn extends BaseEntity
         {
             return this.columnComment;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GenTableColumn that = (GenTableColumn) o;
+        return  Objects.equals(columnName, that.columnName) && Objects.equals(columnComment, that.columnComment) && Objects.equals(columnType, that.columnType)  && Objects.equals(isPk, that.isPk) && Objects.equals(isIncrement, that.isIncrement) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(columnId, tableId, columnName, columnComment, columnType, javaType, javaField, isPk, isIncrement, isRequired, isInsert, isEdit, isList, isQuery, queryType, htmlType, dictType, sort, fieldNum, pointNum, defaultValue, dictTable, dictCode, dictText);
     }
 }

@@ -413,7 +413,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
   }
 
   /**
-   * 包含数字的字符串中提取数字
+   * 包含数字的字符串中提取数字(varchar\int)
    * @param s
    * @return
    */
@@ -428,23 +428,28 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
   }
 
   /**
-   * 包含小数点的字符串中提取数组
+   * 包含小数点的字符串中提取数组(decimal)
    * @param s
    * @return
    */
   public static Integer[] extractDigitalsToPoint(String s){
 
     Integer[] ints = new Integer[2];
-    String[] split = s.split(".");
+    String[] split = s.split(",");
     for (int i = 0; i < split.length; i++) {
-      String regEx="[^0-9]";
+      StringBuffer code = new StringBuffer();
+      String regEx="[0-9]";
       Pattern p = Pattern.compile(regEx);
-      Matcher m = p.matcher(s);
+      Matcher m = p.matcher(split[i]);
       while (m.find()) {
-        ints[i]=Integer.parseInt(m.group(0));
+        code.append(m.group(0));
       }
+
+      ints[i]=Integer.parseInt(String.valueOf(code));
+
     }
     return ints;
   }
+
 
 }

@@ -55,18 +55,28 @@ public class GenUtils
         // 设置默认类型
         column.setJavaType(GenConstants.TYPE_STRING);
 
+        //字符串类型
         if (arraysContains(GenConstants.COLUMNTYPE_STR, dataType) || arraysContains(GenConstants.COLUMNTYPE_TEXT, dataType))
         {
             // 字符串长度超过500设置为文本域
             Integer columnLength = getColumnLength(column.getColumnType());
             String htmlType = columnLength >= 500 || arraysContains(GenConstants.COLUMNTYPE_TEXT, dataType) ? GenConstants.HTML_TEXTAREA : GenConstants.HTML_INPUT;
             column.setHtmlType(htmlType);
+
+            //提取出来字段长度set
+            if (column.getColumnType().contains("(")){
+                Integer integer = StringUtils.extractDigital(column.getColumnType());
+                column.setFieldNum(integer);
+            }
+
         }
+        //时间类型
         else if (arraysContains(GenConstants.COLUMNTYPE_TIME, dataType))
         {
             column.setJavaType(GenConstants.TYPE_DATE);
             column.setHtmlType(GenConstants.HTML_DATETIME);
         }
+        //数字类型
         else if (arraysContains(GenConstants.COLUMNTYPE_NUMBER, dataType))
         {
             column.setHtmlType(GenConstants.HTML_INPUT);
@@ -75,17 +85,35 @@ public class GenUtils
             String[] str = StringUtils.split(StringUtils.substringBetween(column.getColumnType(), "(", ")"), ",");
             if (str != null && str.length == 2 && Integer.parseInt(str[1]) > 0)
             {
+                if (column.getColumnType().contains(",")){
+                    Integer[] integers = StringUtils.extractDigitalsToPoint(column.getColumnType());
+                    column.setFieldNum(integers[0]);
+                    column.setPointNum(integers[1]);
+                }
                 column.setJavaType(GenConstants.TYPE_BIGDECIMAL);
+
             }
             // 如果是整形
             else if (str != null && str.length == 1 && Integer.parseInt(str[0]) <= 10)
             {
+                //提取出来字段长度set
+                if (column.getColumnType().contains("(")){
+                    Integer integer = StringUtils.extractDigital(column.getColumnType());
+                    column.setFieldNum(integer);
+                }
+
                 column.setJavaType(GenConstants.TYPE_INTEGER);
             }
             // 长整形
             else
             {
+                //提取出来字段长度set
+                if (column.getColumnType().contains("(")){
+                    Integer integer = StringUtils.extractDigital(column.getColumnType());
+                    column.setFieldNum(integer);
+                }
                 column.setJavaType(GenConstants.TYPE_LONG);
+
             }
         }
 

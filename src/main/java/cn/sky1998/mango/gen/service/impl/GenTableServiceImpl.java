@@ -3,16 +3,15 @@ package cn.sky1998.mango.gen.service.impl;
 import cn.sky1998.mango.common.constant.Constants;
 import cn.sky1998.mango.common.exception.CustomException;
 import cn.sky1998.mango.common.utils.StringUtils;
-import cn.sky1998.mango.framework.config.MangoConfig;
-import cn.sky1998.mango.gen.common.constant.GenConstants;
 import cn.sky1998.mango.common.utils.text.CharsetKit;
+import cn.sky1998.mango.gen.common.constant.GenConstants;
+import cn.sky1998.mango.gen.common.util.GenUtils;
+import cn.sky1998.mango.gen.common.util.VelocityInitializer;
+import cn.sky1998.mango.gen.common.util.VelocityUtils;
 import cn.sky1998.mango.gen.domain.GenTable;
 import cn.sky1998.mango.gen.domain.GenTableColumn;
 import cn.sky1998.mango.gen.mapper.GenTableColumnMapper;
 import cn.sky1998.mango.gen.mapper.GenTableMapper;
-import cn.sky1998.mango.gen.common.util.GenUtils;
-import cn.sky1998.mango.gen.common.util.VelocityInitializer;
-import cn.sky1998.mango.gen.common.util.VelocityUtils;
 import cn.sky1998.mango.gen.properties.GenConfig;
 import cn.sky1998.mango.gen.service.IGenTableService;
 import com.alibaba.fastjson.JSON;
@@ -32,7 +31,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -137,7 +139,7 @@ public class GenTableServiceImpl implements IGenTableService
             //查询存储的字段信息
             List<GenTableColumn> tableColumns =  genTableColumnMapper.selectGenTableColumnListByTableId(table.getTableId());
 
-            List<String> tableColumnNames = tableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
+          //  List<String> tableColumnNames = tableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
 
             //查询物理表字段信息
             List<GenTableColumn> dbTableColumns = genTableColumnMapper.selectDbTableColumnsByName(table.getTableName());
@@ -146,16 +148,26 @@ public class GenTableServiceImpl implements IGenTableService
             {
                 table.setIfSyn(0);
             }else {
-                //比对存储的表信息和数据库中的物理表
-                dbTableColumns.forEach(column -> {
-                    //当前物理表和存储的字段信息不一致
-                    if (!tableColumnNames.contains(column.getColumnName()))
-                    {
+                //比对所有的字段类型、长度、注释等信息
+                for (int i = 0; i < dbTableColumns.size(); i++) {
+                    if (!dbTableColumns.get(i).equals(tableColumns.get(i))){
                         table.setIfSyn(0);
+                        break;
                     }else {
                         table.setIfSyn(1);
                     }
-                });
+                }
+                ////比对存储的表信息和数据库中的物理表
+                //dbTableColumns.forEach(column -> {
+                //    //当前物理表和存储的字段信息不一致
+                //    if (!tableColumnNames.contains(column.getColumnName()))
+                //    {
+                //        table.setIfSyn(0);
+                //
+                //    }else {
+                //        table.setIfSyn(1);
+                //    }
+                //});
             }
 
         }
@@ -420,30 +432,37 @@ public class GenTableServiceImpl implements IGenTableService
     @Transactional
     public void synchDbFrom(String tableName)
     {
+        //数据库存储的信息
         GenTable table = genTableMapper.selectGenTableByName(tableName);
         List<GenTableColumn> tableColumns = table.getColumns();
-        List<String> tableColumnNames = tableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
+      //  List<String> tableColumnNames = tableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
 
+        //物理表中的信息
         List<GenTableColumn> dbTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
         if (StringUtils.isEmpty(dbTableColumns))
         {
             throw new CustomException("同步数据失败，原表结构不存在");
         }
-        List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
+
+        //将物理表的数据重新放入到数据库中
+       // List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
 
         dbTableColumns.forEach(column -> {
-            if (!tableColumnNames.contains(column.getColumnName()))
-            {
+            //if (!tableColumnNames.contains(column.getColumnName()))
+            //{
+                //初始化列属性字段
                 GenUtils.initColumnField(column, table);
+                genTableColumnMapper.deleteGenTableColumns(tableColumns);
                 genTableColumnMapper.insertGenTableColumn(column);
-            }
+
+          //  }
         });
 
-        List<GenTableColumn> delColumns = tableColumns.stream().filter(column -> !dbTableColumnNames.contains(column.getColumnName())).collect(Collectors.toList());
-        if (StringUtils.isNotEmpty(delColumns))
-        {
-            genTableColumnMapper.deleteGenTableColumns(delColumns);
-        }
+        //List<GenTableColumn> delColumns = tableColumns.stream().filter(column -> !dbTableColumnNames.contains(column.getColumnName())).collect(Collectors.toList());
+        //if (StringUtils.isNotEmpty(delColumns))
+        //{
+        //    genTableColumnMapper.deleteGenTableColumns(delColumns);
+        //}
     }
 
     /**

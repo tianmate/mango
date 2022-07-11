@@ -90,7 +90,7 @@ public class GenController extends BaseController {
         List<GenTable> tables = genTableService.selectGenTableAll();
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(tableId);
         for (GenTableColumn column : list) {
-            if (column.getColumnType().contains(".")){
+            if (column.getColumnType().contains(",")){
                 Integer[] integers = StringUtils.extractDigitalsToPoint(column.getColumnType());
                 column.setFieldNum(integers[0]);
                 column.setPointNum(integers[1]);
@@ -206,8 +206,8 @@ public class GenController extends BaseController {
      * 从物理表同步
      */
   //  @PreAuthorize("@ss.hasPermi('tool:gen:edit')")
-    @GetMapping("/synchDbForm/{tableName}")
-    public AjaxResult synchDbForm(@PathVariable("tableName") String tableName)
+    @GetMapping("/synchDbFrom/{tableName}")
+    public AjaxResult synchDbFrom(@PathVariable("tableName") String tableName)
     {
         genTableService.synchDbFrom(tableName);
         return AjaxResult.success();

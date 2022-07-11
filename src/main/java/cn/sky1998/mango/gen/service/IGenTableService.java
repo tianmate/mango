@@ -1,7 +1,5 @@
 package cn.sky1998.mango.gen.service;
 
-
-
 import cn.sky1998.mango.gen.domain.GenTable;
 
 import java.util.List;
