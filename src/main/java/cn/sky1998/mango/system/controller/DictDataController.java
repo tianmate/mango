@@ -23,7 +23,7 @@ import static cn.sky1998.mango.framework.web.core.AjaxResult.success;
  */
 @RestController
 @RequestMapping("/system/dict/data")
-public class SysDictDataController extends BaseController
+public class DictDataController extends BaseController
 {
     @Autowired
     private ISysDictDataService dictDataService;
@@ -31,6 +31,11 @@ public class SysDictDataController extends BaseController
     @Autowired
     private ISysDictTypeService dictTypeService;
 
+    /**
+     * 查询字典的所有项
+     * @param dictData
+     * @return
+     */
    // @PreAuthorize("@ss.hasPermi('system:dict:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysDictData dictData)

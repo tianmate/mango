@@ -1,6 +1,8 @@
 package cn.sky1998.mango.system.controller;
 
 import cn.sky1998.mango.framework.aspect.annotation.AutoLog;
+import cn.sky1998.mango.framework.web.core.BaseController;
+import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.system.domain.Account;
 import cn.sky1998.mango.system.domain.AccountRoleVo;
 import cn.sky1998.mango.system.domain.dto.AccountRoleDto;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/system/account")
-public class AccountController {
+public class AccountController extends BaseController {
 
     @Autowired
     private AccountService accountService;
@@ -32,8 +34,8 @@ public class AccountController {
 
 
     @PostMapping("/getList")
-    public AjaxResult getList(@RequestBody AccountForm accountForm){
-        return  AjaxResult.success(accountService.getList(accountForm));
+    public TableDataInfo getList(@RequestBody AccountForm accountForm){
+        return  getDataTable(accountService.getList(accountForm));
     }
 
 

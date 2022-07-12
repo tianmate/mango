@@ -309,7 +309,7 @@
 		limit 1
 	</select>
 
-	<insert id="insertSelective" parameterType="cn.sky1998.mango.system.domain.SysMenu" keyColumn="menu_id" keyProperty="menuId" useGeneratedKeys="true">
+	<insert id="insertSelective" parameterType="cn.sky1998.mango.system.domain.Menu" keyColumn="menu_id" keyProperty="menuId" useGeneratedKeys="true">
 		<!--@mbg.generated-->
 		insert into sys_menu
 		<trim prefix="(" suffix=")" suffixOverrides=",">

@@ -22,7 +22,7 @@ import static cn.sky1998.mango.framework.web.core.AjaxResult.success;
  */
 @RestController
 @RequestMapping("/system/dict")
-public class SysDictTypeController extends BaseController
+public class DictTypeController extends BaseController
 {
     @Autowired
     private ISysDictTypeService dictTypeService;
@@ -42,10 +42,10 @@ public class SysDictTypeController extends BaseController
      * 查询字典类型详细
      */
    // @PreAuthorize("@ss.hasPermi('system:dict:query')")
-    @GetMapping(value = "/{dictId}")
+    @GetMapping(value = "/type/{dictId}")
     public AjaxResult getInfo(@PathVariable Long dictId)
     {
-        return success(dictTypeService.selectDictTypeById(dictId));
+        return AjaxResult.success(dictTypeService.selectDictTypeById(dictId));
     }
 
     /**
@@ -82,7 +82,7 @@ public class SysDictTypeController extends BaseController
      * 删除字典类型
      */
    // @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @DeleteMapping("/{dictIds}")
+    @GetMapping("/{dictIds}")
     public AjaxResult remove(@PathVariable Long[] dictIds)
     {
         dictTypeService.deleteDictTypeByIds(dictIds);
@@ -93,7 +93,7 @@ public class SysDictTypeController extends BaseController
      * 刷新字典缓存
      */
    // @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @DeleteMapping("/refreshCache")
+    @GetMapping("/refreshCache")
     public AjaxResult refreshCache()
     {
         dictTypeService.resetDictCache();
