@@ -1,6 +1,7 @@
 package cn.sky1998.mango.gen.manager;
 
 import cn.sky1998.mango.common.exception.CustomException;
+import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.common.utils.text.Convert;
 import cn.sky1998.mango.gen.common.util.GenUtils;
 import cn.sky1998.mango.gen.domain.GenTable;
@@ -8,9 +9,11 @@ import cn.sky1998.mango.gen.domain.GenTableColumn;
 import cn.sky1998.mango.gen.mapper.GenTableMapper;
 import cn.sky1998.mango.gen.service.IGenTableService;
 import cn.sky1998.mango.system.domain.Menu;
+import cn.sky1998.mango.system.domain.form.MenuForm;
 import cn.sky1998.mango.system.mapper.MenuMapper;
 import cn.sky1998.mango.system.mapper.RoleMapper;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Component;
@@ -48,6 +51,7 @@ public class GenManager {
 
         //第一步：检查是否存在历史数据并删除
         GenTable genTable = genTableMapper.selectGenTableById(tableId);
+
         if (Objects.isNull(genTable)){
             throw new CustomException("表不存在");
         }
@@ -66,9 +70,11 @@ public class GenManager {
       //  List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
       //  genTableService.importGenTable(tableList);
 
-        if (IfCreateDb){
-            //创建数据库和插入角色
-            createTable(genTable);
+        //生成菜单数据不为空
+        if (Objects.nonNull(genTable.getOptions())){
+            Integer parentMenuId = StringUtils.extractDigital(genTable.getOptions());
+            genTable.setOptions(parentMenuId.toString());
+            addMenuByGen(genTable);
         }
 
 
@@ -132,7 +138,7 @@ public class GenManager {
     private void addMenuByGen(GenTable genTable){
         Menu menu=new Menu();
         menu.setMenuName(genTable.getFunctionName());
-        menu.setParentId(7L);
+        menu.setParentId(Long.parseLong(genTable.getOptions()));
         menu.setIcon("el-icon-notebook-2");
         menu.setMenuType("C");
         String path="/pages/";
@@ -140,9 +146,19 @@ public class GenManager {
 
         String component="work/";
         menu.setComponent(component.concat(genTable.getBusinessName()+"/index"));
-        //插入到菜单表
-        menuMapper.insertSelective(menu);
-        //插入到菜单-角色关联表(系统管理员角色，创建菜单id)
-        roleMapper.addRoleMenu(1l,menu.getMenuId());
+
+        List<Menu> menus = menuMapper.selectMenuList(menu);
+
+        if (menus!=null&&menus.size()!=0){
+            MenuForm record=new MenuForm();
+            BeanUtils.copyProperties(menu,record);
+            menuMapper.updateByPrimaryKeySelective(record);
+        }else {
+            //插入到菜单表
+            menuMapper.insertSelective(menu);
+            //插入到菜单-角色关联表(系统管理员角色，创建菜单id)
+            roleMapper.addRoleMenu(1l,menu.getMenuId());
+        }
+
     }
 }

@@ -444,9 +444,13 @@ public class GenTableColumn extends BaseEntity
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null ) return false;
         GenTableColumn that = (GenTableColumn) o;
-        return  Objects.equals(columnName, that.columnName) && Objects.equals(columnComment, that.columnComment) && Objects.equals(columnType, that.columnType)  && Objects.equals(isPk, that.isPk) && Objects.equals(isIncrement, that.isIncrement) ;
+        return  Objects.equals(columnName, that.columnName) &&
+                Objects.equals(columnComment, that.columnComment) &&
+                Objects.equals(columnType, that.columnType)  &&
+                Objects.equals(isPk, that.isPk) &&
+                Objects.equals(isIncrement, that.isIncrement) ;
     }
 
     @Override

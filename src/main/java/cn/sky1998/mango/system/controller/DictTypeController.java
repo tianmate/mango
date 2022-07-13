@@ -37,12 +37,11 @@ public class DictTypeController extends BaseController
     }
 
 
-
     /**
      * 查询字典类型详细
      */
    // @PreAuthorize("@ss.hasPermi('system:dict:query')")
-    @GetMapping(value = "/type/{dictId}")
+    @GetMapping(value = "/getInfo/{dictId}")
     public AjaxResult getInfo(@PathVariable Long dictId)
     {
         return AjaxResult.success(dictTypeService.selectDictTypeById(dictId));
@@ -52,7 +51,7 @@ public class DictTypeController extends BaseController
      * 新增字典类型
      */
    // @PreAuthorize("@ss.hasPermi('system:dict:add')")
-    @PostMapping
+    @PostMapping("/add")
     public AjaxResult add(@Validated @RequestBody SysDictType dict)
     {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict)))
@@ -67,7 +66,7 @@ public class DictTypeController extends BaseController
      * 修改字典类型
      */
   //  @PreAuthorize("@ss.hasPermi('system:dict:edit')")
-    @PutMapping
+    @PutMapping("/edit")
     public AjaxResult edit(@Validated @RequestBody SysDictType dict)
     {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict)))
@@ -82,7 +81,7 @@ public class DictTypeController extends BaseController
      * 删除字典类型
      */
    // @PreAuthorize("@ss.hasPermi('system:dict:remove')")
-    @GetMapping("/{dictIds}")
+    @GetMapping("/remove/{dictIds}")
     public AjaxResult remove(@PathVariable Long[] dictIds)
     {
         dictTypeService.deleteDictTypeByIds(dictIds);

@@ -427,10 +427,17 @@ public class GenUtils
                     return "int";
                 }
                 return "int"+"("+fieldNum+")";
-            case "Double":return "Double";
-            case "java.util.Date":return "Date";
-            case "Date":return "Date";
-            case "Datetime":return "Datetime";
+
+            case "Long":
+                if (fieldNum==null){
+                    return "int";
+                }
+                return "int"+"("+fieldNum+")";
+
+            case "Double":return "double";
+            case "java.util.Date":return "date";
+            case "Date":return "date";
+            case "Datetime":return "datetime";
             case "BigDecimal":
                 if (fieldNum==null){
                     return "decimal";

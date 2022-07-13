@@ -80,7 +80,7 @@ public class GenController extends BaseController {
     }
 
     /**
-     * 修改代码生成业务
+     * 获取代码生成业务详情
      */
  //   @PreAuthorize("@ss.hasPermi('tool:gen:query')")
     @GetMapping(value = "/{tableId}")
