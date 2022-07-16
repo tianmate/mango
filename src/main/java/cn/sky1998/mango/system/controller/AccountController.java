@@ -2,7 +2,6 @@ package cn.sky1998.mango.system.controller;
 
 import cn.sky1998.mango.framework.aspect.annotation.AutoLog;
 import cn.sky1998.mango.framework.web.core.BaseController;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.system.domain.Account;
 import cn.sky1998.mango.system.domain.AccountRoleVo;
 import cn.sky1998.mango.system.domain.dto.AccountRoleDto;
@@ -10,6 +9,7 @@ import cn.sky1998.mango.system.domain.form.AccountForm;
 import cn.sky1998.mango.system.domain.form.AccountRoleForm;
 import cn.sky1998.mango.system.service.AccountService;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +34,9 @@ public class AccountController extends BaseController {
 
 
     @PostMapping("/getList")
-    public TableDataInfo getList(@RequestBody AccountForm accountForm){
-        return  getDataTable(accountService.getList(accountForm));
+    public AjaxResult getList(@RequestBody AccountForm accountForm){
+        PageHelper.startPage(1,3);
+        return  AjaxResult.success(accountService.getList(accountForm));
     }
 
 

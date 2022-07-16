@@ -2,8 +2,6 @@ package cn.sky1998.mango.framework.web.core.page;
 
 import cn.sky1998.mango.common.utils.SqlUtil;
 import cn.sky1998.mango.common.utils.StringUtils;
-import cn.sky1998.mango.framework.web.core.page.PageDomain;
-import cn.sky1998.mango.framework.web.core.page.TableSupport;
 import com.github.pagehelper.PageHelper;
 
 /**

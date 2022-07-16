@@ -3,11 +3,13 @@ package cn.sky1998.mango.framework.web.core;
 import cn.sky1998.mango.common.utils.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import cn.sky1998.mango.common.enums.HttpStatus;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AjaxResult extends HashMap<String,Object> implements Serializable {
@@ -28,6 +30,15 @@ public class AjaxResult extends HashMap<String,Object> implements Serializable {
      */
     public static final String DATA_TAG = "datas";
 
+    /**
+     * 总记录数
+     */
+    private String TOTAL="total";
+
+    /**
+     * 当前记录数
+     */
+    private String COUNT="count";
 
     /**
      * 初始化一个新创建的 AjaxResult 对象，使其表示一个空消息。
@@ -56,9 +67,31 @@ public class AjaxResult extends HashMap<String,Object> implements Serializable {
     public AjaxResult(HttpStatus code, String msg, Object data) {
         super.put(CODE_TAG, code.aliasValue());
         super.put(MSG_TAG, msg);
+        //根据data判断是否要给 total、count赋值
         if (StringUtils.isNotNull(data)) {
+            if (data instanceof List){
+                PageInfo<?> pageInfo = new PageInfo<>((List<?>)data);
+                super.put(TOTAL,pageInfo.getTotal());
+                super.put(COUNT,pageInfo.getSize());
+            }
             super.put(DATA_TAG, data);
         }
+    }
+
+    /**
+     * 初始化一个新创建的 AjaxResult 对象
+     *
+     * @param code 状态码
+     * @param msg  返回内容
+     * @param data 数据对象
+     */
+    public AjaxResult(HttpStatus code, String msg, Object data,Long total,Long count) {
+        super.put(CODE_TAG, code.aliasValue());
+        super.put(MSG_TAG, msg);
+        super.put(DATA_TAG, data);
+        super.put(TOTAL, total);
+        super.put(COUNT, count);
+
     }
 
     /**
@@ -101,6 +134,29 @@ public class AjaxResult extends HashMap<String,Object> implements Serializable {
         return new AjaxResult(HttpStatus.OK, msg, data);
     }
 
+    /**
+     * 返回成功消息
+     *
+     * @param msg  返回内容
+     * @param data 数据对象
+     * @return 成功消息
+     */
+    public static AjaxResult success(String msg, Object data,Long total,Long count) {
+
+        return new AjaxResult(HttpStatus.OK, msg, data,total,count);
+    }
+
+    /**
+     * 返回成功消息
+     *
+     * @param msg  返回内容
+     * @param data 数据对象
+     * @return 成功消息
+     */
+    //public static AjaxResult success(String msg, List<?> data) {
+    //
+    //    return new AjaxResult(HttpStatus.OK, msg, data);
+    //}
     /**
      * 返回错误消息
      *

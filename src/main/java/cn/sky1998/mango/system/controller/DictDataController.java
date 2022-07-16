@@ -3,7 +3,6 @@ package cn.sky1998.mango.system.controller;
 import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.system.domain.SysDictData;
 import cn.sky1998.mango.system.service.ISysDictDataService;
 import cn.sky1998.mango.system.service.ISysDictTypeService;
@@ -38,11 +37,11 @@ public class DictDataController extends BaseController
      */
    // @PreAuthorize("@ss.hasPermi('system:dict:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysDictData dictData)
+    public AjaxResult list(SysDictData dictData)
     {
         startPage();
         List<SysDictData> list = dictDataService.selectDictDataList(dictData);
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 
 

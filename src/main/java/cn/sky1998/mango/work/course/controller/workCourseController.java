@@ -1,6 +1,7 @@
 package cn.sky1998.mango.work.course.controller;
 
 import java.util.List;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,6 @@ import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.work.course.domain.workCourse;
 import cn.sky1998.mango.work.course.service.IworkCourseService;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 
 /**
  * 课程管理Controller
@@ -34,11 +34,11 @@ public class workCourseController extends BaseController
      * 查询课程管理列表
      */
         @GetMapping("/list")
-    public TableDataInfo list(workCourse workCourse)
+    public AjaxResult list(workCourse workCourse)
     {
         startPage();
         List<workCourse> list = workCourseService.selectworkCourseList(workCourse);
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 
                                                 

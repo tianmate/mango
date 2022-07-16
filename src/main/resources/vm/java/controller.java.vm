@@ -19,7 +19,6 @@ import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
 ##import com.tcy.common.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 #elseif($table.tree)
 #end
 
@@ -42,11 +41,11 @@ public class ${ClassName}Controller extends BaseController
     ##@PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
     @GetMapping("/list")
 #if($table.crud || $table.sub)
-    public TableDataInfo list(${ClassName} ${className})
+    public AjaxResult list(${ClassName} ${className})
     {
         startPage();
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 #elseif($table.tree)
     public AjaxResult list(${ClassName} ${className})

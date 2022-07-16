@@ -30,7 +30,7 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-  "id": 2
+
 }
 
 ### 更新用户

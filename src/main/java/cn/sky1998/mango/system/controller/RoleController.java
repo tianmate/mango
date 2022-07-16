@@ -2,7 +2,6 @@ package cn.sky1998.mango.system.controller;
 
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.framework.web.core.BaseController;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.system.domain.Role;
 import cn.sky1998.mango.system.domain.RoleMenuVo;
 import cn.sky1998.mango.system.domain.form.RoleMenuForm;
@@ -24,8 +23,8 @@ public class RoleController extends BaseController {
 
 
     @PostMapping("/getList")
-    public TableDataInfo getlist(@RequestBody Role role){
-        return getDataTable(roleService.getlist(role));
+    public AjaxResult getlist(@RequestBody Role role){
+        return AjaxResult.success(roleService.getlist(role));
     }
 
     @PostMapping("/add")

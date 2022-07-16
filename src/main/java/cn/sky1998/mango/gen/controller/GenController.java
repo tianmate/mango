@@ -3,7 +3,6 @@ package cn.sky1998.mango.gen.controller;
 import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.common.utils.text.Convert;
 import cn.sky1998.mango.gen.domain.GenTable;
 import cn.sky1998.mango.gen.domain.GenTableColumn;
@@ -72,11 +71,11 @@ public class GenController extends BaseController {
      */
  //   @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @GetMapping("/list")
-    public TableDataInfo genList(GenTable genTable)
+    public AjaxResult genList(GenTable genTable)
     {
         startPage();
         List<GenTable> list = genTableService.selectGenTableList(genTable);
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 
     /**
@@ -111,11 +110,11 @@ public class GenController extends BaseController {
      */
   //  @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @GetMapping("/db/list")
-    public TableDataInfo dataList(GenTable genTable)
+    public AjaxResult dataList(GenTable genTable)
     {
         startPage();
         List<GenTable> list = genTableService.selectDbTableList(genTable);
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 
     /**
@@ -123,13 +122,13 @@ public class GenController extends BaseController {
      */
   //  @PreAuthorize("@ss.hasPermi('tool:gen:list')")
     @GetMapping(value = "/column/{talbleId}")
-    public TableDataInfo columnList(Long tableId)
+    public AjaxResult columnList(Long tableId)
     {
-        TableDataInfo dataInfo = new TableDataInfo();
+       // TableDataInfo dataInfo = new TableDataInfo();
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(tableId);
-        dataInfo.setDatas(list);
-        dataInfo.setTotal(list.size());
-        return dataInfo;
+        //dataInfo.setDatas(list);
+        //dataInfo.setTotal(list.size());
+        return AjaxResult.success(list);
     }
 
     /**

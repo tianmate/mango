@@ -1,12 +1,10 @@
 package cn.sky1998.mango.framework.aspect;
 
 import cn.sky1998.mango.common.constant.Constants;
-import cn.sky1998.mango.common.enums.HttpStatus;
 import cn.sky1998.mango.common.utils.ObjectUtils;
 import cn.sky1998.mango.framework.aspect.annotation.Dict;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.framework.web.core.entity.BaseEntity;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.system.domain.dto.DictModel;
 import cn.sky1998.mango.system.service.ISysDictTypeService;
 import com.alibaba.fastjson.JSON;
@@ -14,7 +12,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.pagehelper.IPage;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -115,10 +112,11 @@ public class DictAspect {
 
             o = ((AjaxResult) result).get("datas");
 
-        } else if (result instanceof TableDataInfo) {
-
-            o = ((TableDataInfo) result).getDatas();
         }
+        //else if (result instanceof TableDataInfo) {
+        //
+        //    o = ((TableDataInfo) result).getDatas();
+        //}
 
         List<Object> records = new ArrayList<>();
 
@@ -216,20 +214,29 @@ public class DictAspect {
             }
         }
 
+        //构造结果集
         if (result instanceof AjaxResult) {
 
             //构造AjaxResult
+            if (items instanceof List){
+                Long total = ((Long)((AjaxResult) result).get("total"));
+                Long count = ((Integer) ((AjaxResult) result).get("count")).longValue();
+                result = AjaxResult.success(((AjaxResult) result).get("msg").toString(), items,total,count);
+            }
+
             result = AjaxResult.success(((AjaxResult) result).get("msg").toString(), items);
 
-        } else if (result instanceof TableDataInfo) {
-            //构造TableDataInfo
-            result = new TableDataInfo(((TableDataInfo) result).getTotal(),
-                    ((TableDataInfo) result).getCount(),
-                    items,
-                    ((TableDataInfo) result).getCode(),
-                    ((TableDataInfo) result).getMsg());
 
         }
+        //else if (result instanceof TableDataInfo) {
+        //    //构造TableDataInfo
+        //    result = new TableDataInfo(((TableDataInfo) result).getTotal(),
+        //            ((TableDataInfo) result).getCount(),
+        //            items,
+        //            ((TableDataInfo) result).getCode(),
+        //            ((TableDataInfo) result).getMsg());
+        //
+        //}
 
         return result;
 

@@ -3,7 +3,6 @@ package cn.sky1998.mango.system.controller;
 import cn.sky1998.mango.framework.aspect.annotation.Dict;
 import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.gen.common.constant.UserConstants;
 import cn.sky1998.mango.system.domain.SysDictType;
 import cn.sky1998.mango.system.service.ISysDictTypeService;
@@ -29,11 +28,11 @@ public class DictTypeController extends BaseController
 
    // @PreAuthorize("@ss.hasPermi('system:dict:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysDictType dictType)
+    public AjaxResult list(SysDictType dictType)
     {
         startPage();
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 
 

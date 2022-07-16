@@ -17,7 +17,6 @@ import cn.sky1998.mango.framework.web.core.BaseController;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.system.domain.sysLog;
 import cn.sky1998.mango.system.service.IsysLogService;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 
 /**
  * 日志管理Controller
@@ -36,11 +35,11 @@ public class sysLogController extends BaseController
      * 查询日志管理列表
      */
         @GetMapping("/list")
-    public TableDataInfo list(sysLog sysLog)
+    public AjaxResult list(sysLog sysLog)
     {
         startPage();
         List<sysLog> list = sysLogService.selectsysLogList(sysLog);
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 
                                     
