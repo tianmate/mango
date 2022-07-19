@@ -86,7 +86,7 @@ public class AccountServiceImpl implements AccountService  {
 
     @Override
     public int remove(Account account) {
-        account.setDel((byte) 1);
+        account.setDel(1);
         return accountMapper.updateByPrimaryKeySelective(account);
     }
 

@@ -1,6 +1,7 @@
 package cn.sky1998.mango.quartz.util;
 
 import cn.sky1998.mango.common.constant.Constants;
+import cn.sky1998.mango.common.enums.EnableStatus;
 import cn.sky1998.mango.common.exception.job.TaskException;
 import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.gen.common.constant.ScheduleConstants;
@@ -23,7 +24,7 @@ public class ScheduleUtils
      */
     private static Class<? extends Job> getQuartzJobClass(SysJob sysJob)
     {
-        boolean isConcurrent = "0".equals(sysJob.getConcurrent());
+        boolean isConcurrent = EnableStatus.DisEnable.aliasValue().equals(sysJob.getConcurrent());
         return isConcurrent ? QuartzJobExecution.class : QuartzDisallowConcurrentExecution.class;
     }
 

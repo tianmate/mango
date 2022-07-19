@@ -199,7 +199,7 @@
                    left join sys_account_role ur on ur.role_id = r.id
                    left join sys_user u on u.id = ur.account_id
 
-    WHERE r.del = 0 and ur.account_id = #{userId}
+    WHERE r.del = 1 and ur.account_id = #{userId}
   </select>
 
 </mapper>

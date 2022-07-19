@@ -1,6 +1,7 @@
 package cn.sky1998.mango.quartz.util;
 
 import cn.sky1998.mango.common.constant.Constants;
+import cn.sky1998.mango.common.enums.EnableStatus;
 import cn.sky1998.mango.common.utils.ExceptionUtil;
 import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.utils.BeanUtils;
@@ -84,13 +85,13 @@ public abstract class AbstractQuartzJob implements Job
         sysJobLog.setJobMessage(sysJobLog.getJobName() + " 总共耗时：" + runMs + "毫秒");
         if (e != null)
         {
-            sysJobLog.setStatus(Constants.FAIL);
+            sysJobLog.setStatus(EnableStatus.DisEnable.aliasValue().toString());
             String errorMsg = StringUtils.substring(ExceptionUtil.getExceptionMessage(e), 0, 2000);
             sysJobLog.setExceptionInfo(errorMsg);
         }
         else
         {
-            sysJobLog.setStatus(Constants.SUCCESS);
+            sysJobLog.setStatus(EnableStatus.DisEnable.aliasValue().toString());
         }
 
         // 写入数据库当中

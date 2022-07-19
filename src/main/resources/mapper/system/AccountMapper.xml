@@ -219,10 +219,8 @@
   </select>
 
   <select id="getUserRole" resultMap="BaseResultMapRole" parameterType="cn.sky1998.mango.system.domain.Account">
-
     <!--@mbg.generated-->
     select
-
     sa.id,
     sa.username,
     sa.`password`,
@@ -241,7 +239,7 @@
     from sys_account sa
     left join sys_account_role sar on sar.account_id=sa.id
     left join sys_role sr on sr.id=sar.role_id
-    where sa.id = #{id} and sar.del=0
+    where sa.id = #{id} and sar.del=1
     </select>
 
   <insert id="assignRole" >

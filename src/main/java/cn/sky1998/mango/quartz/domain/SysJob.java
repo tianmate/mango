@@ -42,10 +42,10 @@ public class SysJob extends BaseEntity
     /** cron计划策略 */
     private String misfirePolicy = ScheduleConstants.MISFIRE_DEFAULT;
 
-    /** 是否并发执行（0允许 1禁止） */
+    /** 是否并发执行（1允许 0禁止） */
     private String concurrent;
 
-    /** 任务状态（0正常 1暂停） */
+    /** 任务状态（1正常 0暂停） */
     private String status;
 
     public Long getJobId()

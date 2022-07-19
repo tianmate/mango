@@ -1,5 +1,6 @@
 package cn.sky1998.mango.system.security.service;
 
+import cn.sky1998.mango.common.enums.EnableStatus;
 import cn.sky1998.mango.common.exception.CustomException;
 import cn.sky1998.mango.system.domain.AccountRoleVo;
 import cn.sky1998.mango.system.domain.Account;
@@ -38,9 +39,9 @@ public class loadUserDetailsService implements UserDetailsService {
 
         if (Objects.isNull(sysAccount)){
             throw new CustomException("用户不存在");
-        }else if (sysAccount.getEnable()==1){
+        }else if (sysAccount.getEnable()== EnableStatus.DisEnable.aliasValue()){
             throw new CustomException("账户已经锁定，请联系管理员");
-        }else if (sysAccount.getDel()==1){
+        }else if (sysAccount.getDel()==EnableStatus.DisEnable.aliasValue()){
             throw new CustomException("账户已经删除，请联系管理员");
         }
         //查询角色信息

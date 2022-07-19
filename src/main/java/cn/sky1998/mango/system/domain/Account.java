@@ -41,12 +41,12 @@ public class Account implements Serializable {
     /**
     * 可用状态
     */
-    private Byte enable;
+    private Integer enable;
 
     /**
     * 删除标记
     */
-    private Byte del;
+    private Integer del;
 
     /**
     * 备注
@@ -103,19 +103,19 @@ public class Account implements Serializable {
         this.nickName = nickName == null ? null : nickName.trim();
     }
 
-    public Byte getEnable() {
+    public Integer getEnable() {
         return enable;
     }
 
-    public void setEnable(Byte enable) {
+    public void setEnable(Integer enable) {
         this.enable = enable;
     }
 
-    public Byte getDel() {
+    public Integer getDel() {
         return del;
     }
 
-    public void setDel(Byte del) {
+    public void setDel(Integer del) {
         this.del = del;
     }
 
