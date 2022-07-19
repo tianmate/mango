@@ -6,7 +6,7 @@ import cn.sky1998.mango.system.domain.Role;
 import java.util.List;
 
 /**
- * @author tcy
+ * @author tcy@1753163342@qq.com
  * @Date 12-04-2022
  */
 public class RoleMenuDto extends Role {

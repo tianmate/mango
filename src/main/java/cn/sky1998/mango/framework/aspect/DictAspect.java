@@ -218,13 +218,19 @@ public class DictAspect {
         if (result instanceof AjaxResult) {
 
             //构造AjaxResult
-            if (items instanceof List){
+            if (((AjaxResult) result).get("datas") instanceof List){
                 Long total = ((Long)((AjaxResult) result).get("total"));
-                Long count = ((Integer) ((AjaxResult) result).get("count")).longValue();
+                Long count =1l;
+                if (((Integer) ((AjaxResult) result).get("count"))!=null){
+                     count = ((Integer) ((AjaxResult) result).get("count")).longValue();
+                }
+
                 result = AjaxResult.success(((AjaxResult) result).get("msg").toString(), items,total,count);
+            }else {
+                result = AjaxResult.success(((AjaxResult) result).get("msg").toString(), items.get(0));
             }
 
-            result = AjaxResult.success(((AjaxResult) result).get("msg").toString(), items);
+
 
 
         }
