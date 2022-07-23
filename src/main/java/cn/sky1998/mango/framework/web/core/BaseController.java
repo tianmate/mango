@@ -24,19 +24,6 @@ public class BaseController {
         return rows > 0 ? AjaxResult.success() : AjaxResult.error();
     }
 
-    ///**
-    // * 响应请求分页数据
-    // */
-    //protected TableDataInfo getDataTable(List<?> list) {
-    //    TableDataInfo rspData = new TableDataInfo();
-    //    rspData.setCode(HttpStatus.OK.aliasValue());
-    //    rspData.setMsg("查询成功");
-    //    rspData.setDatas(list);
-    //    PageInfo<?> pageInfo = new PageInfo<>(list);
-    //    rspData.setTotal(pageInfo.getTotal());
-    //    rspData.setCount(pageInfo.getSize());
-    //    return rspData;
-    //}
 
     /**
      * 设置请求分页数据

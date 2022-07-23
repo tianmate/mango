@@ -56,13 +56,23 @@ public class MangoConfig {
     @Value("${mango.wxapp.oss.bucketName}")
     private String wxappOssBucketName;
 
+    @Value("${mango.wxapp.oss.baseUrl}")
+    private String baseUrl;
+
     @Value("${mango.wxapp.uniapp.appid}")
     private String wxappUniappAppid;
 
     @Value("${mango.wxapp.uniapp.secret}")
     private String wxappUniappSecret;
 
+    public String getBaseUrl() {
+        return baseUrl;
+    }
 
+    public MangoConfig setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+        return this;
+    }
 
     public String getName() {
         return name;

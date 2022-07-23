@@ -5,7 +5,6 @@ import cn.sky1998.mango.common.exception.job.TaskException;
 import cn.sky1998.mango.common.utils.StringUtils;
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.framework.web.core.BaseController;
-import cn.sky1998.mango.framework.web.core.page.TableDataInfo;
 import cn.sky1998.mango.quartz.domain.SysJob;
 import cn.sky1998.mango.quartz.service.ISysJobService;
 import cn.sky1998.mango.quartz.util.CronUtils;

@@ -22,6 +22,7 @@ mango:
       secretKey:
       region: ap-nanjing
       bucketName:
+      baseUrl: https://old-wechat-1300430211.cos.ap-nanjing.myqcloud.com/
       #微信小程序
     uniapp:
       appid:

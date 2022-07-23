@@ -2,12 +2,14 @@ package cn.sky1998.mango.common.utils;
 
 
 import cn.sky1998.mango.common.exception.CustomException;
+import cn.sky1998.mango.common.utils.uuid.UUID;
 import cn.sky1998.mango.framework.config.MangoConfig;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
 import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.http.HttpProtocol;
+import com.qcloud.cos.model.ObjectMetadata;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.region.Region;
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * 文件工具类
@@ -115,6 +120,84 @@ public class FileUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 上传图片到腾讯云OSS
+     */
+    public String uploadTencentOss(InputStream file,String fileName) throws IOException {
+
+        //  1 初始化用户身份信息（secretId, secretKey）。
+        String secretId = mangoConfig.getWxappOssSecreatId();
+        String secretKey = mangoConfig.getWxappOssSecreatkey();
+        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
+        Region region = new Region(mangoConfig.getWxappOssRegion());
+        String baseUrl=mangoConfig.getBaseUrl();
+        ClientConfig clientConfig = new ClientConfig(region);
+
+        //将图片的具体信息传入ObjectMetadate类
+        ObjectMetadata meta=new ObjectMetadata();
+        // 从 5.6.54 版本开始，默认使用了 https
+        clientConfig.setHttpProtocol(HttpProtocol.https);
+        // 3 生成 cos 客户端。
+        COSClient cosClient = new COSClient(cred, clientConfig);
+        // 指定文件将要存放的存储桶
+        String bucketName = mangoConfig.getWxappOssBucketName();
+        // 指定文件上传到 COS 上的路径，即对象键。例如对象键为folder/picture.jpg，则表示将文件 picture.jpg 上传到 folder 路径下
+        String key = fileName;
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key,file,meta );
+
+        cosClient.putObject(putObjectRequest);
+
+        cosClient.shutdown();
+
+        return baseUrl+fileName;
+    }
+
+    /**
+     * 从网络Url上传图片
+     * @param urlStr 文件URL地址
+     * @throws IOException
+     */
+    public  String uploadTencentOssFromUrl(String urlStr,String articleUrl){
+        //把地址转换成URL对象
+        URL url = null;
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        //创建http链接
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection)url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //设置超时间为3秒
+        conn.setConnectTimeout(3*1000);
+        //防止屏蔽程序抓取而返回403错误
+        conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+        conn.setRequestProperty("referer", articleUrl);
+
+        //得到输入流
+        InputStream inputStream = null;
+        try {
+            inputStream = conn.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //截取链接中的文件名
+        String fileName= UUID.fastUUID().toString();
+        //请求OSS方法
+        String resUrl = null;
+        try {
+            resUrl = uploadTencentOss(inputStream,fileName+".png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return resUrl;
     }
 
 }
