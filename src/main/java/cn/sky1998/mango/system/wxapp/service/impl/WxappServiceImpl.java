@@ -4,6 +4,8 @@ import cn.sky1998.mango.common.exception.CustomException;
 import cn.sky1998.mango.framework.utils.SpringUtils;
 import cn.sky1998.mango.system.wxapp.WxappUtils;
 import cn.sky1998.mango.system.wxapp.domain.ContentMsg;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,7 +41,13 @@ public class WxappServiceImpl implements WxappService {
 
     private static RestTemplate restTemplate = (RestTemplate) SpringUtils.getBeanByName("restTemplate");
 
+    //公众号登录二维码
     private String qrCodeUrl = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s";
+
+    private static final String AUTHORIZATION_CODE = "authorization_code";
+
+    //获取微信openid的接口
+    private static final String REQUEST_URL = "https://api.weixin.qq.com/sns/jscode2session";
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -156,7 +164,40 @@ public class WxappServiceImpl implements WxappService {
 
     }
 
+    @Override
+    public Map<String, Object> getOpenid(String code, String appid) {
+        Map<String, Object> userMap = new HashMap<>();
+        //secret 如果是单小程序，appid可以直接配置文件配置
+        // 如果是多小程序，保存到小程序信息中。
+        String secret="";
+        JSONObject sessionKeyOpenId = getSessionKeyOrOpenId(code,appid,secret);
 
+        // 获取openId
+        String openId = sessionKeyOpenId.getString("openid");
+        userMap.put("openId",openId);
 
+        return userMap;
+    }
 
+    /**
+     * 根据code获取openid
+     * @param code
+     * @return
+     * @throws Exception
+     */
+    private JSONObject getSessionKeyOrOpenId(String code, String appid, String secret) {
+        Map<String, String> requestUrlParam = new HashMap<>();
+        // 小程序appId，自己补充
+        requestUrlParam.put("appid", appid);
+        // 小程序secret，自己补充
+        requestUrlParam.put("secret", secret);
+        // 小程序端返回的code
+        requestUrlParam.put("js_code", code);
+        // 默认参数
+        requestUrlParam.put("grant_type", AUTHORIZATION_CODE);
+
+        // 发送post请求读取调用微信接口获取openid用户唯一标识
+        ResponseEntity<String> result = restTemplate.postForEntity(REQUEST_URL, requestUrlParam,String.class);
+        return JSON.parseObject(result.getBody());
+    }
 }

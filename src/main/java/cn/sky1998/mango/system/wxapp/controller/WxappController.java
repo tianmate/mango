@@ -2,6 +2,8 @@ package cn.sky1998.mango.system.wxapp.controller;
 
 import cn.sky1998.mango.framework.web.core.AjaxResult;
 import cn.sky1998.mango.system.wxapp.service.WxappService;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/wechat")
@@ -57,6 +61,19 @@ public class WxappController {
     public String getMessage(HttpServletRequest request,String  openid) {
 
         return wxappService.getMessage(request,openid);
+    }
+
+    /**
+     * 获取小程序openid
+     * @param code
+     * @param appid
+     * @param req
+     * @return
+     */
+    @PostMapping(value = "/getOpenid/public")
+    public AjaxResult getOpenid(String code, String appid,HttpServletRequest req){
+
+        return AjaxResult.success(wxappService.getOpenid(code,appid));
     }
 
 

@@ -40,7 +40,21 @@ public interface WxappService {
      */
     public String validateWxappToken(String signature, String timestamp, String nonce, String echostr);
 
+    /**
+     * 接收用户的消息和事件
+     * @param request
+     * @param openid
+     * @return
+     */
     public String getMessage(HttpServletRequest request,String openid);
+
+    /**
+     * 获取用户 openid
+     * @param code
+     * @param appid
+     * @return
+     */
+    public Map<String, Object> getOpenid(String code,String appid);
 
 
 }
