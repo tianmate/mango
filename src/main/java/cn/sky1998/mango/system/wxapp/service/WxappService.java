@@ -49,12 +49,21 @@ public interface WxappService {
     public String getMessage(HttpServletRequest request,String openid);
 
     /**
-     * 获取用户 openid
+     * 获取用户 openid 单体配置
      * @param code
      * @param appid
      * @return
      */
     public Map<String, Object> getOpenid(String code,String appid);
+
+    /**
+     * 获取用户 openid 多小程序
+     * @param code
+     * @param appid
+     * @param secret
+     * @return
+     */
+    public Map<String, Object> getOpenid(String code,String appid,String secret);
 
 
 }

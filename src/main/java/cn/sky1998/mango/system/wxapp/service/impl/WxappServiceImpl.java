@@ -1,6 +1,7 @@
 package cn.sky1998.mango.system.wxapp.service.impl;
 
 import cn.sky1998.mango.common.exception.CustomException;
+import cn.sky1998.mango.framework.config.MangoConfig;
 import cn.sky1998.mango.framework.utils.SpringUtils;
 import cn.sky1998.mango.system.wxapp.WxappUtils;
 import cn.sky1998.mango.system.wxapp.domain.ContentMsg;
@@ -55,6 +56,8 @@ public class WxappServiceImpl implements WxappService {
     @Autowired
     private WxappUtils wxappUtils;
 
+    @Autowired
+    private MangoConfig mangoConfig;
     /**
      * 获取登录二维码
      *
@@ -169,7 +172,20 @@ public class WxappServiceImpl implements WxappService {
         Map<String, Object> userMap = new HashMap<>();
         //secret 如果是单小程序，appid可以直接配置文件配置
         // 如果是多小程序，保存到小程序信息中。
-        String secret="";
+        String secret=mangoConfig.getWxappUniappSecret();
+        JSONObject sessionKeyOpenId = getSessionKeyOrOpenId(code,appid,secret);
+
+        // 获取openId
+        String openId = sessionKeyOpenId.getString("openid");
+        userMap.put("openId",openId);
+
+        return userMap;
+    }
+
+    @Override
+    public Map<String, Object> getOpenid(String code, String appid,String secret) {
+        Map<String, Object> userMap = new HashMap<>();
+
         JSONObject sessionKeyOpenId = getSessionKeyOrOpenId(code,appid,secret);
 
         // 获取openId

@@ -30,6 +30,7 @@ public class WxappTest {
 
     @Test
     public void test2(){
+        wxappService.getOpenid("wx48da5cab584f1439","wx48da5cab584f1439","9155ab2e3600232f8b37e21ed820157a");
     }
 
 }
